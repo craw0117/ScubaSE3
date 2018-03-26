@@ -49,6 +49,7 @@ public class ScubaFrame extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        sVerticalSplitPane = new javax.swing.JSplitPane();
         sSplitPane = new javax.swing.JSplitPane();
         sOutputPanel = new scubase3.panels.ScubaOutputPanel();
         sInputPanel = new scubase3.panels.ScubaInputPanel();
@@ -63,6 +64,9 @@ public class ScubaFrame extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(650, 450));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
+        sVerticalSplitPane.setDividerSize(3);
+        sVerticalSplitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
         sSplitPane.setDividerSize(3);
 
         sOutputPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -71,21 +75,16 @@ public class ScubaFrame extends javax.swing.JFrame {
         sInputPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         sSplitPane.setLeftComponent(sInputPanel);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        getContentPane().add(sSplitPane, gridBagConstraints);
+        sVerticalSplitPane.setLeftComponent(sSplitPane);
 
         sTablePanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        sVerticalSplitPane.setRightComponent(sTablePanel);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(sTablePanel, gridBagConstraints);
+        getContentPane().add(sVerticalSplitPane, gridBagConstraints);
 
         calculations.setText("File");
         sMenuBar.add(calculations);
@@ -106,5 +105,6 @@ public class ScubaFrame extends javax.swing.JFrame {
     private scubase3.panels.ScubaOutputPanel sOutputPanel;
     private javax.swing.JSplitPane sSplitPane;
     private scubase3.panels.ScubaTablePanel sTablePanel;
+    private javax.swing.JSplitPane sVerticalSplitPane;
     // End of variables declaration//GEN-END:variables
 }
