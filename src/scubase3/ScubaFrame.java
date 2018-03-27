@@ -10,7 +10,7 @@ public class ScubaFrame extends javax.swing.JFrame {
     private final ScubaController controller;
 
     /**
-     * Creates new form ScubaFrame
+     * Creates a new ScubaFrame and initializes all of the form components.
      *
      * @param controller the ScubaController
      */
@@ -19,14 +19,19 @@ public class ScubaFrame extends javax.swing.JFrame {
         this.model = controller.getModel();
         initComponents();
     }
-    
+
+    /**
+     * Provides external access to the controller object
+     *
+     * @return ScubaController
+     */
     public ScubaController getController() {
         return controller;
     }
 
     /**
-     * Updates dynamic state dependant components. Must be called after state
-     * change.
+     * Updates dynamic state dependant components. Must be called after every
+     * state change.
      */
     public void update() {
         sInputPanel.update();
