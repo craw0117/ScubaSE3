@@ -5,6 +5,7 @@
  */
 package scubase3.panels;
 
+import java.text.DecimalFormat;
 import javax.swing.SwingUtilities;
 import scubase3.Const;
 import scubase3.ScubaController;
@@ -34,11 +35,12 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
         }
 
         ScubaModel model = controller.getModel();
-
-        outputText.setText(model.getCalculationType()
-                + " P(ata): " + model.getDepthPressure()
-                + " PP: " + model.getPartialPressure()
-                + " Fg: " + model.getFractionOxygen());
+DecimalFormat df = new DecimalFormat("0.00");
+        outputText.setText(model.getCalculationType()+ df.format(model.getOutputValue())
+                + "  Oxygen: "+df.format(model.getOutputOxygen()));
+//                + ": Depth(m): " + model.getDepthPressure()
+//                + " Pg(ata): " + model.getPartialPressure()
+//                + " Fg: " + model.getFractionOxygen());
     }
 
     /**

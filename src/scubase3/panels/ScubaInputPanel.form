@@ -163,7 +163,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="partialPressureLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Partial Pressure (ppO2)"/>
+            <Property name="text" type="java.lang.String" value="Partial Pressure (Pg)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JSpinner" name="partialPressureSpinner">
@@ -219,7 +219,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="fractionOxygenLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Oxygen Percent"/>
+            <Property name="text" type="java.lang.String" value="Oxygen Percent (Fg)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JSpinner" name="fractionOxygenSpinner">
@@ -272,7 +272,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="depthLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Maximum Depth (m)"/>
+            <Property name="text" type="java.lang.String" value="Depth (m)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JSpinner" name="depthSpinner">

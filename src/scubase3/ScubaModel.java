@@ -18,7 +18,9 @@ public class ScubaModel {
     private double partialPressure;
     private double fractionOxygen;
     private double depthPressure; //in ata
-    
+    private double outputValue;
+    private double outputOxygen;
+
     private String tableType;
 
     public ScubaModel(ScubaFrame view) {
@@ -37,14 +39,14 @@ public class ScubaModel {
         partialPressure = 1.4;
         fractionOxygen = .32;
         depthPressure = 3.88;
-        
+
         tableType = "EAD";
     }
 
     public String getCalculationType() {
         return calculationType;
     }
-    
+
     /**
      * Sets the calculation to perform and will enable the correct inputs.
      *
@@ -54,18 +56,29 @@ public class ScubaModel {
         switch (calcType) {
             case "EAD":
                 this.inputFlags = Const.FLAG_DEPTH | Const.FLAG_FRAC_OXYGEN;
+                this.outputValue = this.depthPressure;
+this.outputValue = MethodsContainer.calculateEAD( this.fractionOxygen, this.depthPressure);
+this.outputOxygen = MethodsContainer.calculateOxygenEAD( this.fractionOxygen, this.depthPressure);
                 break;
             case "MOD":
                 this.inputFlags = Const.FLAG_O2_PRESSURE | Const.FLAG_FRAC_OXYGEN;
+                this.outputValue = MethodsContainer.calculateMOD(this.partialPressure, this.fractionOxygen);
+                this.outputOxygen = MethodsContainer.calculateOxygenMOD(this.partialPressure, this.fractionOxygen);
                 break;
-            case "MIX":
+            case "BM":
                 this.inputFlags = Const.FLAG_O2_PRESSURE | Const.FLAG_DEPTH;
+                this.outputValue = MethodsContainer.calculateBM(this.partialPressure, this.depthPressure);
+                this.outputOxygen = MethodsContainer.calculateOxygenBM(this.partialPressure, this.depthPressure);
                 break;
             case "PP":
-                this.inputFlags = Const.FLAG_O2_PRESSURE | Const.FLAG_DEPTH;
+                this.inputFlags = Const.FLAG_FRAC_OXYGEN | Const.FLAG_DEPTH;
+                this.outputValue = MethodsContainer.calculatePP(this.fractionOxygen, this.depthPressure);
+                this.outputOxygen = MethodsContainer.calculateOxygenPP(this.fractionOxygen, this.depthPressure);
                 break;
             case "SMOD":
                 this.inputFlags = Const.FLAG_O2_PRESSURE | Const.FLAG_FRAC_OXYGEN;
+                this.outputValue = MethodsContainer.calculateMOD(this.partialPressure, this.fractionOxygen);
+                this.outputOxygen = MethodsContainer.calculateOxygenMOD(this.partialPressure, this.fractionOxygen);
                 //TODO verify these flags are correct (no idea what SMOD is)
                 break;
             default:
@@ -106,11 +119,11 @@ public class ScubaModel {
     public double getDepth() {
         // we store depth as the pressure from depth
         // thus must calculate it on demand
-        return (depthPressure - 1) * 10;
+        return depthPressure;
     }
 
     public void setDepth(double depth) {
-        this.depthPressure = depth / 10 + 1;
+        this.depthPressure = depth;
         view.update();
     }
 
@@ -122,7 +135,7 @@ public class ScubaModel {
         this.inputFlags = inputFlags;
         view.update();
     }
-    
+
     public String getTableType() {
         return tableType;
     }
@@ -131,5 +144,14 @@ public class ScubaModel {
         this.tableType = tableType;
         view.update();
     }
+
+    public double getOutputValue() {
+        return outputValue;
+    }
+
+    public double getOutputOxygen() {
+        return outputOxygen;
+    }
+    
 
 }

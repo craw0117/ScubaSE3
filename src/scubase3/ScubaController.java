@@ -13,6 +13,7 @@ public class ScubaController {
 
     private final ScubaModel model;
     private final ScubaFrame view;
+    
 
     public ScubaController() {
         this.view = new ScubaFrame(this);
@@ -52,5 +53,8 @@ public class ScubaController {
     
     public void setTableType(String type) {
         model.setTableType(type);
+    }
+    public String getCalcType() {
+       return model.getCalculationType();
     }
 }

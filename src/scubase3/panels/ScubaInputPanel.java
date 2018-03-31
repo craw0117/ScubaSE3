@@ -72,8 +72,7 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
         inputSelectGroup = new javax.swing.ButtonGroup();
@@ -117,10 +116,8 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         eadSelect.setFocusable(false);
         eadSelect.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         eadSelect.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        eadSelect.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        eadSelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eadSelectActionPerformed(evt);
             }
         });
@@ -133,10 +130,8 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         modSelect.setFocusable(false);
         modSelect.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         modSelect.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        modSelect.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        modSelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modSelectActionPerformed(evt);
             }
         });
@@ -149,10 +144,8 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         bestMixSelect.setFocusable(false);
         bestMixSelect.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         bestMixSelect.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        bestMixSelect.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        bestMixSelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bestMixSelectActionPerformed(evt);
             }
         });
@@ -165,10 +158,8 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         partialPressureSelect.setFocusable(false);
         partialPressureSelect.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         partialPressureSelect.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        partialPressureSelect.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        partialPressureSelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 partialPressureSelectActionPerformed(evt);
             }
         });
@@ -181,10 +172,8 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         smodSelect.setFocusable(false);
         smodSelect.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         smodSelect.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        smodSelect.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        smodSelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 smodSelectActionPerformed(evt);
             }
         });
@@ -201,7 +190,7 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         partialPressurePanel.setAlignmentY(0.0F);
         partialPressurePanel.setLayout(new javax.swing.BoxLayout(partialPressurePanel, javax.swing.BoxLayout.Y_AXIS));
 
-        partialPressureLabel.setText("Partial Pressure (ppO2)");
+        partialPressureLabel.setText("Partial Pressure (Pg)");
         partialPressurePanel.add(partialPressureLabel);
 
         partialPressureSpinner.setModel(new javax.swing.SpinnerNumberModel(1.1d, 1.1d, 1.6d, 0.01d));
@@ -210,10 +199,8 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         partialPressureSpinner.setMaximumSize(new java.awt.Dimension(250, 24));
         partialPressureSpinner.setMinimumSize(new java.awt.Dimension(100, 25));
         partialPressureSpinner.setPreferredSize(new java.awt.Dimension(250, 24));
-        partialPressureSpinner.addChangeListener(new javax.swing.event.ChangeListener()
-        {
-            public void stateChanged(javax.swing.event.ChangeEvent evt)
-            {
+        partialPressureSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 partialPressureSpinnerStateChanged(evt);
             }
         });
@@ -240,7 +227,7 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         fractionOxygenPanel.setAlignmentY(0.0F);
         fractionOxygenPanel.setLayout(new javax.swing.BoxLayout(fractionOxygenPanel, javax.swing.BoxLayout.Y_AXIS));
 
-        fractionOxygenLabel.setText("Oxygen Percent");
+        fractionOxygenLabel.setText("Oxygen Percent (Fg)");
         fractionOxygenPanel.add(fractionOxygenLabel);
 
         fractionOxygenSpinner.setModel(new javax.swing.SpinnerNumberModel(0.32d, 0.0d, 1.0d, 0.01d));
@@ -248,10 +235,8 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         fractionOxygenSpinner.setMaximumSize(new java.awt.Dimension(250, 24));
         fractionOxygenSpinner.setMinimumSize(new java.awt.Dimension(100, 25));
         fractionOxygenSpinner.setPreferredSize(new java.awt.Dimension(250, 24));
-        fractionOxygenSpinner.addChangeListener(new javax.swing.event.ChangeListener()
-        {
-            public void stateChanged(javax.swing.event.ChangeEvent evt)
-            {
+        fractionOxygenSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 fractionOxygenSpinnerStateChanged(evt);
             }
         });
@@ -278,7 +263,7 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         depthPanel.setAlignmentY(0.0F);
         depthPanel.setLayout(new javax.swing.BoxLayout(depthPanel, javax.swing.BoxLayout.Y_AXIS));
 
-        depthLabel.setText("Maximum Depth (m)");
+        depthLabel.setText("Depth (m)");
         depthPanel.add(depthLabel);
 
         depthSpinner.setModel(new javax.swing.SpinnerNumberModel(33.0d, 0.0d, 100.0d, 0.1d));
@@ -286,10 +271,8 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         depthSpinner.setMaximumSize(new java.awt.Dimension(250, 24));
         depthSpinner.setMinimumSize(new java.awt.Dimension(100, 25));
         depthSpinner.setPreferredSize(new java.awt.Dimension(250, 24));
-        depthSpinner.addChangeListener(new javax.swing.event.ChangeListener()
-        {
-            public void stateChanged(javax.swing.event.ChangeEvent evt)
-            {
+        depthSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 depthSpinnerStateChanged(evt);
             }
         });
@@ -315,10 +298,8 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         inputCalculate.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.highlight"));
         inputCalculate.setText("Calculate");
         inputCalculate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        inputCalculate.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        inputCalculate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inputCalculateActionPerformed(evt);
             }
         });
@@ -342,8 +323,8 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
 
     private void inputCalculateActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_inputCalculateActionPerformed
     {//GEN-HEADEREND:event_inputCalculateActionPerformed
-        //this is the calculate button
-        //send the inputs to the controller with the calculation type
+        controller.setCalcType(controller.getCalcType());
+        
     }//GEN-LAST:event_inputCalculateActionPerformed
 
     private void partialPressureSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_partialPressureSelectActionPerformed
@@ -363,7 +344,7 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
 
     private void bestMixSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_bestMixSelectActionPerformed
     {//GEN-HEADEREND:event_bestMixSelectActionPerformed
-        controller.setCalcType("MIX");
+        controller.setCalcType("BM");
     }//GEN-LAST:event_bestMixSelectActionPerformed
 
     private void smodSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_smodSelectActionPerformed
@@ -374,16 +355,19 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
     private void partialPressureSpinnerStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_partialPressureSpinnerStateChanged
     {//GEN-HEADEREND:event_partialPressureSpinnerStateChanged
         controller.setPartialPressure((double) ((javax.swing.JSpinner) evt.getSource()).getValue());
+        controller.setCalcType(controller.getCalcType());
     }//GEN-LAST:event_partialPressureSpinnerStateChanged
 
     private void fractionOxygenSpinnerStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_fractionOxygenSpinnerStateChanged
     {//GEN-HEADEREND:event_fractionOxygenSpinnerStateChanged
         controller.setFractionOxygen((double) ((javax.swing.JSpinner) evt.getSource()).getValue());
+        controller.setCalcType(controller.getCalcType());
     }//GEN-LAST:event_fractionOxygenSpinnerStateChanged
 
     private void depthSpinnerStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_depthSpinnerStateChanged
     {//GEN-HEADEREND:event_depthSpinnerStateChanged
         controller.setDepth((double) ((javax.swing.JSpinner) evt.getSource()).getValue());
+        controller.setCalcType(controller.getCalcType());
     }//GEN-LAST:event_depthSpinnerStateChanged
 
 

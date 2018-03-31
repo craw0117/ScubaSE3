@@ -5,7 +5,10 @@
  */
 package scubase3.panels;
 
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.SwingUtilities;
+import scubase3.MethodsContainer;
 import scubase3.ScubaController;
 import scubase3.ScubaFrame;
 import scubase3.ScubaModel;
@@ -22,8 +25,9 @@ public class ScubaTablePanel extends javax.swing.JPanel {
      * Creates new form ScubaTablePanel
      */
     public ScubaTablePanel() {
-        
+
         initComponents();
+
     }
 
     public void update() {
@@ -31,8 +35,15 @@ public class ScubaTablePanel extends javax.swing.JPanel {
         if (controller == null) {
             ScubaFrame topFrame = (ScubaFrame) SwingUtilities.getAncestorOfClass(ScubaFrame.class, this);
             controller = topFrame.getController();
+
+            //JScrollPane eadJScrollPane = MethodsContainer.eadTable();
+
+            //this.eadTable.add(eadJScrollPane);
+            JTable eadjt = MethodsContainer.eadTable1();
+            tableScollPane.setViewportView(eadjt);
+ 
         }
-        
+
         ScubaModel model = controller.getModel();
         String tableType = model.getTableType();
 
@@ -40,10 +51,15 @@ public class ScubaTablePanel extends javax.swing.JPanel {
             case "EAD":
                 eadTable.setVisible(true);
                 ppTable.setVisible(false);
+                            JTable eadjt = MethodsContainer.eadTable1();
+            tableScollPane.setViewportView(eadjt);
+           
                 break;
             case "PP":
                 eadTable.setVisible(false);
                 ppTable.setVisible(true);
+                  JTable ppjt = MethodsContainer.ppTable1();
+            tableScollPane.setViewportView(ppjt);
                 break;
             default:
                 throw new java.lang.Error("Invalid tableType: " + tableType);
@@ -57,8 +73,7 @@ public class ScubaTablePanel extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
         tableButtonGroup = new javax.swing.ButtonGroup();
@@ -68,9 +83,7 @@ public class ScubaTablePanel extends javax.swing.JPanel {
         tableScollPane = new javax.swing.JScrollPane();
         tableDisplay = new javax.swing.JPanel();
         eadTable = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         ppTable = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
 
         setLayout(new java.awt.GridBagLayout());
 
@@ -85,10 +98,8 @@ public class ScubaTablePanel extends javax.swing.JPanel {
         eadTableSelect.setFocusable(false);
         eadTableSelect.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         eadTableSelect.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        eadTableSelect.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        eadTableSelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eadTableSelectActionPerformed(evt);
             }
         });
@@ -100,10 +111,8 @@ public class ScubaTablePanel extends javax.swing.JPanel {
         ppTableSelect.setFocusable(false);
         ppTableSelect.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         ppTableSelect.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        ppTableSelect.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        ppTableSelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ppTableSelectActionPerformed(evt);
             }
         });
@@ -123,17 +132,6 @@ public class ScubaTablePanel extends javax.swing.JPanel {
 
         eadTable.setMinimumSize(new java.awt.Dimension(500, 500));
         eadTable.setLayout(new java.awt.GridBagLayout());
-
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("[THIS IS THE EAD TABLE]");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        eadTable.add(jLabel1, gridBagConstraints);
-
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -146,17 +144,6 @@ public class ScubaTablePanel extends javax.swing.JPanel {
 
         ppTable.setMinimumSize(new java.awt.Dimension(500, 500));
         ppTable.setLayout(new java.awt.GridBagLayout());
-
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("[THIS IS THE PP TABLE]");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        ppTable.add(jLabel2, gridBagConstraints);
-
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -192,8 +179,6 @@ public class ScubaTablePanel extends javax.swing.JPanel {
     private javax.swing.JPanel eadTable;
     private javax.swing.JToggleButton eadTableSelect;
     private javax.swing.JToolBar inputToolBar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel ppTable;
     private javax.swing.JToggleButton ppTableSelect;
     private javax.swing.ButtonGroup tableButtonGroup;
