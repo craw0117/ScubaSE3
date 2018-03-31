@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package scubase3;
 
 /**
  *
- * @author nathan
+ * @author liu1028, eden0021, mitc0341, craw0117, kris0068
  */
 public class Const {
 
