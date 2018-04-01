@@ -180,5 +180,33 @@ public class MethodsContainerTest {
       
     }
 
+    /**
+     * Test of ppTable1 method, of class MethodsContainer.
+     */
+    @Test
+    public void testPpTable1() {
+        System.out.println("ppTable1");
+        String expResult = "1.4";
+        JTable table = MethodsContainer.ppTable1();
+        String result;
+        result = (String)table.getModel().getValueAt(17, 10);
+        assertEquals(expResult, result);
+ 
+    }
+
+    /**
+     * Test of eadTable1 method, of class MethodsContainer.
+     */
+    @Test
+    public void testEadTable1() {
+        System.out.println("eadTable1");
+        String expResult = "23";
+        JTable table = MethodsContainer.eadTable1();
+        String result;
+        result = (String)table.getModel().getValueAt(17, 10);
+        assertEquals(expResult, result);
+        
+    }
+
     
 }
