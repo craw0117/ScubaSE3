@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package scubase3;
 
 import java.text.DecimalFormat;
@@ -10,80 +5,81 @@ import javax.swing.JTable;
 
 /**
  *
- * @author Louis
+ * @author liu1028, eden0021, mitc0341, craw0117, kris0068
  */
 public class MethodsContainer {
 
+    public static double calculateMOD(double in1, double in2) {
 
-    public static double calculateMOD( double in1, double in2) {
-    
         double result;
         result = (in1 / in2 - 1.0) * 10.0;
         return result;
     }
-       public static double calculateOxygenMOD( double in1, double in2) {
-    
-        double result;
-        result =  in2;
-        return result;
-    } 
-    
-   public static double calculateBM( double in1, double in2) {
-    
-        double result;
-        result  = in1/(in2/10.0+1.0);
-        return result;
-    }
-    public static double calculateOxygenBM( double in1, double in2) {
-    
-        double result;
-        result = in1 / (in2 / 10 + 1);
-        return result;
-    }
-   
-     public static double calculatePP( double in1, double in2) {
-    
-        double result;
-        result = in1*(in2/10.0+1.0);
-        return result;
-    }
-     
-         public static double calculateOxygenPP( double in1, double in2) {
-    
-        double result;
-        result = in1;
-        return result;
-    }
-   
-      public static double calculateEAD( double in1, double in2) {
-    
-        double result;
-        result = ((1.0-in1)*(in2/10.0+1.0)/0.79-1.0)*10.0;
-        return result;
-    }
-      
-            public static double calculateOxygenEAD( double in1, double in2) {
-    
-        double result;
-        result = in1;
-        return result;
-    }
-       public static double calculateSMOD( double in1, double in2) {
-    
-        double result;
-        result = (in1 / in2 - 1.0) * 10.0;
-        return result;
-    }
-       
-              public static double calculateOxygenSMOD( double in1, double in2) {
-    
+
+    public static double calculateOxygenMOD(double in1, double in2) {
+
         double result;
         result = in2;
         return result;
     }
-      
 
- public static JTable ppTable1() {
+    public static double calculateBM(double in1, double in2) {
+
+        double result;
+        result = in1 / (in2 / 10.0 + 1.0);
+        return result;
+    }
+
+    public static double calculateOxygenBM(double in1, double in2) {
+
+        double result;
+        result = in1 / (in2 / 10 + 1);
+        return result;
+    }
+
+    public static double calculatePP(double in1, double in2) {
+
+        double result;
+        result = in1 * (in2 / 10.0 + 1.0);
+        return result;
+    }
+
+    public static double calculateOxygenPP(double in1, double in2) {
+
+        double result;
+        result = in1;
+        return result;
+    }
+
+    public static double calculateEAD(double in1, double in2) {
+
+        double result;
+        result = ((1.0 - in1) * (in2 / 10.0 + 1.0) / 0.79 - 1.0) * 10.0;
+        return result;
+    }
+
+    public static double calculateOxygenEAD(double in1, double in2) {
+
+        double result;
+        result = in1;
+        return result;
+    }
+
+    public static double calculateSMOD(double in1, double in2) {
+
+        double result;
+        result = (in1 / in2 - 1.0) * 10.0;
+        return result;
+    }
+
+    public static double calculateOxygenSMOD(double in1, double in2) {
+
+        double result;
+        result = in2;
+        return result;
+    }
+
+    public static JTable ppTable1() {
         String[] column = new String[24];
         column[0] = "Oxygen(%)/Depth(m)";
         double result;
@@ -112,10 +108,8 @@ public class MethodsContainer {
         JTable ppjt = new JTable(data, column);
         return ppjt;
     }
-    
-    
 
-        public static JTable eadTable1() {
+    public static JTable eadTable1() {
         String[] column = new String[24];
         column[0] = "Oxygen(%)/Depth(m)";
         double result;

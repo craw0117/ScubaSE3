@@ -30,9 +30,9 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
         }
 
         ScubaModel model = controller.getModel();
-DecimalFormat df = new DecimalFormat("0.00");
-        outputText.setText(model.getCalculationType()+": "+ df.format(model.getOutputValue())
-                + "    Oxygen: "+df.format(model.getOutputOxygen()));
+        DecimalFormat df = new DecimalFormat("0.00");
+        outputText.setText(model.getCalculationType() + ": " + df.format(model.getOutputValue())
+                + "    Oxygen: " + df.format(model.getOutputOxygen()));
 //                + ": Depth(m): " + model.getDepthPressure()
 //                + " Pg(ata): " + model.getPartialPressure()
 //                + " Fg: " + model.getFractionOxygen());

@@ -52,8 +52,8 @@ public class ScubaModel {
             case "EAD":
                 this.inputFlags = Const.FLAG_DEPTH | Const.FLAG_FRAC_OXYGEN;
                 this.outputValue = this.depthPressure;
-this.outputValue = MethodsContainer.calculateEAD( this.fractionOxygen, this.depthPressure);
-this.outputOxygen = MethodsContainer.calculateOxygenEAD( this.fractionOxygen, this.depthPressure);
+                this.outputValue = MethodsContainer.calculateEAD(this.fractionOxygen, this.depthPressure);
+                this.outputOxygen = MethodsContainer.calculateOxygenEAD(this.fractionOxygen, this.depthPressure);
                 break;
             case "MOD":
                 this.inputFlags = Const.FLAG_O2_PRESSURE | Const.FLAG_FRAC_OXYGEN;
@@ -147,6 +147,5 @@ this.outputOxygen = MethodsContainer.calculateOxygenEAD( this.fractionOxygen, th
     public double getOutputOxygen() {
         return outputOxygen;
     }
-    
 
 }

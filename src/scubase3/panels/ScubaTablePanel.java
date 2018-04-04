@@ -32,11 +32,10 @@ public class ScubaTablePanel extends javax.swing.JPanel {
             controller = topFrame.getController();
 
             //JScrollPane eadJScrollPane = MethodsContainer.eadTable();
-
             //this.eadTable.add(eadJScrollPane);
             JTable eadjt = MethodsContainer.eadTable1();
             tableScollPane.setViewportView(eadjt);
- 
+
         }
 
         ScubaModel model = controller.getModel();
@@ -46,15 +45,15 @@ public class ScubaTablePanel extends javax.swing.JPanel {
             case "EAD":
                 eadTable.setVisible(true);
                 ppTable.setVisible(false);
-                            JTable eadjt = MethodsContainer.eadTable1();
-            tableScollPane.setViewportView(eadjt);
-           
+                JTable eadjt = MethodsContainer.eadTable1();
+                tableScollPane.setViewportView(eadjt);
+
                 break;
             case "PP":
                 eadTable.setVisible(false);
                 ppTable.setVisible(true);
-                  JTable ppjt = MethodsContainer.ppTable1();
-            tableScollPane.setViewportView(ppjt);
+                JTable ppjt = MethodsContainer.ppTable1();
+                tableScollPane.setViewportView(ppjt);
                 break;
             default:
                 throw new java.lang.Error("Invalid tableType: " + tableType);
