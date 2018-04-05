@@ -336,20 +336,17 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
     private void modSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_modSelectActionPerformed
     {//GEN-HEADEREND:event_modSelectActionPerformed
         controller.setCalcType("MOD");
-        this.partialPressureSpinner.setEnabled(true);
     }//GEN-LAST:event_modSelectActionPerformed
 
     private void bestMixSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_bestMixSelectActionPerformed
     {//GEN-HEADEREND:event_bestMixSelectActionPerformed
         controller.setCalcType("BM");
-        this.partialPressureSpinner.setEnabled(true);
     }//GEN-LAST:event_bestMixSelectActionPerformed
 
     private void smodSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_smodSelectActionPerformed
     {//GEN-HEADEREND:event_smodSelectActionPerformed
         controller.setCalcType("SMOD");
         controller.setPartialPressure(1.4);
-        this.partialPressureSpinner.setEnabled(false);
     }//GEN-LAST:event_smodSelectActionPerformed
 
     private void partialPressureSpinnerStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_partialPressureSpinnerStateChanged

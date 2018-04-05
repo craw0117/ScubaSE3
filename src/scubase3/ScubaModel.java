@@ -71,7 +71,7 @@ public class ScubaModel {
                 this.outputOxygen = MethodsContainer.calculateOxygenPP(this.fractionOxygen, this.depthPressure);
                 break;
             case "SMOD":
-                this.inputFlags = Const.FLAG_O2_PRESSURE | Const.FLAG_FRAC_OXYGEN;
+                this.inputFlags = Const.FLAG_FRAC_OXYGEN;
                 this.outputValue = MethodsContainer.calculateMOD(this.partialPressure, this.fractionOxygen);
                 this.outputOxygen = MethodsContainer.calculateOxygenMOD(this.partialPressure, this.fractionOxygen);
                 //TODO verify these flags are correct (no idea what SMOD is)
