@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Louis
+ * @author liu1028, eden0021, mitc0341, craw0117, kris0068
  */
 public class MethodsContainerTest {
     
@@ -42,7 +42,16 @@ public class MethodsContainerTest {
      * Test of calculateMOD method, of class MethodsContainer.
      */
     @Test
-    public void testCalculateMOD() {
+
+        public void testCalculateMODNormal() {
+        System.out.println("calculateMOD");
+        double in1 = 1.4;
+        double in2 = 0.36;
+        double expResult = 28.8 ;
+        double result = MethodsContainer.calculateMOD(in1, in2);
+        assertEquals(expResult, result, 0.1); 
+    }
+    public void testCalculateMODUpperbound() {
         System.out.println("calculateMOD");
         double in1 = 1.4;
         double in2 = 0.36;
@@ -52,7 +61,16 @@ public class MethodsContainerTest {
        
         
     }
-
+      public void testCalculateMODLowerbound() {
+        System.out.println("calculateMOD");
+        double in1 = 1.4;
+        double in2 = 0.36;
+        double expResult = 28.8 ;
+        double result = MethodsContainer.calculateMOD(in1, in2);
+        assertEquals(expResult, result, 0.1);
+       
+        
+    }
     /**
      * Test of calculateOxygenMOD method, of class MethodsContainer.
      */
@@ -66,6 +84,7 @@ public class MethodsContainerTest {
         assertEquals(expResult, result, 0.0);
 
     }
+    
 
     /**
      * Test of calculateBM method, of class MethodsContainer.
