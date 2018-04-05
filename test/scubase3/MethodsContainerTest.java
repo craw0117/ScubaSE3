@@ -205,7 +205,6 @@ public class MethodsContainerTest {
         String result;
         result = (String)table.getModel().getValueAt(17, 10);
         assertEquals(expResult, result);
-        
     }
 
     
