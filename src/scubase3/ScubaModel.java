@@ -51,30 +51,28 @@ public class ScubaModel {
         switch (calcType) {
             case "EAD":
                 this.inputFlags = Const.FLAG_DEPTH | Const.FLAG_FRAC_OXYGEN;
-                this.outputValue = this.depthPressure;
-                this.outputValue = MethodsContainer.calculateEAD(this.fractionOxygen, this.depthPressure);
-                this.outputOxygen = MethodsContainer.calculateOxygenEAD(this.fractionOxygen, this.depthPressure);
+                this.outputValue = ((1.0 - this.fractionOxygen) * (this.depthPressure / 10.0 + 1.0) / 0.79 - 1.0) * 10.0;
+                this.outputOxygen = this.fractionOxygen;
                 break;
             case "MOD":
                 this.inputFlags = Const.FLAG_O2_PRESSURE | Const.FLAG_FRAC_OXYGEN;
-                this.outputValue = MethodsContainer.calculateMOD(this.partialPressure, this.fractionOxygen);
-                this.outputOxygen = MethodsContainer.calculateOxygenMOD(this.partialPressure, this.fractionOxygen);
+                this.outputValue = (this.partialPressure / this.fractionOxygen - 1.0) * 10.0;
+                this.outputOxygen = this.fractionOxygen;
                 break;
             case "BM":
                 this.inputFlags = Const.FLAG_O2_PRESSURE | Const.FLAG_DEPTH;
-                this.outputValue = MethodsContainer.calculateBM(this.partialPressure, this.depthPressure);
-                this.outputOxygen = MethodsContainer.calculateOxygenBM(this.partialPressure, this.depthPressure);
+                this.outputValue = this.partialPressure / (this.depthPressure / 10.0 + 1.0);
+                this.outputOxygen = this.partialPressure / (this.depthPressure / 10 + 1);
                 break;
             case "PP":
                 this.inputFlags = Const.FLAG_FRAC_OXYGEN | Const.FLAG_DEPTH;
-                this.outputValue = MethodsContainer.calculatePP(this.fractionOxygen, this.depthPressure);
-                this.outputOxygen = MethodsContainer.calculateOxygenPP(this.fractionOxygen, this.depthPressure);
+                this.outputValue = this.fractionOxygen * (this.depthPressure / 10.0 + 1.0);
+                this.outputOxygen = this.fractionOxygen;
                 break;
             case "SMOD":
                 this.inputFlags = Const.FLAG_FRAC_OXYGEN;
-                this.outputValue = MethodsContainer.calculateMOD(this.partialPressure, this.fractionOxygen);
-                this.outputOxygen = MethodsContainer.calculateOxygenMOD(this.partialPressure, this.fractionOxygen);
-                //TODO verify these flags are correct (no idea what SMOD is)
+                this.outputValue = (this.partialPressure / this.fractionOxygen - 1.0) * 10.0;
+                this.outputOxygen = this.fractionOxygen;
                 break;
             default:
                 throw new java.lang.Error("Invalid calcType: " + calcType);
