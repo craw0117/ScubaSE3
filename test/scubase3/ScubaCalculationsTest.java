@@ -12,23 +12,23 @@ import static org.junit.Assert.*;
  *
  * @author liu1028, eden0021, mitc0341, craw0117, kris0068
  */
-public class MethodsContainerTest {
-    
-    public MethodsContainerTest() {
+public class ScubaCalculationsTest {
+    public ScubaCalculationsTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
+        
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -38,34 +38,35 @@ public class MethodsContainerTest {
      */
     @Test
 
-        public void testCalculateMODNormal() {
+    public void testCalculateMODNormal() {
         System.out.println("calculateMOD");
         double in1 = 1.4;
         double in2 = 0.36;
-        double expResult = 28.8 ;
-        double result = MethodsContainer.calculateMOD(in1, in2);
-        assertEquals(expResult, result, 0.1); 
+        double expResult = 28.8;
+        double result = ScubaCalculations.calculateMOD(in1, in2);
+        assertEquals(expResult, result, 0.1);
     }
+
     public void testCalculateMODUpperbound() {
         System.out.println("calculateMOD");
         double in1 = 1.4;
         double in2 = 0.36;
-        double expResult = 28.8 ;
-        double result = MethodsContainer.calculateMOD(in1, in2);
+        double expResult = 28.8;
+        double result = ScubaCalculations.calculateMOD(in1, in2);
         assertEquals(expResult, result, 0.1);
-       
-        
+
     }
-      public void testCalculateMODLowerbound() {
+
+    public void testCalculateMODLowerbound() {
         System.out.println("calculateMOD");
         double in1 = 1.4;
         double in2 = 0.36;
-        double expResult = 28.8 ;
-        double result = MethodsContainer.calculateMOD(in1, in2);
+        double expResult = 28.8;
+        double result = ScubaCalculations.calculateMOD(in1, in2);
         assertEquals(expResult, result, 0.1);
-       
-        
+
     }
+
     /**
      * Test of calculateOxygenMOD method, of class MethodsContainer.
      */
@@ -75,11 +76,10 @@ public class MethodsContainerTest {
         double in1 = 0.0;
         double in2 = 0.27;
         double expResult = 0.27;
-        double result = MethodsContainer.calculateOxygenMOD(in1, in2);
+        double result = ScubaCalculations.calculateOxygenMOD(in1, in2);
         assertEquals(expResult, result, 0.0);
 
     }
-    
 
     /**
      * Test of calculateBM method, of class MethodsContainer.
@@ -90,9 +90,9 @@ public class MethodsContainerTest {
         double in1 = 1.4;
         double in2 = 41.0;
         double expResult = 0.27;
-        double result = MethodsContainer.calculateBM(in1, in2);
+        double result = ScubaCalculations.calculateBM(in1, in2);
         assertEquals(expResult, result, 0.1);
-        
+
     }
 
     /**
@@ -104,9 +104,9 @@ public class MethodsContainerTest {
         double in1 = 1.4;
         double in2 = 41.0;
         double expResult = 0.27;
-        double result = MethodsContainer.calculateOxygenBM(in1, in2);
+        double result = ScubaCalculations.calculateOxygenBM(in1, in2);
         assertEquals(expResult, result, 0.1);
- 
+
     }
 
     /**
@@ -118,9 +118,9 @@ public class MethodsContainerTest {
         double in1 = 0.32;
         double in2 = 30.0;
         double expResult = 1.28;
-        double result = MethodsContainer.calculatePP(in1, in2);
+        double result = ScubaCalculations.calculatePP(in1, in2);
         assertEquals(expResult, result, 0.1);
-  
+
     }
 
     /**
@@ -132,7 +132,7 @@ public class MethodsContainerTest {
         double in1 = 0.32;
         double in2 = 30.0;
         double expResult = 0.32;
-        double result = MethodsContainer.calculateOxygenPP(in1, in2);
+        double result = ScubaCalculations.calculateOxygenPP(in1, in2);
         assertEquals(expResult, result, 0.0);
 
     }
@@ -146,10 +146,10 @@ public class MethodsContainerTest {
         double in1 = 0.32;
         double in2 = 30.0;
         double expResult = 24.0;
-        double result = MethodsContainer.calculateEAD(in1, in2);
-        
+        double result = ScubaCalculations.calculateEAD(in1, in2);
+
         assertEquals(expResult, result, 1.0);
- 
+
     }
 
     /**
@@ -161,9 +161,9 @@ public class MethodsContainerTest {
         double in1 = 0.32;
         double in2 = 30.0;
         double expResult = 0.32;
-        double result = MethodsContainer.calculateOxygenEAD(in1, in2);
+        double result = ScubaCalculations.calculateOxygenEAD(in1, in2);
         assertEquals(expResult, result, 0.0);
-        
+
     }
 
     /**
@@ -175,9 +175,9 @@ public class MethodsContainerTest {
         double in1 = 1.4;
         double in2 = 0.36;
         double expResult = 28.8;
-        double result = MethodsContainer.calculateSMOD(in1, in2);
+        double result = ScubaCalculations.calculateSMOD(in1, in2);
         assertEquals(expResult, result, 0.1);
-        
+
     }
 
     /**
@@ -189,9 +189,9 @@ public class MethodsContainerTest {
         double in1 = 1.4;
         double in2 = 0.32;
         double expResult = 0.32;
-        double result = MethodsContainer.calculateOxygenSMOD(in1, in2);
+        double result = ScubaCalculations.calculateOxygenSMOD(in1, in2);
         assertEquals(expResult, result, 0.0);
-      
+
     }
 
     /**
@@ -201,11 +201,11 @@ public class MethodsContainerTest {
     public void testPpTable1() {
         System.out.println("ppTable1");
         String expResult = "1.4";
-        JTable table = MethodsContainer.ppTable1();
+        JTable table = ScubaCalculations.ppTable1();
         String result;
-        result = (String)table.getModel().getValueAt(17, 10);
+        result = (String) table.getModel().getValueAt(17, 10);
         assertEquals(expResult, result);
- 
+
     }
 
     /**
@@ -215,11 +215,10 @@ public class MethodsContainerTest {
     public void testEadTable1() {
         System.out.println("eadTable1");
         String expResult = "23";
-        JTable table = MethodsContainer.eadTable1();
+        JTable table = ScubaCalculations.eadTable1();
         String result;
-        result = (String)table.getModel().getValueAt(17, 10);
+        result = (String) table.getModel().getValueAt(17, 10);
         assertEquals(expResult, result);
     }
 
-    
 }

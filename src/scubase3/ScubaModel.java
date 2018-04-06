@@ -60,15 +60,15 @@ public class ScubaModel {
         depthPressure = 3.88;
 
         tableType = "EAD";
-        
-        eadTable = makeEadTable();
-        ppTable = makePpTable();
+
+        eadTable = ScubaCalculations.eadTable1();
+        ppTable = ScubaCalculations.ppTable1();
     }
 
     public String getCalculationType() {
         return calculationType;
     }
-    
+
     /**
      * Sets the calculation to perform and will enable the correct inputs.
      *
@@ -78,28 +78,28 @@ public class ScubaModel {
         switch (calcType) {
             case "EAD":
                 this.inputFlags = Const.FLAG_DEPTH | Const.FLAG_FRAC_OXYGEN;
-                this.outputValue = ((1.0 - this.fractionOxygen) * (this.depthPressure / 10.0 + 1.0) / 0.79 - 1.0) * 10.0;
-                this.outputOxygen = this.fractionOxygen;
+                this.outputValue = ScubaCalculations.calculateEAD(this.fractionOxygen, this.depthPressure);
+                this.outputOxygen = ScubaCalculations.calculateOxygenEAD(this.fractionOxygen, this.depthPressure);
                 break;
             case "MOD":
                 this.inputFlags = Const.FLAG_O2_PRESSURE | Const.FLAG_FRAC_OXYGEN;
-                this.outputValue = (this.partialPressure / this.fractionOxygen - 1.0) * 10.0;
-                this.outputOxygen = this.fractionOxygen;
+                this.outputValue = ScubaCalculations.calculateMOD(this.partialPressure, this.fractionOxygen);
+                this.outputOxygen = ScubaCalculations.calculateOxygenMOD(this.partialPressure, this.fractionOxygen);
                 break;
             case "BM":
                 this.inputFlags = Const.FLAG_O2_PRESSURE | Const.FLAG_DEPTH;
-                this.outputValue = this.partialPressure / (this.depthPressure / 10.0 + 1.0);
-                this.outputOxygen = this.partialPressure / (this.depthPressure / 10 + 1);
+                this.outputValue = ScubaCalculations.calculateBM(this.partialPressure, this.depthPressure);
+                this.outputOxygen = ScubaCalculations.calculateOxygenBM(this.partialPressure, this.depthPressure);
                 break;
             case "PP":
                 this.inputFlags = Const.FLAG_FRAC_OXYGEN | Const.FLAG_DEPTH;
-                this.outputValue = this.fractionOxygen * (this.depthPressure / 10.0 + 1.0);
-                this.outputOxygen = this.fractionOxygen;
+                this.outputValue = ScubaCalculations.calculatePP(this.fractionOxygen, this.depthPressure);
+                this.outputOxygen = ScubaCalculations.calculateOxygenPP(this.fractionOxygen, this.depthPressure);
                 break;
             case "SMOD":
                 this.inputFlags = Const.FLAG_FRAC_OXYGEN;
-                this.outputValue = (this.partialPressure / this.fractionOxygen - 1.0) * 10.0;
-                this.outputOxygen = this.fractionOxygen;
+                this.outputValue = ScubaCalculations.calculateMOD(this.partialPressure, this.fractionOxygen);
+                this.outputOxygen = ScubaCalculations.calculateOxygenMOD(this.partialPressure, this.fractionOxygen);
                 break;
             default:
                 throw new java.lang.Error("Invalid calcType: " + calcType);
@@ -172,60 +172,6 @@ public class ScubaModel {
 
     public double getOutputOxygen() {
         return outputOxygen;
-    }
-
-    private JTable makePpTable() {
-        String[] column = new String[24];
-        column[0] = "Oxygen(%)/Depth(m)";
-        double result;
-        for (int i = 1; i < column.length; i++) {
-            int temp = i * 3;
-            column[i] = temp + "";
-        }
-        String[][] data = new String[33][24];
-        DecimalFormat df = new DecimalFormat("0.0");
-        for (int i = 0; i < data.length; i++) {
-            for (int j = 0; j < data[i].length; j++) {
-                if (j == 0) {
-                    data[i][j] = (i + 18) + "";
-                } else {
-
-                    result = (i + 18.0) / 100.0 * (j * 3.0 / 10.0 + 1.0);
-                    if (result > 1.6) {
-                        data[i][j] = "Danger";
-                    } else {
-                        data[i][j] = df.format(result) + "";
-                    }
-                }
-            }
-        }
-        JTable ppjt = new JTable(data, column);
-        return ppjt;
-    }
-
-    private JTable makeEadTable() {
-        String[] column = new String[24];
-        column[0] = "Oxygen(%)/Depth(m)";
-        double result;
-        for (int i = 1; i < column.length; i++) {
-            int temp = i * 3;
-            column[i] = temp + "";
-        }
-        String[][] data = new String[33][24];
-        DecimalFormat df = new DecimalFormat("0");
-        for (int i = 0; i < data.length; i++) {
-            for (int j = 0; j < data[i].length; j++) {
-                if (j == 0) {
-                    data[i][j] = (i + 18) + "";
-                } else {
-                    result = ((1.0 - (i + 18.0) / 100.0) * ((j * 3.0) / 10.0 + 1.0) / 0.79 - 1.0) * 10.0;
-                    data[i][j] = df.format(result) + "";
-                }
-            }
-
-        }
-        JTable eadjt = new JTable(data, column);
-        return eadjt;
     }
 
     public JTable getEadTable() {

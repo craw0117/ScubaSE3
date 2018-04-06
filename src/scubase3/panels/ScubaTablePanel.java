@@ -2,7 +2,7 @@ package scubase3.panels;
 
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
-import scubase3.MethodsContainer;
+import scubase3.ScubaCalculations;
 import scubase3.ScubaController;
 import scubase3.ScubaFrame;
 import scubase3.ScubaModel;

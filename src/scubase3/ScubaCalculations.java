@@ -7,7 +7,7 @@ import javax.swing.JTable;
  *
  * @author liu1028, eden0021, mitc0341, craw0117, kris0068
  */
-public class MethodsContainer {
+public class ScubaCalculations {
 
     public static double calculateMOD(double in1, double in2) {
 
