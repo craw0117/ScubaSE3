@@ -1,6 +1,5 @@
 package scubase3.panels;
 
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import scubase3.MethodsContainer;
@@ -33,9 +32,8 @@ public class ScubaTablePanel extends javax.swing.JPanel {
 
             //JScrollPane eadJScrollPane = MethodsContainer.eadTable();
             //this.eadTable.add(eadJScrollPane);
-            JTable eadjt = MethodsContainer.eadTable1();
-            tableScollPane.setViewportView(eadjt);
-
+            //JTable eadjt = MethodsContainer.eadTable1();
+            //tableScollPane.setViewportView(eadjt);
         }
 
         ScubaModel model = controller.getModel();
@@ -43,16 +41,12 @@ public class ScubaTablePanel extends javax.swing.JPanel {
 
         switch (tableType) {
             case "EAD":
-                eadTable.setVisible(true);
-                ppTable.setVisible(false);
-                JTable eadjt = MethodsContainer.eadTable1();
+                JTable eadjt = model.getEadTable();
                 tableScollPane.setViewportView(eadjt);
 
                 break;
             case "PP":
-                eadTable.setVisible(false);
-                ppTable.setVisible(true);
-                JTable ppjt = MethodsContainer.ppTable1();
+                JTable ppjt = model.getPpTable();
                 tableScollPane.setViewportView(ppjt);
                 break;
             default:
