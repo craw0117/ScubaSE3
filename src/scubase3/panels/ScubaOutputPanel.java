@@ -30,12 +30,8 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
         }
 
         ScubaModel model = controller.getModel();
-        DecimalFormat df = new DecimalFormat("0.00");
-        outputText.setText(model.getCalculationType() + ": " + df.format(model.getOutputValue())
-                + "    Oxygen: " + df.format(model.getOutputOxygen()));
-//                + ": Depth(m): " + model.getDepthPressure()
-//                + " Pg(ata): " + model.getPartialPressure()
-//                + " Fg: " + model.getFractionOxygen());
+        outputText.setText(model.getCalculationType() + ": " + model.getOutputValue()
+                + "    Oxygen: " + model.getOutputOxygen() + "%");
     }
 
     /**
@@ -99,7 +95,6 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 15);
         add(outputRHS, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel outputLHS;

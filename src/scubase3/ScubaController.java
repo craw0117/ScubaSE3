@@ -8,7 +8,6 @@ public class ScubaController {
 
     private final ScubaModel model;
     private final ScubaFrame view;
-    
 
     /**
      * Default constructor, only one instance of this object should exist at any
@@ -84,7 +83,8 @@ public class ScubaController {
     public void setTableType(String type) {
         model.setTableType(type);
     }
+
     public String getCalcType() {
-       return model.getCalculationType();
+        return model.getCalculationType();
     }
 }

@@ -162,7 +162,6 @@ public class ScubaTablePanel extends javax.swing.JPanel {
         controller.setTableType("PP");
     }//GEN-LAST:event_ppTableSelectActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel eadTable;
     private javax.swing.JToggleButton eadTableSelect;

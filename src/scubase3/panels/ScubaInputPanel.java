@@ -367,7 +367,6 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         controller.setCalcType(controller.getCalcType());
     }//GEN-LAST:event_depthSpinnerStateChanged
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton bestMixSelect;
     private javax.swing.JLabel depthHelpLabel;

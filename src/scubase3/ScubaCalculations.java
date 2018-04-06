@@ -9,77 +9,85 @@ import javax.swing.JTable;
  */
 public class ScubaCalculations {
 
-    public static double calculateMOD(double in1, double in2) {
+    private static final DecimalFormat ataFormat = new DecimalFormat("0.0");
+    private static final DecimalFormat format = new DecimalFormat("0");
 
+    public static String calculateMOD(double in1, double in2) {
         double result;
         result = (in1 / in2 - 1.0) * 10.0;
-        return result;
+        return format.format(result) + "m";
     }
 
-    public static double calculateOxygenMOD(double in1, double in2) {
-
+    public static String calculateOxygenMOD(double in1, double in2) {
         double result;
-        result = in2;
-        return result;
+        result = in2 * 100;
+        return format.format(result);
     }
 
-    public static double calculateBM(double in1, double in2) {
-
+    public static String calculateBM(double in1, double in2) {
         double result;
-        result = in1 / (in2 / 10.0 + 1.0);
-        return result;
+        result = in1 / (in2 / 10.0 + 1.0) * 100.0;
+        if (result > 100) {
+            return "Result is out of range!";
+        }
+        return format.format(result) + "%";
     }
 
-    public static double calculateOxygenBM(double in1, double in2) {
-
+    public static String calculateOxygenBM(double in1, double in2) {
         double result;
-        result = in1 / (in2 / 10 + 1);
-        return result;
+        result = in1 / (in2 / 10.0 + 1.0) * 100.0;
+        return format.format(result);
     }
 
-    public static double calculatePP(double in1, double in2) {
+    public static String calculatePP(double in1, double in2) {
 
         double result;
         result = in1 * (in2 / 10.0 + 1.0);
-        return result;
+        if (result > 1.6) {
+            return "Result is out of range!";
+        }
+        return ataFormat.format(result) + "ata";
     }
 
-    public static double calculateOxygenPP(double in1, double in2) {
+    public static String calculateOxygenPP(double in1, double in2) {
 
         double result;
-        result = in1;
-        return result;
+        result = in1 * 100;
+        return format.format(result);
     }
 
-    public static double calculateEAD(double in1, double in2) {
+    public static String calculateEAD(double in1, double in2) {
 
         double result;
         result = ((1.0 - in1) * (in2 / 10.0 + 1.0) / 0.79 - 1.0) * 10.0;
-        return result;
+        if (result <= 0) {
+            return "Result is out of range!";
+        }
+        return format.format(result) + "m";
     }
 
-    public static double calculateOxygenEAD(double in1, double in2) {
+    public static String calculateOxygenEAD(double in1, double in2) {
 
         double result;
-        result = in1;
-        return result;
+        result = in1 * 100;
+        return format.format(result);
     }
 
-    public static double calculateSMOD(double in1, double in2) {
+    public static String calculateSMOD(double in1, double in2) {
 
         double result;
         result = (in1 / in2 - 1.0) * 10.0;
-        return result;
+        return format.format(result) + "m";
     }
 
-    public static double calculateOxygenSMOD(double in1, double in2) {
+    public static String calculateOxygenSMOD(double in1, double in2) {
 
         double result;
-        result = in2;
-        return result;
+        result = in2 * 100;
+        return format.format(result);
     }
 
-    public static JTable ppTable1() {
+    public static JTable ppTable() {
         String[] column = new String[24];
         column[0] = "Oxygen(%)/Depth(m)";
         double result;
@@ -97,7 +105,7 @@ public class ScubaCalculations {
 
                     result = (i + 18.0) / 100.0 * (j * 3.0 / 10.0 + 1.0);
                     if (result > 1.6) {
-                        data[i][j] = "Danger";
+                        data[i][j] = "Not Applicable";
                     } else {
                         data[i][j] = df.format(result) + "";
                     }
@@ -109,7 +117,7 @@ public class ScubaCalculations {
         return ppjt;
     }
 
-    public static JTable eadTable1() {
+    public static JTable eadTable() {
         String[] column = new String[24];
         column[0] = "Oxygen(%)/Depth(m)";
         double result;
@@ -125,12 +133,22 @@ public class ScubaCalculations {
                     data[i][j] = (i + 18) + "";
                 } else {
                     result = ((1.0 - (i + 18.0) / 100.0) * ((j * 3.0) / 10.0 + 1.0) / 0.79 - 1.0) * 10.0;
-                    data[i][j] = df.format(result) + "";
+                    if (result <= 0.0) {
+                        data[i][j] = "Not Applicable";
+                    } else {
+                        data[i][j] = df.format(result) + "";
+                    }
                 }
             }
 
         }
         JTable eadjt = new JTable(data, column);
         return eadjt;
+    }
+
+    public static void main() {
+
+        ScubaCalculations.calculateEAD(0, 0);
+
     }
 }
