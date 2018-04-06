@@ -43,7 +43,7 @@ public class ScubaCalculations {
 
         double result;
         result = in1 * (in2 / 10.0 + 1.0);
-        if (result > 1.6) {
+        if (result > 1.6 || result<1.1) {
             return "Result is out of range!";
         }
         return ataFormat.format(result) + "ata";
