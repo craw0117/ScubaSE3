@@ -68,7 +68,7 @@ public class ScubaModel {
     public String getCalculationType() {
         return calculationType;
     }
-
+    
     /**
      * Sets the calculation to perform and will enable the correct inputs.
      *
