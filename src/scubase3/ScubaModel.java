@@ -18,10 +18,30 @@ public class ScubaModel {
 
     private String tableType;
 
+    /**
+     * This is the stub constructor for use without the view. 
+     */
+    public ScubaModel() {
+        this.view = null;
+        initState();
+    }
+    
+    /**
+     * This is the integrated model for use with the view.
+     * @param view 
+     */
     public ScubaModel(ScubaFrame view) {
         this.view = view;
 
         initState();
+    }
+    
+    private void updateView()
+    {
+        if (view != null)
+        {
+            view.update();
+        }
     }
 
     /**
@@ -51,35 +71,37 @@ public class ScubaModel {
         switch (calcType) {
             case "EAD":
                 this.inputFlags = Const.FLAG_DEPTH | Const.FLAG_FRAC_OXYGEN;
-                this.outputValue = ((1.0 - this.fractionOxygen) * (this.depthPressure / 10.0 + 1.0) / 0.79 - 1.0) * 10.0;
-                this.outputOxygen = this.fractionOxygen;
+                this.outputValue = this.depthPressure;
+                this.outputValue = MethodsContainer.calculateEAD(this.fractionOxygen, this.depthPressure);
+                this.outputOxygen = MethodsContainer.calculateOxygenEAD(this.fractionOxygen, this.depthPressure);
                 break;
             case "MOD":
                 this.inputFlags = Const.FLAG_O2_PRESSURE | Const.FLAG_FRAC_OXYGEN;
-                this.outputValue = (this.partialPressure / this.fractionOxygen - 1.0) * 10.0;
-                this.outputOxygen = this.fractionOxygen;
+                this.outputValue = MethodsContainer.calculateMOD(this.partialPressure, this.fractionOxygen);
+                this.outputOxygen = MethodsContainer.calculateOxygenMOD(this.partialPressure, this.fractionOxygen);
                 break;
             case "BM":
                 this.inputFlags = Const.FLAG_O2_PRESSURE | Const.FLAG_DEPTH;
-                this.outputValue = this.partialPressure / (this.depthPressure / 10.0 + 1.0);
-                this.outputOxygen = this.partialPressure / (this.depthPressure / 10 + 1);
+                this.outputValue = MethodsContainer.calculateBM(this.partialPressure, this.depthPressure);
+                this.outputOxygen = MethodsContainer.calculateOxygenBM(this.partialPressure, this.depthPressure);
                 break;
             case "PP":
                 this.inputFlags = Const.FLAG_FRAC_OXYGEN | Const.FLAG_DEPTH;
-                this.outputValue = this.fractionOxygen * (this.depthPressure / 10.0 + 1.0);
-                this.outputOxygen = this.fractionOxygen;
+                this.outputValue = MethodsContainer.calculatePP(this.fractionOxygen, this.depthPressure);
+                this.outputOxygen = MethodsContainer.calculateOxygenPP(this.fractionOxygen, this.depthPressure);
                 break;
             case "SMOD":
                 this.inputFlags = Const.FLAG_FRAC_OXYGEN;
-                this.outputValue = (this.partialPressure / this.fractionOxygen - 1.0) * 10.0;
-                this.outputOxygen = this.fractionOxygen;
+                this.outputValue = MethodsContainer.calculateMOD(this.partialPressure, this.fractionOxygen);
+                this.outputOxygen = MethodsContainer.calculateOxygenMOD(this.partialPressure, this.fractionOxygen);
+                //TODO verify these flags are correct (no idea what SMOD is)
                 break;
             default:
                 throw new java.lang.Error("Invalid calcType: " + calcType);
         }
 
         this.calculationType = calcType;
-        view.update();
+        updateView();
     }
 
     public double getPartialPressure() {
@@ -88,7 +110,7 @@ public class ScubaModel {
 
     public void setPartialPressure(double partialPressure) {
         this.partialPressure = partialPressure;
-        view.update();
+        updateView();
     }
 
     public double getFractionOxygen() {
@@ -97,7 +119,7 @@ public class ScubaModel {
 
     public void setFractionOxygen(double fractionOxygen) {
         this.fractionOxygen = fractionOxygen;
-        view.update();
+        updateView();
     }
 
     public double getDepthPressure() {
@@ -106,7 +128,7 @@ public class ScubaModel {
 
     public void setDepthPressure(double pressure) {
         this.depthPressure = pressure;
-        view.update();
+        updateView();
     }
 
     public double getDepth() {
@@ -117,7 +139,7 @@ public class ScubaModel {
 
     public void setDepth(double depth) {
         this.depthPressure = depth;
-        view.update();
+        updateView();
     }
 
     public int getInputFlags() {
@@ -126,7 +148,7 @@ public class ScubaModel {
 
     public void setInputFlags(int inputFlags) {
         this.inputFlags = inputFlags;
-        view.update();
+        updateView();
     }
 
     public String getTableType() {
@@ -135,7 +157,7 @@ public class ScubaModel {
 
     public void setTableType(String tableType) {
         this.tableType = tableType;
-        view.update();
+        updateView();
     }
 
     public double getOutputValue() {
