@@ -1,5 +1,8 @@
 package scubase3;
 
+import java.text.DecimalFormat;
+import javax.swing.JTable;
+
 /**
  *
  * @author liu1028, eden0021, mitc0341, craw0117, kris0068
@@ -15,31 +18,32 @@ public class ScubaModel {
     private double depthPressure; //in ata
     private double outputValue;
     private double outputOxygen;
+    private JTable eadTable;
+    private JTable ppTable;
 
     private String tableType;
 
     /**
-     * This is the stub constructor for use without the view. 
+     * This is the stub constructor for use without the view.
      */
     public ScubaModel() {
         this.view = null;
         initState();
     }
-    
+
     /**
      * This is the integrated model for use with the view.
-     * @param view 
+     *
+     * @param view
      */
     public ScubaModel(ScubaFrame view) {
         this.view = view;
 
         initState();
     }
-    
-    private void updateView()
-    {
-        if (view != null)
-        {
+
+    private void updateView() {
+        if (view != null) {
             view.update();
         }
     }
@@ -56,6 +60,9 @@ public class ScubaModel {
         depthPressure = 3.88;
 
         tableType = "EAD";
+        
+        eadTable = makeEadTable();
+        ppTable = makePpTable();
     }
 
     public String getCalculationType() {
@@ -167,4 +174,65 @@ public class ScubaModel {
         return outputOxygen;
     }
 
+    private JTable makePpTable() {
+        String[] column = new String[24];
+        column[0] = "Oxygen(%)/Depth(m)";
+        double result;
+        for (int i = 1; i < column.length; i++) {
+            int temp = i * 3;
+            column[i] = temp + "";
+        }
+        String[][] data = new String[33][24];
+        DecimalFormat df = new DecimalFormat("0.0");
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < data[i].length; j++) {
+                if (j == 0) {
+                    data[i][j] = (i + 18) + "";
+                } else {
+
+                    result = (i + 18.0) / 100.0 * (j * 3.0 / 10.0 + 1.0);
+                    if (result > 1.6) {
+                        data[i][j] = "Danger";
+                    } else {
+                        data[i][j] = df.format(result) + "";
+                    }
+                }
+            }
+        }
+        JTable ppjt = new JTable(data, column);
+        return ppjt;
+    }
+
+    private JTable makeEadTable() {
+        String[] column = new String[24];
+        column[0] = "Oxygen(%)/Depth(m)";
+        double result;
+        for (int i = 1; i < column.length; i++) {
+            int temp = i * 3;
+            column[i] = temp + "";
+        }
+        String[][] data = new String[33][24];
+        DecimalFormat df = new DecimalFormat("0");
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < data[i].length; j++) {
+                if (j == 0) {
+                    data[i][j] = (i + 18) + "";
+                } else {
+                    result = ((1.0 - (i + 18.0) / 100.0) * ((j * 3.0) / 10.0 + 1.0) / 0.79 - 1.0) * 10.0;
+                    data[i][j] = df.format(result) + "";
+                }
+            }
+
+        }
+        JTable eadjt = new JTable(data, column);
+        return eadjt;
+    }
+
+    public JTable getEadTable() {
+        return eadTable;
+    }
+
+    public JTable getPpTable() {
+        return ppTable;
+    }
 }
