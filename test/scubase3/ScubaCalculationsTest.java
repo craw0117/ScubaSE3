@@ -121,6 +121,7 @@ public class ScubaCalculationsTest {
         String result = ScubaCalculations.calculatePP(in1, in2);
         assertEquals(expResult, result);
     }
+
     public void testCalculatePP3() {
         System.out.println("calculatePP");
         double in1 = 0.8;
@@ -129,6 +130,7 @@ public class ScubaCalculationsTest {
         String result = ScubaCalculations.calculatePP(in1, in2);
         assertEquals(expResult, result);
     }
+
     /**
      * Test of calculateOxygenPP method, of class MethodsContainer.
      */

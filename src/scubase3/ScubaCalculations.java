@@ -43,7 +43,7 @@ public class ScubaCalculations {
 
         double result;
         result = in1 * (in2 / 10.0 + 1.0);
-        if (result > 1.6 || result<1.1) {
+        if (result > 1.6 || result < 1.1) {
             return "Result is out of range!";
         }
         return ataFormat.format(result) + "ata";
@@ -114,6 +114,7 @@ public class ScubaCalculations {
 
         }
         JTable ppjt = new JTable(data, column);
+        ppjt.setEnabled(false);
         return ppjt;
     }
 
@@ -143,6 +144,7 @@ public class ScubaCalculations {
 
         }
         JTable eadjt = new JTable(data, column);
+        eadjt.setEnabled(false);
         return eadjt;
     }
 
