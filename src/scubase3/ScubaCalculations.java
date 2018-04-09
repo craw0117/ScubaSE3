@@ -32,7 +32,7 @@ public class ScubaCalculations {
         if (result > 50) {
             return "Input combination will cause harm! BM value too high!";
         }
-                if ( result < 22) {
+        if (result < 22) {
             return "Input combination will cause harm! BM value too low!";
         }
         return oxygenFormat.format(result) + "%";
@@ -51,7 +51,7 @@ public class ScubaCalculations {
         if (result > 1.6) {
             return "Input combination will cause harm! PP value too high!";
         }
-                if ( result < 1.1) {
+        if (result < 1.1) {
             return "Input combination will cause harm! PP value too low!";
         }
         return ataFormat.format(result) + "ata";
@@ -70,7 +70,7 @@ public class ScubaCalculations {
         if (pg > 1.6) {
             return "Input combination will cause harm! PP value too high!";
         }
-                if ( pg < 1.1) {
+        if (pg < 1.1) {
             return "Input combination will cause harm! PP value too low!";
         }
         double result;

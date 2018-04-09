@@ -85,6 +85,7 @@ public class ScubaCalculationsTest {
         assertEquals(expResult, result);
 
     }
+
     public void testCalculateBMUpperBoundary() {
         System.out.println("calculateBM");
         double in1 = 1.3;
@@ -94,6 +95,7 @@ public class ScubaCalculationsTest {
         assertEquals(expResult, result);
 
     }
+
     /**
      * Test of calculateOxygenBM method, of class MethodsContainer.
      */
@@ -176,6 +178,7 @@ public class ScubaCalculationsTest {
 
         assertEquals(expResult, result);
     }
+
     public void testCalculateEADUpperBoundary() {
         System.out.println("calculateEAD");
         double in1 = 0.5;
@@ -185,6 +188,7 @@ public class ScubaCalculationsTest {
 
         assertEquals(expResult, result);
     }
+
     /**
      * Test of calculateOxygenEAD method, of class MethodsContainer.
      */
@@ -211,7 +215,6 @@ public class ScubaCalculationsTest {
         String result = ScubaCalculations.calculateSMOD(in1, in2);
         assertEquals(expResult, result);
     }
-
 
     /**
      * Test of calculateOxygenSMOD method, of class MethodsContainer.
