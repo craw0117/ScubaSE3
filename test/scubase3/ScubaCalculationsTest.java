@@ -43,7 +43,7 @@ public class ScubaCalculationsTest {
         System.out.println("calculateMOD");
         double in1 = 1.4;
         double in2 = 0.36;
-        String expResult = "29m";
+        String expResult = "28.9m";
         String result = ScubaCalculations.calculateMOD(in1, in2);
         assertEquals(expResult, result);
     }
@@ -54,9 +54,9 @@ public class ScubaCalculationsTest {
     @Test
     public void testCalculateOxygenMOD() {
         System.out.println("calculateOxygenMOD");
-        double in1 = 0.0;
-        double in2 = 0.27;
-        String expResult = "27";
+        double in1 = 1.4;
+        double in2 = 0.36;
+        String expResult = "36";
         String result = ScubaCalculations.calculateOxygenMOD(in1, in2);
         assertEquals(expResult, result);
 
@@ -66,7 +66,7 @@ public class ScubaCalculationsTest {
      * Test of calculateBM method, of class MethodsContainer.
      */
     @Test
-    public void testCalculateBM1() {
+    public void testCalculateBMNormal() {
         System.out.println("calculateBM");
         double in1 = 1.4;
         double in2 = 41.0;
@@ -76,16 +76,24 @@ public class ScubaCalculationsTest {
 
     }
 
-    public void testCalculateBM2() {
+    public void testCalculateBMLowerBoundary() {
         System.out.println("calculateBM");
-        double in1 = 1.6;
-        double in2 = 3.0;
-        String expResult = "Result is out of range!";
+        double in1 = 1.3;
+        double in2 = 67.0;
+        String expResult = "Input combination will cause harm! BM value too low!";
         String result = ScubaCalculations.calculateBM(in1, in2);
         assertEquals(expResult, result);
 
     }
+    public void testCalculateBMUpperBoundary() {
+        System.out.println("calculateBM");
+        double in1 = 1.3;
+        double in2 = 12.0;
+        String expResult = "Input combination will cause harm! BM value too high!";
+        String result = ScubaCalculations.calculateBM(in1, in2);
+        assertEquals(expResult, result);
 
+    }
     /**
      * Test of calculateOxygenBM method, of class MethodsContainer.
      */
@@ -104,29 +112,29 @@ public class ScubaCalculationsTest {
      * Test of calculatePP method, of class MethodsContainer.
      */
     @Test
-    public void testCalculatePP1() {
+    public void testCalculatePPNormal() {
         System.out.println("calculatePP");
         double in1 = 0.32;
         double in2 = 30.0;
-        String expResult = "1.3ata";
+        String expResult = "1.28ata";
         String result = ScubaCalculations.calculatePP(in1, in2);
         assertEquals(expResult, result);
     }
 
-    public void testCalculatePP2() {
+    public void testCalculatePPLowerBoundary() {
+        System.out.println("calculatePP");
+        double in1 = 0.22;
+        double in2 = 4.0;
+        String expResult = "Input combination will cause harm! PP value too low!";
+        String result = ScubaCalculations.calculatePP(in1, in2);
+        assertEquals(expResult, result);
+    }
+
+    public void testCalculatePPUpperBoundary() {
         System.out.println("calculatePP");
         double in1 = 0.5;
         double in2 = 67.0;
-        String expResult = "Result is out of range!";
-        String result = ScubaCalculations.calculatePP(in1, in2);
-        assertEquals(expResult, result);
-    }
-
-    public void testCalculatePP3() {
-        System.out.println("calculatePP");
-        double in1 = 0.8;
-        double in2 = 3.0;
-        String expResult = "Result is out of range!";
+        String expResult = "Input combination will cause harm! PP value too high!";
         String result = ScubaCalculations.calculatePP(in1, in2);
         assertEquals(expResult, result);
     }
@@ -135,7 +143,7 @@ public class ScubaCalculationsTest {
      * Test of calculateOxygenPP method, of class MethodsContainer.
      */
     @Test
-    public void testCalculateOxygenPP1() {
+    public void testCalculateOxygenPP() {
         System.out.println("calculateOxygenPP");
         double in1 = 0.32;
         double in2 = 30.0;
@@ -148,28 +156,35 @@ public class ScubaCalculationsTest {
      * Test of calculateEAD method, of class MethodsContainer.
      */
     @Test
-    public void testCalculateEAD1() {
+    public void testCalculateEADNormal() {
         System.out.println("calculateEAD");
         double in1 = 0.32;
         double in2 = 30.0;
-        String expResult = "24m";
+        String expResult = "24.4m";
         String result = ScubaCalculations.calculateEAD(in1, in2);
 
         assertEquals(expResult, result);
 
     }
 
-    public void testCalculateEAD2() {
+    public void testCalculateEADLowerBoundary() {
+        System.out.println("calculateEAD");
+        double in1 = 0.22;
+        double in2 = 4.0;
+        String expResult = "Input combination will cause harm! PP value too low!";
+        String result = ScubaCalculations.calculateEAD(in1, in2);
+
+        assertEquals(expResult, result);
+    }
+    public void testCalculateEADUpperBoundary() {
         System.out.println("calculateEAD");
         double in1 = 0.5;
-        double in2 = 3.0;
-        String expResult = "Result is out of range!";
+        double in2 = 30.0;
+        String expResult = "Input combination will cause harm! PP value too high!";
         String result = ScubaCalculations.calculateEAD(in1, in2);
 
         assertEquals(expResult, result);
-
     }
-
     /**
      * Test of calculateOxygenEAD method, of class MethodsContainer.
      */
@@ -188,23 +203,15 @@ public class ScubaCalculationsTest {
      * Test of calculateSMOD method, of class MethodsContainer.
      */
     @Test
-    public void testCalculateSMOD1() {
+    public void testCalculateSMOD() {
         System.out.println("calculateSMOD");
         double in1 = 1.4;
         double in2 = 0.36;
-        String expResult = "29m";
+        String expResult = "28.9m";
         String result = ScubaCalculations.calculateSMOD(in1, in2);
         assertEquals(expResult, result);
     }
 
-    public void testCalculateSMOD2() {
-        System.out.println("calculateSMOD");
-        double in1 = 1.4;
-        double in2 = 3.0;
-        String expResult = "Result is out of range!";
-        String result = ScubaCalculations.calculateSMOD(in1, in2);
-        assertEquals(expResult, result);
-    }
 
     /**
      * Test of calculateOxygenSMOD method, of class MethodsContainer.

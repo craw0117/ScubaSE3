@@ -7,44 +7,52 @@ import javax.swing.JTable;
  *
  * @author liu1028, eden0021, mitc0341, craw0117, kris0068
  */
+// The Oxygen value will be used for the cylinder in the next sprint
 public class ScubaCalculations {
 
-    private static final DecimalFormat ataFormat = new DecimalFormat("0.0");
-    private static final DecimalFormat format = new DecimalFormat("0");
+    private static final DecimalFormat ataFormat = new DecimalFormat("0.00");
+    private static final DecimalFormat meterFormat = new DecimalFormat("0.0");
+    private static final DecimalFormat oxygenFormat = new DecimalFormat("0");
 
     public static String calculateMOD(double in1, double in2) {
         double result;
         result = (in1 / in2 - 1.0) * 10.0;
-        return format.format(result) + "m";
+        return meterFormat.format(result) + "m";
     }
 
     public static String calculateOxygenMOD(double in1, double in2) {
         double result;
         result = in2 * 100;
-        return format.format(result);
+        return oxygenFormat.format(result);
     }
 
     public static String calculateBM(double in1, double in2) {
         double result;
         result = in1 / (in2 / 10.0 + 1.0) * 100.0;
-        if (result > 100) {
-            return "Result is out of range!";
+        if (result > 50) {
+            return "Input combination will cause harm! BM value too high!";
         }
-        return format.format(result) + "%";
+                if ( result < 22) {
+            return "Input combination will cause harm! BM value too low!";
+        }
+        return oxygenFormat.format(result) + "%";
     }
 
     public static String calculateOxygenBM(double in1, double in2) {
         double result;
         result = in1 / (in2 / 10.0 + 1.0) * 100.0;
-        return format.format(result);
+        return oxygenFormat.format(result);
     }
 
     public static String calculatePP(double in1, double in2) {
 
         double result;
         result = in1 * (in2 / 10.0 + 1.0);
-        if (result > 1.6 || result < 1.1) {
-            return "Result is out of range!";
+        if (result > 1.6) {
+            return "Input combination will cause harm! PP value too high!";
+        }
+                if ( result < 1.1) {
+            return "Input combination will cause harm! PP value too low!";
         }
         return ataFormat.format(result) + "ata";
     }
@@ -53,38 +61,45 @@ public class ScubaCalculations {
 
         double result;
         result = in1 * 100;
-        return format.format(result);
+        return oxygenFormat.format(result);
     }
 
     public static String calculateEAD(double in1, double in2) {
-
+        double pg;
+        pg = in1 * (in2 / 10.0 + 1.0);
+        if (pg > 1.6) {
+            return "Input combination will cause harm! PP value too high!";
+        }
+                if ( pg < 1.1) {
+            return "Input combination will cause harm! PP value too low!";
+        }
         double result;
         result = ((1.0 - in1) * (in2 / 10.0 + 1.0) / 0.79 - 1.0) * 10.0;
         if (result <= 0) {
             return "Result is out of range!";
         }
-        return format.format(result) + "m";
+        return meterFormat.format(result) + "m";
     }
 
     public static String calculateOxygenEAD(double in1, double in2) {
 
         double result;
         result = in1 * 100;
-        return format.format(result);
+        return oxygenFormat.format(result);
     }
 
     public static String calculateSMOD(double in1, double in2) {
 
         double result;
         result = (in1 / in2 - 1.0) * 10.0;
-        return format.format(result) + "m";
+        return meterFormat.format(result) + "m";
     }
 
     public static String calculateOxygenSMOD(double in1, double in2) {
 
         double result;
         result = in2 * 100;
-        return format.format(result);
+        return oxygenFormat.format(result);
     }
 
     public static JTable ppTable() {

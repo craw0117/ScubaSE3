@@ -226,7 +226,7 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         fractionOxygenLabel.setText("Oxygen Percent (Fg)");
         fractionOxygenPanel.add(fractionOxygenLabel);
 
-        fractionOxygenSpinner.setModel(new javax.swing.SpinnerNumberModel(0.32d, 0.0d, 1.0d, 0.01d));
+        fractionOxygenSpinner.setModel(new javax.swing.SpinnerNumberModel(0.32d, 0.22d, 0.5d, 0.01d));
         fractionOxygenSpinner.setAlignmentX(0.0F);
         fractionOxygenSpinner.setMaximumSize(new java.awt.Dimension(250, 24));
         fractionOxygenSpinner.setMinimumSize(new java.awt.Dimension(100, 25));

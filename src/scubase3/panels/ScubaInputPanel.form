@@ -225,7 +225,7 @@
         <Component class="javax.swing.JSpinner" name="fractionOxygenSpinner">
           <Properties>
             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-              <SpinnerModel initial="0.32" maximum="1.0" minimum="0.0" numberType="java.lang.Double" stepSize="0.01" type="number"/>
+              <SpinnerModel initial="0.32" maximum="0.5" minimum="0.22" numberType="java.lang.Double" stepSize="0.01" type="number"/>
             </Property>
             <Property name="alignmentX" type="float" value="0.0"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
