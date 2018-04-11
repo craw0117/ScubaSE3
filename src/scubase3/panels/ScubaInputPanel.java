@@ -262,7 +262,7 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         depthLabel.setText("Depth (m)");
         depthPanel.add(depthLabel);
 
-        depthSpinner.setModel(new javax.swing.SpinnerNumberModel(33.0d, 0.0d, 100.0d, 0.1d));
+        depthSpinner.setModel(new javax.swing.SpinnerNumberModel(33.3d, 0.0d, 100.0d, 0.1d));
         depthSpinner.setAlignmentX(0.0F);
         depthSpinner.setMaximumSize(new java.awt.Dimension(250, 24));
         depthSpinner.setMinimumSize(new java.awt.Dimension(100, 25));

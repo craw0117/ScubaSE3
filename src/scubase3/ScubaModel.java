@@ -56,9 +56,9 @@ public class ScubaModel {
         calculationType = "EAD";
         inputFlags = Const.FLAG_DEPTH | Const.FLAG_FRAC_OXYGEN;
 
-        partialPressure = 1.4;
-        fractionOxygen = .32;
-        depthPressure = 3.88;
+        partialPressure = 1.40;
+        fractionOxygen = 0.32;
+        depthPressure = 33.3;
 
         tableType = "EAD";
 
