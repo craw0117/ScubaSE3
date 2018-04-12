@@ -75,7 +75,7 @@ public class ScubaCalculationsTest {
         assertEquals(expResult, result);
 
     }
-
+@Test
     public void testCalculateBMLowerBoundary() {
         System.out.println("calculateBM");
         double in1 = 1.3;
@@ -85,7 +85,7 @@ public class ScubaCalculationsTest {
         assertEquals(expResult, result);
 
     }
-
+@Test
     public void testCalculateBMUpperBoundary() {
         System.out.println("calculateBM");
         double in1 = 1.3;
@@ -122,7 +122,7 @@ public class ScubaCalculationsTest {
         String result = ScubaCalculations.calculatePP(in1, in2);
         assertEquals(expResult, result);
     }
-
+@Test
     public void testCalculatePPLowerBoundary() {
         System.out.println("calculatePP");
         double in1 = 0.22;
@@ -131,7 +131,7 @@ public class ScubaCalculationsTest {
         String result = ScubaCalculations.calculatePP(in1, in2);
         assertEquals(expResult, result);
     }
-
+@Test
     public void testCalculatePPUpperBoundary() {
         System.out.println("calculatePP");
         double in1 = 0.5;
@@ -168,7 +168,7 @@ public class ScubaCalculationsTest {
         assertEquals(expResult, result);
 
     }
-
+@Test
     public void testCalculateEADLowerBoundary() {
         System.out.println("calculateEAD");
         double in1 = 0.22;
@@ -178,7 +178,7 @@ public class ScubaCalculationsTest {
 
         assertEquals(expResult, result);
     }
-
+@Test
     public void testCalculateEADUpperBoundary() {
         System.out.println("calculateEAD");
         double in1 = 0.5;
