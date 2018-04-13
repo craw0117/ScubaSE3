@@ -189,7 +189,7 @@
             <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="partialPressureSpinnerStateChanged"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="javax.swing.JSpinner.NumberEditor pEditor = (javax.swing.JSpinner.NumberEditor)partialPressureSpinner.getEditor();&#xa;java.text.DecimalFormat pFormat = pEditor.getFormat();&#xa;pFormat.setMinimumFractionDigits(2);"/>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="javax.swing.JSpinner.NumberEditor pEditor = (javax.swing.JSpinner.NumberEditor)partialPressureSpinner.getEditor();&#xa;java.text.DecimalFormat pFormat = pEditor.getFormat();&#xa;pFormat.setMinimumFractionDigits(2);&#xa;pFormat.setMaximumFractionDigits(2);"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="partialPressureHelpLabel">
@@ -242,7 +242,7 @@
             <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="fractionOxygenSpinnerStateChanged"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="javax.swing.JSpinner.NumberEditor oEditor = (javax.swing.JSpinner.NumberEditor)fractionOxygenSpinner.getEditor();&#xa;java.text.DecimalFormat oFormat = oEditor.getFormat();&#xa;oFormat.setMinimumFractionDigits(2);"/>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="javax.swing.JSpinner.NumberEditor oEditor = (javax.swing.JSpinner.NumberEditor)fractionOxygenSpinner.getEditor();&#xa;java.text.DecimalFormat oFormat = oEditor.getFormat();&#xa;oFormat.setMinimumFractionDigits(2);&#xa;oFormat.setMaximumFractionDigits(2);"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="fractionOxygenHelpLabel">
@@ -295,7 +295,7 @@
             <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="depthSpinnerStateChanged"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="javax.swing.JSpinner.NumberEditor dEditor = (javax.swing.JSpinner.NumberEditor)depthSpinner.getEditor();&#xa;java.text.DecimalFormat dFormat = dEditor.getFormat();&#xa;dFormat.setMinimumFractionDigits(1);"/>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="javax.swing.JSpinner.NumberEditor dEditor = (javax.swing.JSpinner.NumberEditor)depthSpinner.getEditor();&#xa;java.text.DecimalFormat dFormat = dEditor.getFormat();&#xa;dFormat.setMinimumFractionDigits(1);&#xa;dFormat.setMaximumFractionDigits(1);"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="depthHelpLabel">

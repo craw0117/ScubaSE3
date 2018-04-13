@@ -204,6 +204,7 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         javax.swing.JSpinner.NumberEditor pEditor = (javax.swing.JSpinner.NumberEditor)partialPressureSpinner.getEditor();
         java.text.DecimalFormat pFormat = pEditor.getFormat();
         pFormat.setMinimumFractionDigits(2);
+        pFormat.setMaximumFractionDigits(2);
 
         partialPressureHelpLabel.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         partialPressureHelpLabel.setText("1.1 - 1.6 bar");
@@ -240,6 +241,7 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         javax.swing.JSpinner.NumberEditor oEditor = (javax.swing.JSpinner.NumberEditor)fractionOxygenSpinner.getEditor();
         java.text.DecimalFormat oFormat = oEditor.getFormat();
         oFormat.setMinimumFractionDigits(2);
+        oFormat.setMaximumFractionDigits(2);
 
         fractionOxygenHelpLabel.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         fractionOxygenHelpLabel.setText("e.g. 0.32 = 32%");
@@ -276,6 +278,7 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         javax.swing.JSpinner.NumberEditor dEditor = (javax.swing.JSpinner.NumberEditor)depthSpinner.getEditor();
         java.text.DecimalFormat dFormat = dEditor.getFormat();
         dFormat.setMinimumFractionDigits(1);
+        dFormat.setMaximumFractionDigits(1);
 
         depthHelpLabel.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         depthHelpLabel.setText("e.g. 33m");
