@@ -128,8 +128,11 @@ public class ScubaCalculations {
             }
 
         }
+
         JTable ppjt = new JTable(data, column);
         ppjt.setEnabled(false);
+        ppjt.getColumnModel().getColumn(0).setPreferredWidth(120);
+
         return ppjt;
     }
 
@@ -160,6 +163,7 @@ public class ScubaCalculations {
         }
         JTable eadjt = new JTable(data, column);
         eadjt.setEnabled(false);
+        eadjt.getColumnModel().getColumn(0).setPreferredWidth(120);
         return eadjt;
     }
 
