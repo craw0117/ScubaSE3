@@ -1,7 +1,8 @@
 package scubase3;
 
 /**
- *
+ * Contains constant variables used throughout the application
+ * 
  * @author liu1028, eden0021, mitc0341, craw0117, kris0068
  */
 public class Const {

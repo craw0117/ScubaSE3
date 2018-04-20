@@ -73,7 +73,7 @@ public class ScubaModel {
     /**
      * Sets the calculation to perform and will enable the correct inputs.
      *
-     * @param calcType Code for calc ["EAD", "MOD", "MIX", "PP", "SMOD"]
+     * @param calcType Code for calculation ["EAD", "MOD", "MIX", "PP", "SMOD"]
      */
     public void setCalculationType(String calcType) {
 
@@ -83,12 +83,11 @@ public class ScubaModel {
                 this.outputValue = ScubaCalculations.calculateEAD(this.fractionOxygen, this.depthPressure);
                 this.outputOxygen = ScubaCalculations.calculateOxygenEAD(this.fractionOxygen, this.depthPressure);
                 this.outputUnit = "m";
-
                 break;
             case "MOD":
                 this.inputFlags = Const.FLAG_O2_PRESSURE | Const.FLAG_FRAC_OXYGEN;
                 this.outputValue = ScubaCalculations.calculateMOD(this.partialPressure, this.fractionOxygen);
-                this.outputOxygen = ScubaCalculations.calculateOxygenMOD(this.partialPressure, this.fractionOxygen);
+                this.outputOxygen = ScubaCalculations.calculateOxygenMOD(this.fractionOxygen);
                 this.outputUnit = "m";
                 break;
             case "BM":
@@ -106,7 +105,7 @@ public class ScubaModel {
             case "SMOD":
                 this.inputFlags = Const.FLAG_FRAC_OXYGEN;
                 this.outputValue = ScubaCalculations.calculateMOD(this.partialPressure, this.fractionOxygen);
-                this.outputOxygen = ScubaCalculations.calculateOxygenMOD(this.partialPressure, this.fractionOxygen);
+                this.outputOxygen = ScubaCalculations.calculateOxygenMOD(this.fractionOxygen);
                 this.outputUnit = "m";
                 break;
             default:

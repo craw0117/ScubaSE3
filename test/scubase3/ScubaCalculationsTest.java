@@ -54,10 +54,9 @@ public class ScubaCalculationsTest {
     @Test
     public void testCalculateOxygenMOD() {
         System.out.println("calculateOxygenMOD");
-        double in1 = 1.4;
-        double in2 = 0.36;
+        double in1 = 0.36;
         String expResult = "36";
-        String result = ScubaCalculations.calculateOxygenMOD(in1, in2);
+        String result = ScubaCalculations.calculateOxygenMOD(in1);
         assertEquals(expResult, result);
 
     }

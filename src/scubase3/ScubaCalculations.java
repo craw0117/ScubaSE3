@@ -4,31 +4,57 @@ import java.text.DecimalFormat;
 import javax.swing.JTable;
 
 /**
+ * Container class for the calculations performed by the application
  *
  * @author liu1028, eden0021, mitc0341, craw0117, kris0068
  */
 // The Oxygen value will be used for the cylinder in the next sprint
 public class ScubaCalculations {
 
+    /**
+     * Decimal format for output in ATA
+     */
     private static final DecimalFormat ataFormat = new DecimalFormat("0.00");
+    /**
+     * Decimal format for output in meters
+     */
     private static final DecimalFormat meterFormat = new DecimalFormat("0.0");
+    /**
+     * Decimal format for oxygen level output
+     */
     private static final DecimalFormat oxygenFormat = new DecimalFormat("0");
 
-    public static String calculateMOD(double in1, double in2) {
-        double result;
-        result = (in1 / in2 - 1.0) * 10.0;
-        return meterFormat.format(result) + "m";
+    /**
+     * Calculates the Maximum Operating Depth using the provided parameters
+     *
+     * @param partialPressure
+     * @param oxygenFraction
+     * @return The result in meters
+     */
+    public static String calculateMOD(double partialPressure, double oxygenFraction) {
+        return meterFormat.format((partialPressure / oxygenFraction - 1.0) * 10.0) + "m";
     }
 
-    public static String calculateOxygenMOD(double in1, double in2) {
-        double result;
-        result = in2 * 100;
-        return oxygenFormat.format(result);
+    /**
+     * Converts the oxygen fraction into a percentile for use in the oxygen
+     * cylinder
+     *
+     * @param oxygenFraction
+     * @return The result
+     */
+    public static String calculateOxygenMOD(double oxygenFraction) {
+        return oxygenFormat.format(oxygenFraction * 100);
     }
 
-    public static String calculateBM(double in1, double in2) {
-        double result;
-        result = in1 / (in2 / 10.0 + 1.0) * 100.0;
+    /**
+     * Calculates the Best Mix of oxygen using the provided parameters
+     *
+     * @param partialPressure
+     * @param oxygenFraction
+     * @return
+     */
+    public static String calculateBM(double partialPressure, double oxygenFraction) {
+        double result = partialPressure / (oxygenFraction / 10.0 + 1.0) * 100.0;
         if (result > 50) {
             return "Input combination will cause harm! BM value too high!";
         }
@@ -38,16 +64,13 @@ public class ScubaCalculations {
         return oxygenFormat.format(result) + "%";
     }
 
-    public static String calculateOxygenBM(double in1, double in2) {
-        double result;
-        result = in1 / (in2 / 10.0 + 1.0) * 100.0;
+    public static String calculateOxygenBM(double partialPressure, double oxygenFraction) {
+        double result = partialPressure / (oxygenFraction / 10.0 + 1.0) * 100.0;
         return oxygenFormat.format(result);
     }
 
-    public static String calculatePP(double in1, double in2) {
-
-        double result;
-        result = in1 * (in2 / 10.0 + 1.0);
+    public static String calculatePP(double oxygenFraction, double depthPressure) {
+        double result = oxygenFraction * (depthPressure / 10.0 + 1.0);
         if (result > 1.6) {
             return "Input combination will cause harm! PP value too high!";
         }
@@ -57,48 +80,38 @@ public class ScubaCalculations {
         return ataFormat.format(result) + "ata";
     }
 
-    public static String calculateOxygenPP(double in1, double in2) {
-
-        double result;
-        result = in1 * 100;
+    public static String calculateOxygenPP(double oxygenFraction, double depthPressure) {
+        double result = oxygenFraction * 100;
         return oxygenFormat.format(result);
     }
 
-    public static String calculateEAD(double in1, double in2) {
-        double pg;
-        pg = in1 * (in2 / 10.0 + 1.0);
-        if (pg > 1.6) {
+    public static String calculateEAD(double oxygenFraction, double depthPressure) {
+        double partialPressure = oxygenFraction * (depthPressure / 10.0 + 1.0);
+        if (partialPressure > 1.6) {
             return "Input combination will cause harm! PP value too high!";
         }
-        if (pg < 1.1) {
+        if (partialPressure < 1.1) {
             return "Input combination will cause harm! PP value too low!";
         }
-        double result;
-        result = ((1.0 - in1) * (in2 / 10.0 + 1.0) / 0.79 - 1.0) * 10.0;
+        double result = ((1.0 - oxygenFraction) * (depthPressure / 10.0 + 1.0) / 0.79 - 1.0) * 10.0;
         if (result <= 0) {
             return "Result is out of range!";
         }
         return meterFormat.format(result) + "m";
     }
 
-    public static String calculateOxygenEAD(double in1, double in2) {
-
-        double result;
-        result = in1 * 100;
+    public static String calculateOxygenEAD(double oxygenFraction, double depthPressure) {
+        double result = oxygenFraction * 100;
         return oxygenFormat.format(result);
     }
 
-    public static String calculateSMOD(double in1, double in2) {
-
-        double result;
-        result = (in1 / in2 - 1.0) * 10.0;
+    public static String calculateSMOD(double partialPressure, double oxygenFraction) {
+        double result = (partialPressure / oxygenFraction - 1.0) * 10.0;
         return meterFormat.format(result) + "m";
     }
 
-    public static String calculateOxygenSMOD(double in1, double in2) {
-
-        double result;
-        result = in2 * 100;
+    public static String calculateOxygenSMOD(double partialPressure, double oxygenFraction) {
+        double result = oxygenFraction * 100;
         return oxygenFormat.format(result);
     }
 
@@ -165,11 +178,5 @@ public class ScubaCalculations {
         eadjt.setEnabled(false);
         eadjt.getColumnModel().getColumn(0).setPreferredWidth(120);
         return eadjt;
-    }
-
-    public static void main() {
-
-        ScubaCalculations.calculateEAD(0, 0);
-
     }
 }
