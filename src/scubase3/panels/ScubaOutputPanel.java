@@ -30,8 +30,9 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
         }
 
         ScubaModel model = controller.getModel();
-        outputText.setText(model.getCalculationType() + ": " + model.getOutputValue()
-                + "    Oxygen: " + model.getOutputOxygen() + "%");
+        outputText.setText(Const.UNSAFE_OUTPUT_VALUE.equals(model.getOutputValue())
+                ? Const.UNSAFE_OUTPUT_MESSAGE
+                : model.getCalculationType() + ": " + model.getOutputValue() + model.getOutputUnit() + ", Oxygen: " + model.getOutputOxygen() + "%");
     }
 
     /**

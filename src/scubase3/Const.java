@@ -18,4 +18,15 @@ public class Const {
      */
     public static final double SMOD_PP_VALUE = 1.4;
 
+    /**
+     * The value returned by calculations to signify that the output is unsafe
+     * and will cause harm
+     */
+    public static final String UNSAFE_OUTPUT_VALUE = "!";
+
+    /**
+     * The text to display in the output area when the output values are not
+     * within acceptable ranges and will cause harm.
+     */
+    public static final String UNSAFE_OUTPUT_MESSAGE = "Input combination will cause harm!";
 }

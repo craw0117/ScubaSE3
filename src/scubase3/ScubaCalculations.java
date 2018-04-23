@@ -18,7 +18,7 @@ public class ScubaCalculations {
     /**
      * Decimal format for output in meters
      */
-    private static final DecimalFormat meterFormat = new DecimalFormat("0.0");
+    private static final DecimalFormat meterFormat = new DecimalFormat("0.00");
     /**
      * Decimal format for oxygen level output
      */
@@ -56,9 +56,9 @@ public class ScubaCalculations {
     public static String calculateBM(double partialPressure, double oxygenFraction) {
         double result = partialPressure / (oxygenFraction / 10.0 + 1.0) * 100.0;
         if (result > 50 || result < 22) {
-            return "Input combination will cause harm!";
+            return Const.UNSAFE_OUTPUT_VALUE;
         }
-        return oxygenFormat.format(result) + "%";
+        return oxygenFormat.format(result);
     }
 
     /**
@@ -87,9 +87,9 @@ public class ScubaCalculations {
     public static String calculatePP(double oxygenFraction, double depthPressure) {
         double result = oxygenFraction * (depthPressure / 10.0 + 1.0);
         if (result > 1.6 || result < 1.1) {
-            return "Input combination will cause harm!";
+            return Const.UNSAFE_OUTPUT_VALUE;
         }
-        return ataFormat.format(result) + "ata";
+        return ataFormat.format(result);
     }
 
     /**
@@ -102,13 +102,13 @@ public class ScubaCalculations {
     public static String calculateEAD(double oxygenFraction, double depthPressure) {
         double partialPressure = oxygenFraction * (depthPressure / 10.0 + 1.0);
         if (partialPressure > 1.6 || partialPressure < 1.1) {
-            return "Input combination will cause harm!";
+            return Const.UNSAFE_OUTPUT_VALUE;
         }
         double result = ((1.0 - oxygenFraction) * (depthPressure / 10.0 + 1.0) / 0.79 - 1.0) * 10.0;
-        if (result <= 0) {
-            return "Result is out of range!";
+        if (result < 0) {
+            result = 0;
         }
-        return meterFormat.format(result) + "m";
+        return meterFormat.format(result);
     }
 
     /**
