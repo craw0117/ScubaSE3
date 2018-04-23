@@ -42,7 +42,7 @@ public class ScubaController {
     /**
      * Sets the calculation to perform and will enable the correct inputs.
      *
-     * @param calcType Valid calcTypes are "EAD", "MOD", "MIX", "PP", and "SMOD"
+     * @param calcType Valid calcTypes are "EAD", "MOD", "BM", "PP", and "SMOD"
      */
     public void setCalcType(String calcType) {
         model.setCalculationType(calcType);
@@ -86,7 +86,7 @@ public class ScubaController {
 
     /**
      * Gets the current calculation type, should be one of the following values:
-     * ["EAD", "MOD", "MIX", "PP", and "SMOD"]
+     * ["EAD", "MOD", "BM", "PP", and "SMOD"]
      *
      * @return
      */

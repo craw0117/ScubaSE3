@@ -328,28 +328,27 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
 
     private void ppSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ppSelectActionPerformed
     {//GEN-HEADEREND:event_ppSelectActionPerformed
-        controller.setCalcType("PP");
+        controller.setCalcType(Const.CALCULATION_TYPE_PP);
     }//GEN-LAST:event_ppSelectActionPerformed
 
     private void eadSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_eadSelectActionPerformed
     {//GEN-HEADEREND:event_eadSelectActionPerformed
-        controller.setCalcType("EAD");
+        controller.setCalcType(Const.CALCULATION_TYPE_EAD);
     }//GEN-LAST:event_eadSelectActionPerformed
 
     private void modSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_modSelectActionPerformed
     {//GEN-HEADEREND:event_modSelectActionPerformed
-        controller.setCalcType("MOD");
+        controller.setCalcType(Const.CALCULATION_TYPE_MOD);
     }//GEN-LAST:event_modSelectActionPerformed
 
     private void bmSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_bmSelectActionPerformed
     {//GEN-HEADEREND:event_bmSelectActionPerformed
-        controller.setCalcType("BM");
+        controller.setCalcType(Const.CALCULATION_TYPE_BM);
     }//GEN-LAST:event_bmSelectActionPerformed
 
     private void smodSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_smodSelectActionPerformed
     {//GEN-HEADEREND:event_smodSelectActionPerformed
-        controller.setCalcType("SMOD");
-        controller.setPartialPressure(1.4);
+        controller.setCalcType(Const.CALCULATION_TYPE_SMOD);
     }//GEN-LAST:event_smodSelectActionPerformed
 
     private void partialPressureSpinnerStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_partialPressureSpinnerStateChanged

@@ -52,14 +52,14 @@ public class ScubaModel {
      * Default state setup.
      */
     private void initState() {
-        calculationType = "EAD";
+        calculationType = Const.CALCULATION_TYPE_EAD;
         inputFlags = Const.FLAG_DEPTH | Const.FLAG_FRAC_OXYGEN;
 
         partialPressure = 1.40;
         fractionOxygen = 0.32;
         depthPressure = 33.3;
 
-        tableType = "EAD";
+        tableType = Const.CALCULATION_TYPE_EAD;
 
         eadTable = ScubaCalculations.eadTable();
         ppTable = ScubaCalculations.ppTable();
@@ -72,40 +72,40 @@ public class ScubaModel {
     /**
      * Sets the calculation to perform and will enable the correct inputs.
      *
-     * @param calcType Code for calculation ["EAD", "MOD", "MIX", "PP", "SMOD"]
+     * @param calcType Code for calculation ["EAD", "MOD", "BM", "PP", "SMOD"]
      */
     public void setCalculationType(String calcType) {
 
         switch (calcType) {
-            case "EAD":
+            case Const.CALCULATION_TYPE_EAD:
                 this.inputFlags = Const.FLAG_DEPTH | Const.FLAG_FRAC_OXYGEN;
                 this.outputValue = ScubaCalculations.calculateEAD(this.fractionOxygen, this.depthPressure);
                 this.outputOxygen = ScubaCalculations.calculateOxygen(this.fractionOxygen);
-                this.outputUnit = "m";
+                this.outputUnit = Const.UNIT_METERS;
                 break;
-            case "MOD":
+            case Const.CALCULATION_TYPE_MOD:
                 this.inputFlags = Const.FLAG_O2_PRESSURE | Const.FLAG_FRAC_OXYGEN;
                 this.outputValue = ScubaCalculations.calculateMOD(this.partialPressure, this.fractionOxygen);
                 this.outputOxygen = ScubaCalculations.calculateOxygen(this.fractionOxygen);
-                this.outputUnit = "m";
+                this.outputUnit = Const.UNIT_METERS;
                 break;
-            case "BM":
+            case Const.CALCULATION_TYPE_BM:
                 this.inputFlags = Const.FLAG_O2_PRESSURE | Const.FLAG_DEPTH;
                 this.outputValue = ScubaCalculations.calculateBM(this.partialPressure, this.depthPressure);
-                this.outputOxygen = ScubaCalculations.calculateOxygenBM(this.partialPressure, this.depthPressure);
+                this.outputOxygen = this.outputValue;
                 this.outputUnit = "%";
                 break;
-            case "PP":
+            case Const.CALCULATION_TYPE_PP:
                 this.inputFlags = Const.FLAG_FRAC_OXYGEN | Const.FLAG_DEPTH;
                 this.outputValue = ScubaCalculations.calculatePP(this.fractionOxygen, this.depthPressure);
                 this.outputOxygen = ScubaCalculations.calculateOxygen(this.fractionOxygen);
                 this.outputUnit = "ata";
                 break;
-            case "SMOD":
+            case Const.CALCULATION_TYPE_SMOD:
                 this.inputFlags = Const.FLAG_FRAC_OXYGEN;
-                this.outputValue = ScubaCalculations.calculateMOD(this.partialPressure, this.fractionOxygen);
+                this.outputValue = ScubaCalculations.calculateSMOD(this.fractionOxygen);
                 this.outputOxygen = ScubaCalculations.calculateOxygen(this.fractionOxygen);
-                this.outputUnit = "m";
+                this.outputUnit = Const.UNIT_METERS;
                 break;
             default:
                 throw new java.lang.Error("Invalid calcType: " + calcType);

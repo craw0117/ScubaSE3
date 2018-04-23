@@ -12,6 +12,18 @@ public class Const {
     public static final int FLAG_FRAC_OXYGEN = 2;
     public static final int FLAG_DEPTH = 4;
 
+    // Calculation types
+    public static final String CALCULATION_TYPE_EAD = "EAD";
+    public static final String CALCULATION_TYPE_MOD = "MOD";
+    public static final String CALCULATION_TYPE_BM = "BM";
+    public static final String CALCULATION_TYPE_PP = "PP";
+    public static final String CALCULATION_TYPE_SMOD = "SMOD";
+    
+    // Output units
+    public static final String UNIT_METERS = "m";
+    public static final String UNIT_ATA = "ata";
+    public static final String UNIT_PERCENT = "%";
+
     /**
      * The partial pressure constant for the Standard Maximum Operating Depth
      * calculation.
@@ -29,4 +41,5 @@ public class Const {
      * within acceptable ranges and will cause harm.
      */
     public static final String UNSAFE_OUTPUT_MESSAGE = "Input combination will cause harm!";
+
 }

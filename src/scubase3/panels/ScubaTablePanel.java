@@ -2,7 +2,7 @@ package scubase3.panels;
 
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
-import scubase3.ScubaCalculations;
+import scubase3.Const;
 import scubase3.ScubaController;
 import scubase3.ScubaFrame;
 import scubase3.ScubaModel;
@@ -40,12 +40,12 @@ public class ScubaTablePanel extends javax.swing.JPanel {
         String tableType = model.getTableType();
 
         switch (tableType) {
-            case "EAD":
+            case Const.CALCULATION_TYPE_EAD:
                 JTable eadjt = model.getEadTable();
                 tableScollPane.setViewportView(eadjt);
 
                 break;
-            case "PP":
+            case Const.CALCULATION_TYPE_PP:
                 JTable ppjt = model.getPpTable();
                 tableScollPane.setViewportView(ppjt);
                 break;
@@ -154,12 +154,12 @@ public class ScubaTablePanel extends javax.swing.JPanel {
 
     private void eadTableSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_eadTableSelectActionPerformed
     {//GEN-HEADEREND:event_eadTableSelectActionPerformed
-        controller.setTableType("EAD");
+        controller.setTableType(Const.CALCULATION_TYPE_EAD);
     }//GEN-LAST:event_eadTableSelectActionPerformed
 
     private void ppTableSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ppTableSelectActionPerformed
     {//GEN-HEADEREND:event_ppTableSelectActionPerformed
-        controller.setTableType("PP");
+        controller.setTableType(Const.CALCULATION_TYPE_PP);
     }//GEN-LAST:event_ppTableSelectActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -55,13 +55,24 @@ public class ScubaFrame extends javax.swing.JFrame {
         sInputPanel = new scubase3.panels.ScubaInputPanel();
         sTablePanel = new scubase3.panels.ScubaTablePanel();
         sMenuBar = new javax.swing.JMenuBar();
-        calculations = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        sFileMenu = new javax.swing.JMenu();
+        sFileSeparator2 = new javax.swing.JPopupMenu.Separator();
+        sExitButton = new javax.swing.JMenuItem();
+        sCalcMenu = new javax.swing.JMenu();
+        sEADButton = new javax.swing.JMenuItem();
+        sMODButton = new javax.swing.JMenuItem();
+        sBMButton = new javax.swing.JMenuItem();
+        sPPButton = new javax.swing.JMenuItem();
+        sSMODButton = new javax.swing.JMenuItem();
+        sTablesMenu = new javax.swing.JMenu();
+        sEADTableButton = new javax.swing.JMenuItem();
+        sPPTableButton = new javax.swing.JMenuItem();
+        sHelpMenu = new javax.swing.JMenu();
+        sHelpDocsButton = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dive Calculator Version 0.1 PRERELEASE");
         setMinimumSize(new java.awt.Dimension(650, 450));
-        setPreferredSize(new java.awt.Dimension(650, 450));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         sVerticalSplitPane.setDividerSize(3);
@@ -86,25 +97,147 @@ public class ScubaFrame extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(sVerticalSplitPane, gridBagConstraints);
 
-        calculations.setText("File");
-        sMenuBar.add(calculations);
+        sFileMenu.setText("File");
+        sFileMenu.add(sFileSeparator2);
 
-        jMenu2.setText("Edit");
-        sMenuBar.add(jMenu2);
+        sExitButton.setText("Exit");
+        sExitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sExitButtonActionPerformed(evt);
+            }
+        });
+        sFileMenu.add(sExitButton);
+
+        sMenuBar.add(sFileMenu);
+
+        sCalcMenu.setText("Calculate");
+
+        sEADButton.setText("Equivalent Air Depth (EAD)");
+        sEADButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sEADButtonActionPerformed(evt);
+            }
+        });
+        sCalcMenu.add(sEADButton);
+
+        sMODButton.setText("Maximum Operating Depth (MOD)");
+        sMODButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sMODButtonActionPerformed(evt);
+            }
+        });
+        sCalcMenu.add(sMODButton);
+
+        sBMButton.setText("Best Mix (BM)");
+        sBMButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sBMButtonActionPerformed(evt);
+            }
+        });
+        sCalcMenu.add(sBMButton);
+
+        sPPButton.setText("Partial Pressure (PP)");
+        sPPButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sPPButtonActionPerformed(evt);
+            }
+        });
+        sCalcMenu.add(sPPButton);
+
+        sSMODButton.setText("Standard MOD (SMOD)");
+        sSMODButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sSMODButtonActionPerformed(evt);
+            }
+        });
+        sCalcMenu.add(sSMODButton);
+
+        sMenuBar.add(sCalcMenu);
+
+        sTablesMenu.setText("Tables");
+
+        sEADTableButton.setText("Equivalent Air Depth (EAD)");
+        sEADTableButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sEADTableButtonActionPerformed(evt);
+            }
+        });
+        sTablesMenu.add(sEADTableButton);
+
+        sPPTableButton.setText("Partial Pressure (PP)");
+        sPPTableButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sPPTableButtonActionPerformed(evt);
+            }
+        });
+        sTablesMenu.add(sPPTableButton);
+
+        sMenuBar.add(sTablesMenu);
+
+        sHelpMenu.setText("Help");
+
+        sHelpDocsButton.setText("User Manual");
+        sHelpMenu.add(sHelpDocsButton);
+
+        sMenuBar.add(sHelpMenu);
 
         setJMenuBar(sMenuBar);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void sExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sExitButtonActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_sExitButtonActionPerformed
+
+    private void sEADTableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sEADTableButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sEADTableButtonActionPerformed
+
+    private void sPPTableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sPPTableButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sPPTableButtonActionPerformed
+
+    private void sEADButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sEADButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sEADButtonActionPerformed
+
+    private void sMODButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sMODButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sMODButtonActionPerformed
+
+    private void sBMButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sBMButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sBMButtonActionPerformed
+
+    private void sPPButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sPPButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sPPButtonActionPerformed
+
+    private void sSMODButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sSMODButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sSMODButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu calculations;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuItem sBMButton;
+    private javax.swing.JMenu sCalcMenu;
+    private javax.swing.JMenuItem sEADButton;
+    private javax.swing.JMenuItem sEADTableButton;
+    private javax.swing.JMenuItem sExitButton;
+    private javax.swing.JMenu sFileMenu;
+    private javax.swing.JPopupMenu.Separator sFileSeparator2;
+    private javax.swing.JMenuItem sHelpDocsButton;
+    private javax.swing.JMenu sHelpMenu;
     private scubase3.panels.ScubaInputPanel sInputPanel;
+    private javax.swing.JMenuItem sMODButton;
     private javax.swing.JMenuBar sMenuBar;
     private scubase3.panels.ScubaOutputPanel sOutputPanel;
+    private javax.swing.JMenuItem sPPButton;
+    private javax.swing.JMenuItem sPPTableButton;
+    private javax.swing.JMenuItem sSMODButton;
     private javax.swing.JSplitPane sSplitPane;
     private scubase3.panels.ScubaTablePanel sTablePanel;
+    private javax.swing.JMenu sTablesMenu;
     private javax.swing.JSplitPane sVerticalSplitPane;
     // End of variables declaration//GEN-END:variables
 }

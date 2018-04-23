@@ -1,6 +1,5 @@
 package scubase3.panels;
 
-import java.text.DecimalFormat;
 import javax.swing.SwingUtilities;
 import scubase3.Const;
 import scubase3.ScubaController;
@@ -30,9 +29,18 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
         }
 
         ScubaModel model = controller.getModel();
-        outputText.setText(Const.UNSAFE_OUTPUT_VALUE.equals(model.getOutputValue())
-                ? Const.UNSAFE_OUTPUT_MESSAGE
-                : model.getCalculationType() + ": " + model.getOutputValue() + model.getOutputUnit() + ", Oxygen: " + model.getOutputOxygen() + "%");
+        if (Const.UNSAFE_OUTPUT_VALUE.equals(model.getOutputValue())) {
+            outputText.setText(Const.UNSAFE_OUTPUT_MESSAGE);
+        } else {
+            if (Const.CALCULATION_TYPE_BM.equals(model.getCalculationType())) {
+                outputText.setText(model.getCalculationType() + ": " + model.getOutputValue()
+                        + model.getOutputUnit());
+            } else {
+                outputText.setText(model.getCalculationType() + ": " + model.getOutputValue()
+                        + model.getOutputUnit() + ", Oxygen: " + model.getOutputOxygen()
+                        + Const.UNIT_PERCENT);
+            }
+        }
     }
 
     /**
