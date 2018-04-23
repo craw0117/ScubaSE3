@@ -43,7 +43,7 @@ public class ScubaCalculations {
      * @return The result in meters
      */
     public static String calculateMOD(double partialPressure, double oxygenFraction) {
-        return meterFormat.format((partialPressure / oxygenFraction - 1.0) * 10.0) + "m";
+        return meterFormat.format((partialPressure / oxygenFraction - 1.0) * 10.0);
     }
 
     /**
