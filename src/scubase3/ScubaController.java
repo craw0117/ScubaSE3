@@ -84,6 +84,12 @@ public class ScubaController {
         model.setTableType(type);
     }
 
+    /**
+     * Gets the current calculation type, should be one of the following values:
+     * ["EAD", "MOD", "MIX", "PP", and "SMOD"]
+     *
+     * @return
+     */
     public String getCalcType() {
         return model.getCalculationType();
     }
