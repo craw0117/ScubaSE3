@@ -35,7 +35,7 @@ public class ScubaCalculationsTest {
     }
 
     /**
-     * Test of calculateMOD method, of class MethodsContainer.
+     * Test of calculateMOD method, of class ScubaCalculations.
      */
     @Test
 
@@ -49,20 +49,7 @@ public class ScubaCalculationsTest {
     }
 
     /**
-     * Test of calculateOxygenMOD method, of class MethodsContainer.
-     */
-    @Test
-    public void testCalculateOxygenMOD() {
-        System.out.println("calculateOxygenMOD");
-        double in1 = 0.36;
-        String expResult = "36";
-        String result = ScubaCalculations.calculateOxygenMOD(in1);
-        assertEquals(expResult, result);
-
-    }
-
-    /**
-     * Test of calculateBM method, of class MethodsContainer.
+     * Test of calculateBM method, of class ScubaCalculations.
      */
     @Test
     public void testCalculateBMNormal() {
@@ -98,7 +85,7 @@ public class ScubaCalculationsTest {
     }
 
     /**
-     * Test of calculateOxygenBM method, of class MethodsContainer.
+     * Test of calculateOxygenBM method, of class ScubaCalculations.
      */
     @Test
     public void testCalculateOxygenBM() {
@@ -112,7 +99,7 @@ public class ScubaCalculationsTest {
     }
 
     /**
-     * Test of calculatePP method, of class MethodsContainer.
+     * Test of calculatePP method, of class ScubaCalculations.
      */
     @Test
     public void testCalculatePPNormal() {
@@ -145,20 +132,7 @@ public class ScubaCalculationsTest {
     }
 
     /**
-     * Test of calculateOxygenPP method, of class MethodsContainer.
-     */
-    @Test
-    public void testCalculateOxygenPP() {
-        System.out.println("calculateOxygenPP");
-        double in1 = 0.32;
-        double in2 = 30.0;
-        String expResult = "32";
-        String result = ScubaCalculations.calculateOxygenPP(in1, in2);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of calculateEAD method, of class MethodsContainer.
+     * Test of calculateEAD method, of class ScubaCalculations.
      */
     @Test
     public void testCalculateEADNormal() {
@@ -195,21 +169,20 @@ public class ScubaCalculationsTest {
     }
 
     /**
-     * Test of calculateOxygenEAD method, of class MethodsContainer.
+     * Test of calculateOxygen method, of class ScubaCalculations.
      */
     @Test
-    public void testCalculateOxygenEAD() {
-        System.out.println("calculateOxygenEAD");
+    public void testCalculateOxygen() {
+        System.out.println("calculateOxygen");
         double in1 = 0.32;
-        double in2 = 30.0;
         String expResult = "32";
-        String result = ScubaCalculations.calculateOxygenEAD(in1, in2);
+        String result = ScubaCalculations.calculateOxygen(in1);
         assertEquals(expResult, result);
 
     }
 
     /**
-     * Test of calculateSMOD method, of class MethodsContainer.
+     * Test of calculateSMOD method, of class ScubaCalculations.
      */
     @Test
     public void testCalculateSMOD() {
@@ -217,26 +190,12 @@ public class ScubaCalculationsTest {
         double in1 = 1.4;
         double in2 = 0.36;
         String expResult = "28.9m";
-        String result = ScubaCalculations.calculateSMOD(in1, in2);
+        String result = ScubaCalculations.calculateSMOD(in2);
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of calculateOxygenSMOD method, of class MethodsContainer.
-     */
-    @Test
-    public void testCalculateOxygenSMOD() {
-        System.out.println("calculateOxygenSMOD");
-        double in1 = 1.4;
-        double in2 = 0.32;
-        String expResult = "32";
-        String result = ScubaCalculations.calculateOxygenSMOD(in1, in2);
-        assertEquals(expResult, result);
-
-    }
-
-    /**
-     * Test of ppTable method, of class MethodsContainer.
+     * Test of ppTable method, of class ScubaCalculations.
      */
     @Test
     public void testPpTable1() {
@@ -261,7 +220,7 @@ public class ScubaCalculationsTest {
     }
 
     /**
-     * Test of eadTable method, of class MethodsContainer.
+     * Test of eadTable method, of class ScubaCalculations.
      */
     @Test
     public void testEadTable1() {
