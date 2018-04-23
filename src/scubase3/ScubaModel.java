@@ -1,6 +1,5 @@
 package scubase3;
 
-import java.text.DecimalFormat;
 import javax.swing.JTable;
 
 /**
@@ -81,13 +80,13 @@ public class ScubaModel {
             case "EAD":
                 this.inputFlags = Const.FLAG_DEPTH | Const.FLAG_FRAC_OXYGEN;
                 this.outputValue = ScubaCalculations.calculateEAD(this.fractionOxygen, this.depthPressure);
-                this.outputOxygen = ScubaCalculations.calculateOxygenEAD(this.fractionOxygen, this.depthPressure);
+                this.outputOxygen = ScubaCalculations.calculateOxygen(this.fractionOxygen);
                 this.outputUnit = "m";
                 break;
             case "MOD":
                 this.inputFlags = Const.FLAG_O2_PRESSURE | Const.FLAG_FRAC_OXYGEN;
                 this.outputValue = ScubaCalculations.calculateMOD(this.partialPressure, this.fractionOxygen);
-                this.outputOxygen = ScubaCalculations.calculateOxygenMOD(this.fractionOxygen);
+                this.outputOxygen = ScubaCalculations.calculateOxygen(this.fractionOxygen);
                 this.outputUnit = "m";
                 break;
             case "BM":
@@ -99,13 +98,13 @@ public class ScubaModel {
             case "PP":
                 this.inputFlags = Const.FLAG_FRAC_OXYGEN | Const.FLAG_DEPTH;
                 this.outputValue = ScubaCalculations.calculatePP(this.fractionOxygen, this.depthPressure);
-                this.outputOxygen = ScubaCalculations.calculateOxygenPP(this.fractionOxygen, this.depthPressure);
+                this.outputOxygen = ScubaCalculations.calculateOxygen(this.fractionOxygen);
                 this.outputUnit = "ata";
                 break;
             case "SMOD":
                 this.inputFlags = Const.FLAG_FRAC_OXYGEN;
                 this.outputValue = ScubaCalculations.calculateMOD(this.partialPressure, this.fractionOxygen);
-                this.outputOxygen = ScubaCalculations.calculateOxygenMOD(this.fractionOxygen);
+                this.outputOxygen = ScubaCalculations.calculateOxygen(this.fractionOxygen);
                 this.outputUnit = "m";
                 break;
             default:
