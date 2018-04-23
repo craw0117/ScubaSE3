@@ -12,7 +12,7 @@ public class Const {
     public static final int FLAG_FRAC_OXYGEN = 2;
     public static final int FLAG_DEPTH = 4;
 
-    // Calculation types
+    // Calculation/Table types
     public static final String CALCULATION_TYPE_EAD = "EAD";
     public static final String CALCULATION_TYPE_MOD = "MOD";
     public static final String CALCULATION_TYPE_BM = "BM";
@@ -34,7 +34,7 @@ public class Const {
      * The value returned by calculations to signify that the output is unsafe
      * and will cause harm
      */
-    public static final String UNSAFE_OUTPUT_VALUE = "!";
+    public static final String UNSAFE_OUTPUT_VALUE = "-";
 
     /**
      * The text to display in the output area when the output values are not

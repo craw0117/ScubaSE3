@@ -147,7 +147,7 @@ public class ScubaCalculations {
 
                     result = (i + 18.0) / 100.0 * (j * 3.0 / 10.0 + 1.0);
                     if (result > 1.6) {
-                        data[i][j] = "-";
+                        data[i][j] = Const.UNSAFE_OUTPUT_VALUE;
                     } else {
                         data[i][j] = df.format(result) + "";
                     }
@@ -186,7 +186,7 @@ public class ScubaCalculations {
                 } else {
                     result = ((1.0 - (i + 18.0) / 100.0) * ((j * 3.0) / 10.0 + 1.0) / 0.79 - 1.0) * 10.0;
                     if (result <= 0.0) {
-                        data[i][j] = "-";
+                        data[i][j] = Const.UNSAFE_OUTPUT_VALUE;
                     } else {
                         data[i][j] = df.format(result) + "";
                     }

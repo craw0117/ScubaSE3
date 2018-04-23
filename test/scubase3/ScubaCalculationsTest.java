@@ -41,9 +41,9 @@ public class ScubaCalculationsTest {
 
     public void testCalculateMOD() {
         System.out.println("calculateMOD");
-        double in1 = 1.4;
+        double in1 = 1.3;
         double in2 = 0.36;
-        String expResult = "28.9m";
+        String expResult = "26.11";
         String result = ScubaCalculations.calculateMOD(in1, in2);
         assertEquals(expResult, result);
     }
@@ -56,7 +56,7 @@ public class ScubaCalculationsTest {
         System.out.println("calculateBM");
         double in1 = 1.4;
         double in2 = 41.0;
-        String expResult = "27%";
+        String expResult = "27";
         String result = ScubaCalculations.calculateBM(in1, in2);
         assertEquals(expResult, result);
 
@@ -67,7 +67,7 @@ public class ScubaCalculationsTest {
         System.out.println("calculateBM");
         double in1 = 1.3;
         double in2 = 67.0;
-        String expResult = "Input combination will cause harm! BM value too low!";
+        String expResult = Const.UNSAFE_OUTPUT_VALUE;
         String result = ScubaCalculations.calculateBM(in1, in2);
         assertEquals(expResult, result);
 
@@ -78,7 +78,7 @@ public class ScubaCalculationsTest {
         System.out.println("calculateBM");
         double in1 = 1.3;
         double in2 = 12.0;
-        String expResult = "Input combination will cause harm! BM value too high!";
+        String expResult = Const.UNSAFE_OUTPUT_VALUE;
         String result = ScubaCalculations.calculateBM(in1, in2);
         assertEquals(expResult, result);
 
@@ -106,7 +106,7 @@ public class ScubaCalculationsTest {
         System.out.println("calculatePP");
         double in1 = 0.32;
         double in2 = 30.0;
-        String expResult = "1.28ata";
+        String expResult = "1.28";
         String result = ScubaCalculations.calculatePP(in1, in2);
         assertEquals(expResult, result);
     }
@@ -116,7 +116,7 @@ public class ScubaCalculationsTest {
         System.out.println("calculatePP");
         double in1 = 0.22;
         double in2 = 4.0;
-        String expResult = "Input combination will cause harm! PP value too low!";
+        String expResult = Const.UNSAFE_OUTPUT_VALUE;
         String result = ScubaCalculations.calculatePP(in1, in2);
         assertEquals(expResult, result);
     }
@@ -126,7 +126,7 @@ public class ScubaCalculationsTest {
         System.out.println("calculatePP");
         double in1 = 0.5;
         double in2 = 67.0;
-        String expResult = "Input combination will cause harm! PP value too high!";
+        String expResult = Const.UNSAFE_OUTPUT_VALUE;
         String result = ScubaCalculations.calculatePP(in1, in2);
         assertEquals(expResult, result);
     }
@@ -139,7 +139,7 @@ public class ScubaCalculationsTest {
         System.out.println("calculateEAD");
         double in1 = 0.32;
         double in2 = 30.0;
-        String expResult = "24.4m";
+        String expResult = "24.43";
         String result = ScubaCalculations.calculateEAD(in1, in2);
 
         assertEquals(expResult, result);
@@ -151,7 +151,7 @@ public class ScubaCalculationsTest {
         System.out.println("calculateEAD");
         double in1 = 0.22;
         double in2 = 4.0;
-        String expResult = "Input combination will cause harm! PP value too low!";
+        String expResult = Const.UNSAFE_OUTPUT_VALUE;
         String result = ScubaCalculations.calculateEAD(in1, in2);
 
         assertEquals(expResult, result);
@@ -162,7 +162,7 @@ public class ScubaCalculationsTest {
         System.out.println("calculateEAD");
         double in1 = 0.5;
         double in2 = 30.0;
-        String expResult = "Input combination will cause harm! PP value too high!";
+        String expResult = Const.UNSAFE_OUTPUT_VALUE;
         String result = ScubaCalculations.calculateEAD(in1, in2);
 
         assertEquals(expResult, result);
@@ -189,7 +189,7 @@ public class ScubaCalculationsTest {
         System.out.println("calculateSMOD");
         double in1 = 1.4;
         double in2 = 0.36;
-        String expResult = "28.9m";
+        String expResult = "28.89";
         String result = ScubaCalculations.calculateSMOD(in2);
         assertEquals(expResult, result);
     }
@@ -200,7 +200,7 @@ public class ScubaCalculationsTest {
     @Test
     public void testPpTable1() {
         System.out.println("ppTable1");
-        String expResult = "Not Applicable";
+        String expResult = Const.UNSAFE_OUTPUT_VALUE;
         JTable table = ScubaCalculations.ppTable();
         String result;
         result = (String) table.getModel().getValueAt(30, 20);
@@ -235,7 +235,7 @@ public class ScubaCalculationsTest {
     @Test
     public void testEadTable2() {
         System.out.println("eadTable2");
-        String expResult = "Not Applicable";
+        String expResult = Const.UNSAFE_OUTPUT_VALUE;
         JTable table = ScubaCalculations.eadTable();
         String result;
         result = (String) table.getModel().getValueAt(30, 1);
