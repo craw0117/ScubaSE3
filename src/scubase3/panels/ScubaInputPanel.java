@@ -76,8 +76,8 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         inputToolBar = new javax.swing.JToolBar();
         eadSelect = new javax.swing.JToggleButton();
         modSelect = new javax.swing.JToggleButton();
-        bestMixSelect = new javax.swing.JToggleButton();
-        partialPressureSelect = new javax.swing.JToggleButton();
+        bmSelect = new javax.swing.JToggleButton();
+        ppSelect = new javax.swing.JToggleButton();
         smodSelect = new javax.swing.JToggleButton();
         partialPressurePanel = new javax.swing.JPanel();
         partialPressureLabel = new javax.swing.JLabel();
@@ -133,33 +133,33 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         });
         inputToolBar.add(modSelect);
 
-        inputSelectGroup.add(bestMixSelect);
-        bestMixSelect.setText("Best Mix");
-        bestMixSelect.setToolTipText("Fraction of Oxygen");
-        bestMixSelect.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        bestMixSelect.setFocusable(false);
-        bestMixSelect.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bestMixSelect.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        bestMixSelect.addActionListener(new java.awt.event.ActionListener() {
+        inputSelectGroup.add(bmSelect);
+        bmSelect.setText("BM");
+        bmSelect.setToolTipText("Fraction of Oxygen");
+        bmSelect.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bmSelect.setFocusable(false);
+        bmSelect.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bmSelect.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        bmSelect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bestMixSelectActionPerformed(evt);
+                bmSelectActionPerformed(evt);
             }
         });
-        inputToolBar.add(bestMixSelect);
+        inputToolBar.add(bmSelect);
 
-        inputSelectGroup.add(partialPressureSelect);
-        partialPressureSelect.setText("PP");
-        partialPressureSelect.setToolTipText("Partial Pressure of oxygen (PPO2)");
-        partialPressureSelect.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        partialPressureSelect.setFocusable(false);
-        partialPressureSelect.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        partialPressureSelect.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        partialPressureSelect.addActionListener(new java.awt.event.ActionListener() {
+        inputSelectGroup.add(ppSelect);
+        ppSelect.setText("PP");
+        ppSelect.setToolTipText("Partial Pressure of oxygen (PPO2)");
+        ppSelect.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ppSelect.setFocusable(false);
+        ppSelect.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        ppSelect.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        ppSelect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                partialPressureSelectActionPerformed(evt);
+                ppSelectActionPerformed(evt);
             }
         });
-        inputToolBar.add(partialPressureSelect);
+        inputToolBar.add(ppSelect);
 
         inputSelectGroup.add(smodSelect);
         smodSelect.setText("SMOD");
@@ -326,10 +326,10 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_inputCalculateActionPerformed
 
-    private void partialPressureSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_partialPressureSelectActionPerformed
-    {//GEN-HEADEREND:event_partialPressureSelectActionPerformed
+    private void ppSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ppSelectActionPerformed
+    {//GEN-HEADEREND:event_ppSelectActionPerformed
         controller.setCalcType("PP");
-    }//GEN-LAST:event_partialPressureSelectActionPerformed
+    }//GEN-LAST:event_ppSelectActionPerformed
 
     private void eadSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_eadSelectActionPerformed
     {//GEN-HEADEREND:event_eadSelectActionPerformed
@@ -341,10 +341,10 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         controller.setCalcType("MOD");
     }//GEN-LAST:event_modSelectActionPerformed
 
-    private void bestMixSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_bestMixSelectActionPerformed
-    {//GEN-HEADEREND:event_bestMixSelectActionPerformed
+    private void bmSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_bmSelectActionPerformed
+    {//GEN-HEADEREND:event_bmSelectActionPerformed
         controller.setCalcType("BM");
-    }//GEN-LAST:event_bestMixSelectActionPerformed
+    }//GEN-LAST:event_bmSelectActionPerformed
 
     private void smodSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_smodSelectActionPerformed
     {//GEN-HEADEREND:event_smodSelectActionPerformed
@@ -371,7 +371,7 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_depthSpinnerStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton bestMixSelect;
+    private javax.swing.JToggleButton bmSelect;
     private javax.swing.JLabel depthHelpLabel;
     private javax.swing.JLabel depthLabel;
     private javax.swing.JPanel depthPanel;
@@ -390,8 +390,8 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
     private javax.swing.JLabel partialPressureHelpLabel;
     private javax.swing.JLabel partialPressureLabel;
     private javax.swing.JPanel partialPressurePanel;
-    private javax.swing.JToggleButton partialPressureSelect;
     private javax.swing.JSpinner partialPressureSpinner;
+    private javax.swing.JToggleButton ppSelect;
     private javax.swing.JToggleButton smodSelect;
     // End of variables declaration//GEN-END:variables
 }

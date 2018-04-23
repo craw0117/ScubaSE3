@@ -90,12 +90,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modSelectActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="bestMixSelect">
+        <Component class="javax.swing.JToggleButton" name="bmSelect">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="inputSelectGroup"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Best Mix"/>
+            <Property name="text" type="java.lang.String" value="BM"/>
             <Property name="toolTipText" type="java.lang.String" value="Fraction of Oxygen"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Hand Cursor"/>
@@ -105,10 +105,10 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bestMixSelectActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bmSelectActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="partialPressureSelect">
+        <Component class="javax.swing.JToggleButton" name="ppSelect">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="inputSelectGroup"/>
@@ -123,7 +123,7 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="partialPressureSelectActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ppSelectActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JToggleButton" name="smodSelect">
