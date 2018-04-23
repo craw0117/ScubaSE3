@@ -1,6 +1,5 @@
 package scubase3.panels;
 
-import java.awt.Color;
 import javax.swing.SwingUtilities;
 import scubase3.Const;
 import scubase3.ScubaController;
@@ -59,6 +58,18 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
 
         boolean showDepthInput = (inputFlags & Const.FLAG_DEPTH) == Const.FLAG_DEPTH;
         depthPanel.setVisible(showDepthInput);
+    }
+
+    /**
+     * Requirement to enable button updates to be triggered from outside of this
+     * class
+     */
+    public void forceButtonUpdate() {
+        this.eadSelect.setSelected(this.controller.getCalcType().equals(Const.CALCULATION_TYPE_EAD));
+        this.bmSelect.setSelected(this.controller.getCalcType().equals(Const.CALCULATION_TYPE_BM));
+        this.modSelect.setSelected(this.controller.getCalcType().equals(Const.CALCULATION_TYPE_MOD));
+        this.ppSelect.setSelected(this.controller.getCalcType().equals(Const.CALCULATION_TYPE_PP));
+        this.smodSelect.setSelected(this.controller.getCalcType().equals(Const.CALCULATION_TYPE_SMOD));
     }
 
     /**

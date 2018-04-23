@@ -177,6 +177,11 @@ public class ScubaFrame extends javax.swing.JFrame {
         sHelpMenu.setText("Help");
 
         sHelpDocsButton.setText("User Manual");
+        sHelpDocsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sHelpDocsButtonActionPerformed(evt);
+            }
+        });
         sHelpMenu.add(sHelpDocsButton);
 
         sMenuBar.add(sHelpMenu);
@@ -191,32 +196,43 @@ public class ScubaFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_sExitButtonActionPerformed
 
     private void sEADTableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sEADTableButtonActionPerformed
-        // TODO add your handling code here:
+        controller.setTableType(Const.CALCULATION_TYPE_EAD);
+        this.sTablePanel.forceButtonUpdate();
     }//GEN-LAST:event_sEADTableButtonActionPerformed
 
     private void sPPTableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sPPTableButtonActionPerformed
-        // TODO add your handling code here:
+        controller.setTableType(Const.CALCULATION_TYPE_PP);
+        this.sTablePanel.forceButtonUpdate();
     }//GEN-LAST:event_sPPTableButtonActionPerformed
 
     private void sEADButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sEADButtonActionPerformed
-        // TODO add your handling code here:
+        controller.setCalcType(Const.CALCULATION_TYPE_EAD);
+        this.sInputPanel.forceButtonUpdate();
     }//GEN-LAST:event_sEADButtonActionPerformed
 
     private void sMODButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sMODButtonActionPerformed
-        // TODO add your handling code here:
+        controller.setCalcType(Const.CALCULATION_TYPE_MOD);
+        this.sInputPanel.forceButtonUpdate();
     }//GEN-LAST:event_sMODButtonActionPerformed
 
     private void sBMButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sBMButtonActionPerformed
-        // TODO add your handling code here:
+        controller.setCalcType(Const.CALCULATION_TYPE_BM);
+        this.sInputPanel.forceButtonUpdate();
     }//GEN-LAST:event_sBMButtonActionPerformed
 
     private void sPPButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sPPButtonActionPerformed
-        // TODO add your handling code here:
+        controller.setCalcType(Const.CALCULATION_TYPE_PP);
+        this.sInputPanel.forceButtonUpdate();
     }//GEN-LAST:event_sPPButtonActionPerformed
 
     private void sSMODButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sSMODButtonActionPerformed
-        // TODO add your handling code here:
+        controller.setCalcType(Const.CALCULATION_TYPE_SMOD);
+        this.sInputPanel.forceButtonUpdate();
     }//GEN-LAST:event_sSMODButtonActionPerformed
+
+    private void sHelpDocsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sHelpDocsButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sHelpDocsButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem sBMButton;
