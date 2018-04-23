@@ -18,7 +18,7 @@ public class ScubaCalculations {
     /**
      * Decimal format for output in meters
      */
-    private static final DecimalFormat meterFormat = new DecimalFormat("0.00");
+    private static final DecimalFormat meterFormat = new DecimalFormat("0.0");
     /**
      * Decimal format for oxygen level output
      */
@@ -132,35 +132,26 @@ public class ScubaCalculations {
     public static JTable ppTable() {
         String[] column = new String[24];
         column[0] = "Oxygen(%)/Depth(m)";
-        double result;
         for (int i = 1; i < column.length; i++) {
-            int temp = i * 3;
-            column[i] = temp + "";
+            column[i] = String.valueOf(i * 3);
         }
         String[][] data = new String[33][24];
-        DecimalFormat df = new DecimalFormat("0.0");
         for (int i = 0; i < data.length; i++) {
             for (int j = 0; j < data[i].length; j++) {
                 if (j == 0) {
-                    data[i][j] = (i + 18) + "";
+                    data[i][j] = String.valueOf(i + 18);
                 } else {
-
-                    result = (i + 18.0) / 100.0 * (j * 3.0 / 10.0 + 1.0);
-                    if (result > 1.6) {
-                        data[i][j] = Const.UNSAFE_OUTPUT_VALUE;
-                    } else {
-                        data[i][j] = df.format(result) + "";
-                    }
+                    double result = (i + 18.0) / 100.0 * (j * 3.0 / 10.0 + 1.0);
+                    data[i][j] = result > 1.6 ? Const.UNSAFE_OUTPUT_VALUE : ataFormat.format(result);
                 }
             }
-
         }
 
-        JTable ppjt = new JTable(data, column);
-        ppjt.setEnabled(false);
-        ppjt.getColumnModel().getColumn(0).setPreferredWidth(120);
+        JTable ppTable = new JTable(data, column);
+        ppTable.setEnabled(false);
+        ppTable.getColumnModel().getColumn(0).setPreferredWidth(120);
 
-        return ppjt;
+        return ppTable;
     }
 
     /**
@@ -172,31 +163,25 @@ public class ScubaCalculations {
     public static JTable eadTable() {
         String[] column = new String[24];
         column[0] = "Oxygen(%)/Depth(m)";
-        double result;
         for (int i = 1; i < column.length; i++) {
-            int temp = i * 3;
-            column[i] = temp + "";
+            column[i] = String.valueOf(i * 3);
         }
         String[][] data = new String[33][24];
-        DecimalFormat df = new DecimalFormat("0");
         for (int i = 0; i < data.length; i++) {
             for (int j = 0; j < data[i].length; j++) {
                 if (j == 0) {
-                    data[i][j] = (i + 18) + "";
+                    data[i][j] = String.valueOf(i + 18);
                 } else {
-                    result = ((1.0 - (i + 18.0) / 100.0) * ((j * 3.0) / 10.0 + 1.0) / 0.79 - 1.0) * 10.0;
-                    if (result <= 0.0) {
-                        data[i][j] = Const.UNSAFE_OUTPUT_VALUE;
-                    } else {
-                        data[i][j] = df.format(result) + "";
-                    }
+                    double result = ((1.0 - (i + 18.0) / 100.0) * ((j * 3.0) / 10.0 + 1.0) / 0.79 - 1.0) * 10.0;
+                    data[i][j] = result <= 0.0 ? Const.UNSAFE_OUTPUT_VALUE : meterFormat.format(result);
                 }
             }
 
         }
-        JTable eadjt = new JTable(data, column);
-        eadjt.setEnabled(false);
-        eadjt.getColumnModel().getColumn(0).setPreferredWidth(120);
-        return eadjt;
+        JTable eadTable = new JTable(data, column);
+        eadTable.setEnabled(false);
+        eadTable.getColumnModel().getColumn(0).setPreferredWidth(120);
+        
+        return eadTable;
     }
 }

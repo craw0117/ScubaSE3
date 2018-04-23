@@ -43,7 +43,7 @@ public class ScubaCalculationsTest {
         System.out.println("calculateMOD");
         double in1 = 1.3;
         double in2 = 0.36;
-        String expResult = "26.11";
+        String expResult = "26.1";
         String result = ScubaCalculations.calculateMOD(in1, in2);
         assertEquals(expResult, result);
     }
@@ -139,7 +139,7 @@ public class ScubaCalculationsTest {
         System.out.println("calculateEAD");
         double in1 = 0.32;
         double in2 = 30.0;
-        String expResult = "24.43";
+        String expResult = "24.4";
         String result = ScubaCalculations.calculateEAD(in1, in2);
 
         assertEquals(expResult, result);
@@ -189,7 +189,7 @@ public class ScubaCalculationsTest {
         System.out.println("calculateSMOD");
         double in1 = 1.4;
         double in2 = 0.36;
-        String expResult = "28.89";
+        String expResult = "28.9";
         String result = ScubaCalculations.calculateSMOD(in2);
         assertEquals(expResult, result);
     }
@@ -211,7 +211,7 @@ public class ScubaCalculationsTest {
     @Test
     public void testPpTable2() {
         System.out.println("ppTable2");
-        String expResult = "1.4";
+        String expResult = "1.40";
         JTable table = ScubaCalculations.ppTable();
         String result;
         result = (String) table.getModel().getValueAt(17, 10);
@@ -225,7 +225,7 @@ public class ScubaCalculationsTest {
     @Test
     public void testEadTable1() {
         System.out.println("eadTable1");
-        String expResult = "23";
+        String expResult = "22.9";
         JTable table = ScubaCalculations.eadTable();
         String result;
         result = (String) table.getModel().getValueAt(17, 10);
