@@ -1,13 +1,11 @@
 package scubase3;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.File;
 import java.net.URL;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 
 /**
  *
@@ -242,21 +240,20 @@ public class ScubaFrame extends javax.swing.JFrame {
     private void sHelpDocsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sHelpDocsButtonActionPerformed
         JFrame frame = new JFrame();
         JPanel panel = new JPanel();
-        //Change path to netbeans project
-        String textloc = "file:///C:/Users/Esac/Documents/NetBeansProjects/ScubaSE3/src/scubase3/test.html";
-       try{
-           URL url = new URL(textloc);
-           JEditorPane pane = new JEditorPane(url);
-           frame.add(new JScrollPane(pane));
-           frame.pack();
-           frame.setSize(450,350);
-           frame.setLocationByPlatform(true);
-           frame.setVisible(true);
-       } catch(Exception e){
-           e.printStackTrace();
-       }
-        
-        
+        String textloc = "src/scubase3/test.html";
+        try {
+            URL url = new File(textloc).toURI().toURL();
+            JEditorPane pane = new JEditorPane(url);
+            frame.add(new JScrollPane(pane));
+            frame.pack();
+            frame.setSize(450, 350);
+            frame.setLocationByPlatform(true);
+            frame.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }//GEN-LAST:event_sHelpDocsButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
