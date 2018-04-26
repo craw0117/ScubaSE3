@@ -50,18 +50,20 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        jButton1 = new javax.swing.JButton();
         outputLHS = new javax.swing.JPanel();
         outputOxygenDisplay = new javax.swing.JSlider();
         outputOxygenLabel = new javax.swing.JLabel();
         outputRHS = new javax.swing.JPanel();
         outputText = new javax.swing.JLabel();
 
-        setMinimumSize(new java.awt.Dimension(300, 300));
-        setPreferredSize(new java.awt.Dimension(300, 300));
+        jButton1.setText("jButton1");
+
+        setMinimumSize(new java.awt.Dimension(400, 400));
+        setPreferredSize(new java.awt.Dimension(400, 400));
         setLayout(new java.awt.GridBagLayout());
 
         outputLHS.setPreferredSize(new java.awt.Dimension(150, 300));
@@ -79,9 +81,12 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
         outputLHS.add(outputOxygenLabel, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 110;
+        gridBagConstraints.ipady = 240;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weighty = 1.0;
         add(outputLHS, gridBagConstraints);
 
         outputRHS.setPreferredSize(new java.awt.Dimension(150, 300));
@@ -97,15 +102,17 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
         outputRHS.add(outputText, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 15);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 89;
+        gridBagConstraints.ipady = 286;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         add(outputRHS, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel outputLHS;
     private javax.swing.JSlider outputOxygenDisplay;
     private javax.swing.JLabel outputOxygenLabel;

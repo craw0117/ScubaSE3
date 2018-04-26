@@ -1,5 +1,14 @@
 package scubase3;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.net.URL;
+import javax.swing.JEditorPane;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
 /**
  *
  * @author liu1028, eden0021, mitc0341, craw0117, kris0068
@@ -231,7 +240,22 @@ public class ScubaFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_sSMODButtonActionPerformed
 
     private void sHelpDocsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sHelpDocsButtonActionPerformed
-        // TODO add your handling code here:
+        JFrame frame = new JFrame();
+        JPanel panel = new JPanel();
+        String textloc = "file:///C:/Users/Esac/Documents/NetBeansProjects/ScubaSE3/src/scubase3/test.html";
+       try{
+           URL url = new URL(textloc);
+           JEditorPane pane = new JEditorPane(url);
+           frame.add(new JScrollPane(pane));
+           frame.pack();
+           frame.setSize(450,350);
+           frame.setLocationByPlatform(true);
+           frame.setVisible(true);
+       } catch(Exception e){
+           e.printStackTrace();
+       }
+        
+        
     }//GEN-LAST:event_sHelpDocsButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
