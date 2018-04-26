@@ -242,6 +242,7 @@ public class ScubaFrame extends javax.swing.JFrame {
     private void sHelpDocsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sHelpDocsButtonActionPerformed
         JFrame frame = new JFrame();
         JPanel panel = new JPanel();
+        //Change path to netbeans project
         String textloc = "file:///C:/Users/Esac/Documents/NetBeansProjects/ScubaSE3/src/scubase3/test.html";
        try{
            URL url = new URL(textloc);
