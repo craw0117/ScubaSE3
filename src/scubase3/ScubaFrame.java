@@ -1,7 +1,10 @@
 package scubase3;
 
 import java.io.File;
+import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -240,9 +243,15 @@ public class ScubaFrame extends javax.swing.JFrame {
     private void sHelpDocsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sHelpDocsButtonActionPerformed
         JFrame frame = new JFrame();
         JPanel panel = new JPanel();
-        String textloc = "src/scubase3/test.html";
+        String textloc = "test.html";
         try {
-            URL url = new File(textloc).toURI().toURL();
+            //Read for package and make a temp file on the file system
+            InputStream in = getClass().getResourceAsStream(textloc);
+            File temp = File.createTempFile("test", ".html"); 
+            Files.copy(in, temp.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+            //load from temp file
+            URL url = temp.toURI().toURL();
             JEditorPane pane = new JEditorPane(url);
             frame.add(new JScrollPane(pane));
             frame.pack();
