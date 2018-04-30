@@ -1,5 +1,7 @@
 package scubase3;
 
+import java.text.DecimalFormat;
+
 /**
  * Contains constant variables used throughout the application
  *
@@ -24,6 +26,11 @@ public class Const {
     public static final String UNIT_ATA = "ata";
     public static final String UNIT_PERCENT = "%";
 
+    // Decimal format objects for output
+    public static final DecimalFormat DF_PP = new DecimalFormat("0.00");
+    public static final DecimalFormat DF_O2 = new DecimalFormat("0");
+    public static final DecimalFormat DF_DEPTH = new DecimalFormat("0.0");
+
     /**
      * The partial pressure constant for the Standard Maximum Operating Depth
      * calculation.
@@ -41,5 +48,4 @@ public class Const {
      * within acceptable ranges and will cause harm.
      */
     public static final String UNSAFE_OUTPUT_MESSAGE = "Input combination will cause harm!";
-
 }
