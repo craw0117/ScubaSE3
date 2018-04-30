@@ -34,11 +34,7 @@ public class ScubaCalculationsTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of calculateMOD method, of class ScubaCalculations.
-     */
     @Test
-
     public void testCalculateMOD() {
         System.out.println("calculateMOD");
         double in1 = 1.3;
@@ -48,9 +44,6 @@ public class ScubaCalculationsTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of calculateBM method, of class ScubaCalculations.
-     */
     @Test
     public void testCalculateBMNormal() {
         System.out.println("calculateBM");
@@ -84,9 +77,6 @@ public class ScubaCalculationsTest {
 
     }
 
-    /**
-     * Test of calculateOxygenBM method, of class ScubaCalculations.
-     */
     @Test
     public void testCalculateOxygenBM() {
         System.out.println("calculateOxygenBM");
@@ -98,9 +88,6 @@ public class ScubaCalculationsTest {
 
     }
 
-    /**
-     * Test of calculatePP method, of class ScubaCalculations.
-     */
     @Test
     public void testCalculatePPNormal() {
         System.out.println("calculatePP");
@@ -131,9 +118,6 @@ public class ScubaCalculationsTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of calculateEAD method, of class ScubaCalculations.
-     */
     @Test
     public void testCalculateEADNormal() {
         System.out.println("calculateEAD");
@@ -168,9 +152,6 @@ public class ScubaCalculationsTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of calculateOxygen method, of class ScubaCalculations.
-     */
     @Test
     public void testCalculateOxygen() {
         System.out.println("calculateOxygen");
@@ -181,9 +162,6 @@ public class ScubaCalculationsTest {
 
     }
 
-    /**
-     * Test of calculateSMOD method, of class ScubaCalculations.
-     */
     @Test
     public void testCalculateSMOD() {
         System.out.println("calculateSMOD");
@@ -194,14 +172,11 @@ public class ScubaCalculationsTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of ppTable method, of class ScubaCalculations.
-     */
     @Test
     public void testPpTable1() {
         System.out.println("ppTable1");
         String expResult = Const.UNSAFE_OUTPUT_VALUE;
-        JTable table = ScubaCalculations.ppTable();
+        JTable table = ScubaCalculations.createPPTable();
         String result;
         result = (String) table.getModel().getValueAt(30, 20);
         assertEquals(expResult, result);
@@ -212,16 +187,13 @@ public class ScubaCalculationsTest {
     public void testPpTable2() {
         System.out.println("ppTable2");
         String expResult = "1.40";
-        JTable table = ScubaCalculations.ppTable();
+        JTable table = ScubaCalculations.createPPTable();
         String result;
         result = (String) table.getModel().getValueAt(17, 10);
         assertEquals(expResult, result);
 
     }
-
-    /**
-     * Test of eadTable method, of class ScubaCalculations.
-     */
+    
     @Test
     public void testEadTable1() {
         System.out.println("eadTable1");
