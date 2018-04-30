@@ -28,18 +28,25 @@ public class ScubaTablePanel extends javax.swing.JPanel {
             case Const.TYPE_EAD:
                 JTable tableEAD = controller.getEADTable();
                 tableScollPane.setViewportView(tableEAD);
-                eadTableSelect.setSelected(true);
-                ppTableSelect.setSelected(false);
+
                 break;
             case Const.TYPE_PP:
                 JTable tablePP = controller.getPPTable();
                 tableScollPane.setViewportView(tablePP);
-                ppTableSelect.setSelected(true);
-                eadTableSelect.setSelected(false);
                 break;
             default:
                 throw new java.lang.Error("Invalid tableType: " + tableType);
         }
+    }
+
+    /**
+     * Requirement to enable button updates to be triggered from outside of this
+     * class
+     */
+    public void forceButtonUpdate() {
+        String tableType = controller.getTableType();
+        eadTableSelect.setSelected(Const.TYPE_EAD.equals(tableType));
+        ppTableSelect.setSelected(Const.TYPE_PP.equals(tableType));
     }
 
     /**
