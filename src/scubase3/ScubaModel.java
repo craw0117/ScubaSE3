@@ -3,6 +3,9 @@ package scubase3;
 import javax.swing.JTable;
 
 /**
+ * Model class, holds a reference to the view object and is responsible for
+ * storing data and managing access to it. Whenever an update occurs within the
+ * data, the view will also be updated.
  *
  * @author liu1028, eden0021, mitc0341, craw0117, kris0068
  */
@@ -14,6 +17,7 @@ public class ScubaModel {
      */
     private final ScubaFrame view;
 
+    // Private fields used to store data
     private int inputFlags;
     private String calculationType;
     private double partialPressure;
@@ -54,8 +58,8 @@ public class ScubaModel {
 
         tableType = Const.TYPE_EAD;
 
-        eadTable = ScubaCalculations.eadTable();
-        ppTable = ScubaCalculations.ppTable();
+        eadTable = ScubaCalculations.createEADTable();
+        ppTable = ScubaCalculations.createPPTable();
     }
 
     /**
@@ -132,7 +136,7 @@ public class ScubaModel {
                 throw new java.lang.Error("Invalid calculation type: " + value);
         }
         calculationType = value;
-        view.update();
+        update();
     }
 
     /**
@@ -153,7 +157,7 @@ public class ScubaModel {
      */
     public void setPartialPressure(double value) {
         partialPressure = value;
-        view.update();
+        update();
     }
 
     /**
@@ -174,7 +178,7 @@ public class ScubaModel {
      */
     public void setOxygenFraction(double value) {
         oxygenFraction = value;
-        view.update();
+        update();
     }
 
     /**
@@ -195,7 +199,7 @@ public class ScubaModel {
      */
     public void setDepth(double value) {
         depth = value;
-        view.update();
+        update();
     }
 
     /**
@@ -218,8 +222,8 @@ public class ScubaModel {
      * @see Const
      */
     public void setInputFlags(int value) {
-        this.inputFlags = value;
-        this.view.update();
+        inputFlags = value;
+        update();
     }
 
     /**
@@ -243,7 +247,7 @@ public class ScubaModel {
      */
     public void setTableType(String value) {
         tableType = value;
-        view.update();
+        update();
     }
 
     /**
