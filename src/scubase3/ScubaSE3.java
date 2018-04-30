@@ -1,6 +1,7 @@
 package scubase3;
 
 /**
+ * Main class for ScubaSE3 project, holds the main execution method
  *
  * @author liu1028, eden0021, mitc0341, craw0117, kris0068
  */
@@ -8,6 +9,11 @@ public class ScubaSE3 {
 
     private static final ScubaController CONTROLLER = new ScubaController();
 
+    /**
+     * Gets the ScubaController singleton
+     *
+     * @return
+     */
     public static ScubaController getController() {
         return CONTROLLER;
     }
