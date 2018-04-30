@@ -3,7 +3,7 @@ package scubase3;
 import javax.swing.JTable;
 
 /**
- * Controller class, holds a reference to both the model object and provides
+ * Controller class, holds a reference to the model object and provides
  * "patch-through" methods to ensure that all data updates pass through the
  * controller object
  *
