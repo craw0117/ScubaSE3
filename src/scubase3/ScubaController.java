@@ -3,7 +3,9 @@ package scubase3;
 import javax.swing.JTable;
 
 /**
- * Controller class, holds a reference to both the model and view objects.
+ * Controller class, holds a reference to both the model object and provides
+ * "patch-through" methods to ensure that all data updates pass through the
+ * controller object
  *
  * @author liu1028, eden0021, mitc0341, craw0117, kris0068
  */
@@ -69,7 +71,7 @@ public class ScubaController {
      * @param value
      * @see ScubaModel#setOxygenFraction(double)
      */
-    public void setFractionOxygen(double value) {
+    public void setOxygenFraction(double value) {
         model.setOxygenFraction(value);
     }
 
@@ -103,42 +105,102 @@ public class ScubaController {
         return model.getCalculationType();
     }
 
+    /**
+     * Patch-through method for ScubaModel
+     *
+     * @return
+     * @see ScubaModel#getTableType()
+     */
     public String getTableType() {
         return model.getTableType();
     }
 
+    /**
+     * Patch-through method for ScubaModel
+     *
+     * @return
+     * @see ScubaModel#getInputFlags()
+     */
     public int getInputFlags() {
         return model.getInputFlags();
     }
 
+    /**
+     * Patch-through method for ScubaModel
+     *
+     * @return
+     * @see ScubaModel#getPartialPressure()
+     */
     public double getPartialPressure() {
         return model.getPartialPressure();
     }
 
-    public double getFractionOxygen() {
+    /**
+     * Patch-through method for ScubaModel
+     *
+     * @return
+     * @see ScubaModel#getOxygenFraction()
+     */
+    public double getOxygenFraction() {
         return model.getOxygenFraction();
     }
 
+    /**
+     * Patch-through method for ScubaModel
+     *
+     * @return
+     * @see ScubaModel#getDepth()
+     */
     public double getDepth() {
         return model.getDepth();
     }
 
+    /**
+     * Patch-through method for ScubaModel
+     *
+     * @return
+     * @see ScubaModel#getOutputValue()
+     */
     public String getOutputValue() {
         return model.getOutputValue();
     }
 
+    /**
+     * Patch-through method for ScubaModel
+     *
+     * @return
+     * @see ScubaModel#getOutputUnit()
+     */
     public String getOutputUnit() {
         return model.getOutputUnit();
     }
 
+    /**
+     * Patch-through method for ScubaModel
+     *
+     * @return
+     * @see ScubaModel#getOutputOxygen()
+     */
     public String getOutputOxygen() {
         return model.getOutputOxygen();
     }
 
+    /**
+     * Patch-through method for ScubaModel
+     *
+     * @return
+     * @see ScubaModel#getEADTable()
+     */
     public JTable getEADTable() {
         return model.getEADTable();
     }
 
+    /**
+     * Patch-through method for ScubaModel
+     *
+     * @return
+     * @see ScubaModel#getPPTable()
+     */
     public JTable getPPTable() {
         return model.getPPTable();
     }
