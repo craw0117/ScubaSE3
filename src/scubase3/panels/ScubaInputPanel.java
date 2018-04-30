@@ -11,11 +11,6 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
 
     private final ScubaController controller;
 
-    private int inputFlags;
-    private double partialPressure;
-    private double fractionOxygen;
-    private double depth;
-
     /**
      * Creates new form ScubaInputPanel
      *
@@ -30,33 +25,20 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
      * Updates dynamic components - must be called after state change.
      */
     public void update() {
-        inputFlags = controller.getInputFlags();
-
-        partialPressure = controller.getPartialPressure();
-        fractionOxygen = controller.getFractionOxygen();
-        depth = controller.getDepth();
-
-        partialPressureSpinner.setValue(partialPressure);
-        fractionOxygenSpinner.setValue(fractionOxygen);
-        depthSpinner.setValue(depth);
-
-        //check flags to display each input
-        boolean showPartialInput = (inputFlags & Const.FLAG_O2_PRESSURE) == Const.FLAG_O2_PRESSURE;
-        partialPressurePanel.setVisible(showPartialInput);
-
-        boolean showOxygenInput = (inputFlags & Const.FLAG_O2_FRACTION) == Const.FLAG_O2_FRACTION;
-        fractionOxygenPanel.setVisible(showOxygenInput);
-
-        boolean showDepthInput = (inputFlags & Const.FLAG_DEPTH) == Const.FLAG_DEPTH;
-        depthPanel.setVisible(showDepthInput);
-    }
-
-    /**
-     * Requirement to enable button updates to be triggered from outside of this
-     * class
-     */
-    public void forceButtonUpdate() {
         String calculationType = controller.getCalculationType();
+        int inputFlags = controller.getInputFlags();
+
+        //Update inputs using the currently stored values
+        partialPressureSpinner.setValue(controller.getPartialPressure());
+        fractionOxygenSpinner.setValue(controller.getFractionOxygen());
+        depthSpinner.setValue(controller.getDepth());
+
+        //Check flags to display each input
+        partialPressurePanel.setVisible((inputFlags & Const.FLAG_O2_PRESSURE) == Const.FLAG_O2_PRESSURE);
+        fractionOxygenPanel.setVisible((inputFlags & Const.FLAG_O2_FRACTION) == Const.FLAG_O2_FRACTION);
+        depthPanel.setVisible((inputFlags & Const.FLAG_DEPTH) == Const.FLAG_DEPTH);
+
+        //Update the buttons to make sure the right one is selected
         eadSelect.setSelected(calculationType.equals(Const.TYPE_EAD));
         bmSelect.setSelected(calculationType.equals(Const.TYPE_BM));
         modSelect.setSelected(calculationType.equals(Const.TYPE_MOD));

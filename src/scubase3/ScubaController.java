@@ -37,6 +37,15 @@ public class ScubaController {
     /**
      * Patch-through method for ScubaModel
      *
+     * @see ScubaModel#forceViewUpdate()
+     */
+    public void forceViewUpdate() {
+        model.forceViewUpdate();
+    }
+
+    /**
+     * Patch-through method for ScubaModel
+     *
      * @param value
      * @see ScubaModel#setCalculationType(String value)
      */
