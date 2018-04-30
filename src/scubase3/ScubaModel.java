@@ -68,6 +68,13 @@ public class ScubaModel {
     }
 
     /**
+     * Force an update on the view, should only be used externally
+     */
+    public void forceViewUpdate() {
+        view.update();
+    }
+
+    /**
      * Gets the current calculation type, will return one of the calculation
      * types as defined in the <code>Const</code> class
      *
