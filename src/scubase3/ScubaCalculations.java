@@ -42,29 +42,15 @@ public class ScubaCalculations {
      * displayed.
      *
      * @param partialPressure
-     * @param oxygenFraction
+     * @param depth
      * @return
      */
-    public static String calculateBM(double partialPressure, double oxygenFraction) {
-        double result = partialPressure / (oxygenFraction / 10.0 + 1.0) * 100.0;
+    public static String calculateBM(double partialPressure, double depth) {
+        double result = partialPressure / (depth / 10.0 + 1.0) * 100.0;
         if (result > 50 || result < 22) {
             return Const.UNSAFE_OUTPUT_VALUE;
         }
         return Const.DF_O2.format(result);
-    }
-
-    /**
-     * Calculates the oxygen percentile for the Best Mix method, since the best
-     * mix uses a slightly different approach, an alternate method is required
-     * to calculate the oxygen percentile.
-     *
-     * @param partialPressure
-     * @param oxygenFraction
-     * @return
-     * @see #calculateOxygen(double)
-     */
-    public static String calculateOxygenBM(double partialPressure, double oxygenFraction) {
-        return ScubaCalculations.calculateOxygen(partialPressure / (oxygenFraction / 10.0 + 1.0));
     }
 
     /**
