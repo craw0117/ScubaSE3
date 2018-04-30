@@ -11,8 +11,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 /**
- * View class, holds a reference to both the model and the controller. This
- * class is responsible for handling the user interface.
+ * View class, holds a reference to the controller object and is responsible for
+ * managing the user interface and all user input. When user input is provided,
+ * this class will update the data in the model by calling methods in the
+ * controller class.
  *
  * @author liu1028, eden0021, mitc0341, craw0117, kris0068
  */
@@ -56,9 +58,9 @@ public class ScubaFrame extends javax.swing.JFrame {
 
         sVerticalSplitPane = new javax.swing.JSplitPane();
         sSplitPane = new javax.swing.JSplitPane();
-        sOutputPanel = new scubase3.panels.ScubaOutputPanel(controller);
-        sInputPanel = new scubase3.panels.ScubaInputPanel(controller);
-        sTablePanel = new scubase3.panels.ScubaTablePanel(controller);
+        sOutputPanel = new scubase3.panels.ScubaOutputPanel();
+        sInputPanel = new scubase3.panels.ScubaInputPanel();
+        sTablePanel = new scubase3.panels.ScubaTablePanel();
         sMenuBar = new javax.swing.JMenuBar();
         sFileMenu = new javax.swing.JMenu();
         sFileSeparator2 = new javax.swing.JPopupMenu.Separator();
