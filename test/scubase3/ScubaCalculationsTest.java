@@ -1,217 +1,220 @@
 package scubase3;
 
 import javax.swing.JTable;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
+ * Test class for ScubaCalculations
  *
  * @author liu1028, eden0021, mitc0341, craw0117, kris0068
  */
 public class ScubaCalculationsTest {
 
-    public ScubaCalculationsTest() {
-    }
+    JTable ppTable = ScubaCalculations.createPPTable();
+    JTable eadTable = ScubaCalculations.createEADTable();
 
-    @BeforeClass
-    public static void setUpClass() {
-
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
+    public String getTestResult(boolean value) {
+        return value ? "Test passed!" : "Test failed!";
     }
 
     @Test
-    public void testCalculateMOD() {
-        System.out.println("calculateMOD");
-        double in1 = 1.3;
-        double in2 = 0.36;
-        String expResult = "26.1";
-        String result = ScubaCalculations.calculateMOD(in1, in2);
-        assertEquals(expResult, result);
+    public void calculateMODTest() {
+        // Test data
+        double partialPressure = 1.3;
+        double oxygenFraction = 0.36;
+        String expectedResult = Const.DF_DEPTH.format(26.11);
+        String result = ScubaCalculations.calculateMOD(partialPressure, oxygenFraction);
+
+        // Test conditions
+        assertEquals(expectedResult, result);
+        System.out.println("calculateMODTest() - " + getTestResult(result.equals(expectedResult)));
     }
 
     @Test
-    public void testCalculateBMNormal() {
-        System.out.println("calculateBM");
-        double in1 = 1.4;
-        double in2 = 41.0;
-        String expResult = "27";
-        String result = ScubaCalculations.calculateBM(in1, in2);
-        assertEquals(expResult, result);
+    public void calculateBMTest() {
+        // Test data
+        double partialPressure = 1.4;
+        double depth = 41.0;
+        String expectedResult = Const.DF_O2.format(27);
+        String result = ScubaCalculations.calculateBM(partialPressure, depth);
 
+        // Test conditions
+        assertEquals(expectedResult, result);
+        System.out.println("calculateBMTest() - " + getTestResult(result.equals(expectedResult)));
     }
 
     @Test
-    public void testCalculateBMLowerBoundary() {
-        System.out.println("calculateBM");
-        double in1 = 1.3;
-        double in2 = 67.0;
-        String expResult = Const.UNSAFE_OUTPUT_VALUE;
-        String result = ScubaCalculations.calculateBM(in1, in2);
-        assertEquals(expResult, result);
+    public void calculateBMLowerBoundaryTest() {
+        // Test data
+        double partialPressure = 1.3;
+        double depth = 67.0;
+        String expectedResult = Const.UNSAFE_OUTPUT_VALUE;
+        String result = ScubaCalculations.calculateBM(partialPressure, depth);
 
+        // Test conditions
+        assertEquals(expectedResult, result);
+        System.out.println("calculateBMLowerBoundaryTest() - " + getTestResult(result.equals(expectedResult)));
     }
 
     @Test
-    public void testCalculateBMUpperBoundary() {
-        System.out.println("calculateBM");
-        double in1 = 1.3;
-        double in2 = 12.0;
-        String expResult = Const.UNSAFE_OUTPUT_VALUE;
-        String result = ScubaCalculations.calculateBM(in1, in2);
-        assertEquals(expResult, result);
+    public void calculateBMUpperBoundaryTest() {
+        // Test data
+        double partialPressure = 1.3;
+        double depth = 12.0;
+        String expectedResult = Const.UNSAFE_OUTPUT_VALUE;
+        String result = ScubaCalculations.calculateBM(partialPressure, depth);
 
+        // Test conditions
+        assertEquals(expectedResult, result);
+        System.out.println("calculateBMUpperBoundaryTest() - " + getTestResult(result.equals(expectedResult)));
     }
 
     @Test
-    public void testCalculateOxygenBM() {
-        System.out.println("calculateOxygenBM");
-        double in1 = 1.4;
-        double in2 = 41.0;
-        String expResult = "27";
-        String result = ScubaCalculations.calculateOxygenBM(in1, in2);
-        assertEquals(expResult, result);
+    public void calculatePPTest() {
+        // Test data
+        double oxygenFraction = 0.32;
+        double depth = 30.0;
+        String expectedResult = Const.DF_PP.format(1.28);
+        String result = ScubaCalculations.calculatePP(oxygenFraction, depth);
 
+        // Test conditions
+        assertEquals(expectedResult, result);
+        System.out.println("calculatePPTest() - " + getTestResult(result.equals(expectedResult)));
     }
 
     @Test
-    public void testCalculatePPNormal() {
-        System.out.println("calculatePP");
-        double in1 = 0.32;
-        double in2 = 30.0;
-        String expResult = "1.28";
-        String result = ScubaCalculations.calculatePP(in1, in2);
-        assertEquals(expResult, result);
+    public void calculatePPLowerBoundaryTest() {
+        // Test data
+        double oxygenFraction = 0.22;
+        double depth = 4.0;
+        String expectedResult = Const.UNSAFE_OUTPUT_VALUE;
+        String result = ScubaCalculations.calculatePP(oxygenFraction, depth);
+
+        // Test conditions
+        assertEquals(expectedResult, result);
+        System.out.println("calculatePPLowerBoundaryTest() - " + getTestResult(result.equals(expectedResult)));
     }
 
     @Test
-    public void testCalculatePPLowerBoundary() {
-        System.out.println("calculatePP");
-        double in1 = 0.22;
-        double in2 = 4.0;
-        String expResult = Const.UNSAFE_OUTPUT_VALUE;
-        String result = ScubaCalculations.calculatePP(in1, in2);
-        assertEquals(expResult, result);
+    public void calculatePPUpperBoundaryTest() {
+        // Test data
+        double oxygenFraction = 0.5;
+        double depth = 67.0;
+        String expectedResult = Const.UNSAFE_OUTPUT_VALUE;
+        String result = ScubaCalculations.calculatePP(oxygenFraction, depth);
+
+        // Test conditions
+        assertEquals(expectedResult, result);
+        System.out.println("calculatePPUpperBoundaryTest() - " + getTestResult(result.equals(expectedResult)));
     }
 
     @Test
-    public void testCalculatePPUpperBoundary() {
-        System.out.println("calculatePP");
-        double in1 = 0.5;
-        double in2 = 67.0;
-        String expResult = Const.UNSAFE_OUTPUT_VALUE;
-        String result = ScubaCalculations.calculatePP(in1, in2);
-        assertEquals(expResult, result);
+    public void calculateEADTest() {
+        // Test data
+        double oxygenFraction = 0.32;
+        double depth = 30.0;
+        String expectedResult = Const.DF_DEPTH.format(24.4);
+        String result = ScubaCalculations.calculateEAD(oxygenFraction, depth);
+
+        // Test conditions
+        assertEquals(expectedResult, result);
+        System.out.println("calculateEADTest() - " + getTestResult(result.equals(expectedResult)));
     }
 
     @Test
-    public void testCalculateEADNormal() {
-        System.out.println("calculateEAD");
-        double in1 = 0.32;
-        double in2 = 30.0;
-        String expResult = "24.4";
-        String result = ScubaCalculations.calculateEAD(in1, in2);
+    public void calculateEADLowerBoundaryTest() {
+        // Test data
+        double oxygenFraction = 0.22;
+        double depth = 4.0;
+        String expectedResult = Const.UNSAFE_OUTPUT_VALUE;
+        String result = ScubaCalculations.calculateEAD(oxygenFraction, depth);
 
-        assertEquals(expResult, result);
-
+        // Test conditions
+        assertEquals(expectedResult, result);
+        System.out.println("calculateEADLowerBoundaryTest() - " + getTestResult(result.equals(expectedResult)));
     }
 
     @Test
-    public void testCalculateEADLowerBoundary() {
-        System.out.println("calculateEAD");
-        double in1 = 0.22;
-        double in2 = 4.0;
-        String expResult = Const.UNSAFE_OUTPUT_VALUE;
-        String result = ScubaCalculations.calculateEAD(in1, in2);
+    public void calculateEADUpperBoundaryTest() {
+        // Test data
+        double oxygenFraction = 0.5;
+        double depth = 30.0;
+        String expectedResult = Const.UNSAFE_OUTPUT_VALUE;
+        String result = ScubaCalculations.calculateEAD(oxygenFraction, depth);
 
-        assertEquals(expResult, result);
+        // Test conditions
+        assertEquals(expectedResult, result);
+        System.out.println("calculateEADUpperBoundaryTest() - " + getTestResult(result.equals(expectedResult)));
     }
 
     @Test
-    public void testCalculateEADUpperBoundary() {
-        System.out.println("calculateEAD");
-        double in1 = 0.5;
-        double in2 = 30.0;
-        String expResult = Const.UNSAFE_OUTPUT_VALUE;
-        String result = ScubaCalculations.calculateEAD(in1, in2);
+    public void calculateOxygenTest() {
+        // Test data
+        double oxygenFraction = 0.32;
+        String expectedResult = Const.DF_O2.format(32);
+        String result = ScubaCalculations.calculateOxygen(oxygenFraction);
 
-        assertEquals(expResult, result);
+        // Test conditions
+        assertEquals(expectedResult, result);
+        System.out.println("calculateOxygenTest() - " + getTestResult(result.equals(expectedResult)));
     }
 
     @Test
-    public void testCalculateOxygen() {
-        System.out.println("calculateOxygen");
-        double in1 = 0.32;
-        String expResult = "32";
-        String result = ScubaCalculations.calculateOxygen(in1);
-        assertEquals(expResult, result);
+    public void calculateSMODTest() {
+        // Test data
+        double oxygenFraction = 0.36;
+        String expectedResult = Const.DF_DEPTH.format(28.9);
+        String result = ScubaCalculations.calculateSMOD(oxygenFraction);
 
+        // Test conditions
+        assertEquals(expectedResult, result);
+        System.out.println("testCalculateSMOD() - " + getTestResult(result.equals(expectedResult)));
     }
 
     @Test
-    public void testCalculateSMOD() {
-        System.out.println("calculateSMOD");
-        double in1 = 1.4;
-        double in2 = 0.36;
-        String expResult = "28.9";
-        String result = ScubaCalculations.calculateSMOD(in2);
-        assertEquals(expResult, result);
+    public void ppTableTest1() {
+        // Test data
+        String expectedResult = Const.UNSAFE_OUTPUT_VALUE;
+        String result = (String) ppTable.getModel().getValueAt(30, 20);
+
+        // Test conditions
+        assertEquals(expectedResult, result);
+        System.out.println("ppTableTest1() - " + getTestResult(result.equals(expectedResult)));
     }
 
     @Test
-    public void testPpTable1() {
-        System.out.println("ppTable1");
-        String expResult = Const.UNSAFE_OUTPUT_VALUE;
-        JTable table = ScubaCalculations.createPPTable();
-        String result;
-        result = (String) table.getModel().getValueAt(30, 20);
-        assertEquals(expResult, result);
+    public void ppTableTest2() {
+        // Test data
+        String expectedResult = Const.DF_PP.format(1.4);
+        String result = (String) ppTable.getModel().getValueAt(17, 10);
 
+        // Test conditions
+        assertEquals(expectedResult, result);
+        System.out.println("ppTableTest2() - " + getTestResult(result.equals(expectedResult)));
     }
 
     @Test
-    public void testPpTable2() {
-        System.out.println("ppTable2");
-        String expResult = "1.40";
-        JTable table = ScubaCalculations.createPPTable();
-        String result;
-        result = (String) table.getModel().getValueAt(17, 10);
-        assertEquals(expResult, result);
+    public void eadTableTest1() {
+        // Test data
+        String expectedResult = Const.DF_DEPTH.format(22.9);
+        String result = (String) eadTable.getModel().getValueAt(17, 10);
 
-    }
-    
-    @Test
-    public void testEadTable1() {
-        System.out.println("eadTable1");
-        String expResult = "22.9";
-        JTable table = ScubaCalculations.eadTable();
-        String result;
-        result = (String) table.getModel().getValueAt(17, 10);
-        assertEquals(expResult, result);
+        // Test conditions
+        assertEquals(expectedResult, result);
+        System.out.println("eadTableTest1() - " + getTestResult(result.equals(expectedResult)));
     }
 
     @Test
-    public void testEadTable2() {
-        System.out.println("eadTable2");
-        String expResult = Const.UNSAFE_OUTPUT_VALUE;
-        JTable table = ScubaCalculations.eadTable();
-        String result;
-        result = (String) table.getModel().getValueAt(30, 1);
-        assertEquals(expResult, result);
+    public void eadTableTest2() {
+
+        // Test data
+        String expectedResult = Const.UNSAFE_OUTPUT_VALUE;
+        String result = (String) eadTable.getModel().getValueAt(30, 1);
+
+        // Test conditions
+        assertEquals(expectedResult, result);
+        System.out.println("eadTableTest2() - " + getTestResult(result.equals(expectedResult)));
     }
 
 }
