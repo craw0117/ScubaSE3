@@ -34,7 +34,7 @@ public class ScubaSE3 {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            controller.getView().setVisible(true);
+            controller.setViewVisibility(true);
         });
     }
 }

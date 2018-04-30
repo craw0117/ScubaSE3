@@ -1,10 +1,7 @@
 package scubase3.panels;
 
-import javax.swing.SwingUtilities;
 import scubase3.Const;
 import scubase3.ScubaController;
-import scubase3.ScubaFrame;
-import scubase3.ScubaModel;
 
 /**
  *
@@ -12,32 +9,28 @@ import scubase3.ScubaModel;
  */
 public class ScubaOutputPanel extends javax.swing.JPanel {
 
-    private ScubaController controller;
+    private final ScubaController controller;
 
     /**
      * Creates new form ScubaOutputPanel
+     *
+     * @param controller
      */
-    public ScubaOutputPanel() {
+    public ScubaOutputPanel(ScubaController controller) {
+        this.controller = controller;
         initComponents();
     }
 
     public void update() {
-        //hacky workaround for netbeans gui editor
-        if (controller == null) {
-            ScubaFrame topFrame = (ScubaFrame) SwingUtilities.getAncestorOfClass(ScubaFrame.class, this);
-            controller = topFrame.getController();
-        }
-
-        ScubaModel model = controller.getModel();
-        if (Const.UNSAFE_OUTPUT_VALUE.equals(model.getOutputValue())) {
+        if (Const.UNSAFE_OUTPUT_VALUE.equals(controller.getOutputValue())) {
             outputText.setText(Const.UNSAFE_OUTPUT_MESSAGE);
         } else {
-            if (Const.CALCULATION_TYPE_BM.equals(model.getCalculationType())) {
-                outputText.setText(model.getCalculationType() + ": " + model.getOutputValue()
-                        + model.getOutputUnit());
+            if (Const.TYPE_BM.equals(controller.getCalculationType())) {
+                outputText.setText(controller.getCalculationType() + ": " + controller.getOutputValue()
+                        + controller.getOutputUnit());
             } else {
-                outputText.setText(model.getCalculationType() + ": " + model.getOutputValue()
-                        + model.getOutputUnit() + ", Oxygen: " + model.getOutputOxygen()
+                outputText.setText(controller.getCalculationType() + ": " + controller.getOutputValue()
+                        + controller.getOutputUnit() + ", Oxygen: " + controller.getOutputOxygen()
                         + Const.UNIT_PERCENT);
             }
         }

@@ -9,16 +9,16 @@ public class Const {
 
     // bitmap flags
     public static final int FLAG_O2_PRESSURE = 1;
-    public static final int FLAG_FRAC_OXYGEN = 2;
+    public static final int FLAG_O2_FRACTION = 2;
     public static final int FLAG_DEPTH = 4;
 
     // Calculation/Table types
-    public static final String CALCULATION_TYPE_EAD = "EAD";
-    public static final String CALCULATION_TYPE_MOD = "MOD";
-    public static final String CALCULATION_TYPE_BM = "BM";
-    public static final String CALCULATION_TYPE_PP = "PP";
-    public static final String CALCULATION_TYPE_SMOD = "SMOD";
-    
+    public static final String TYPE_EAD = "EAD";
+    public static final String TYPE_MOD = "MOD";
+    public static final String TYPE_BM = "BM";
+    public static final String TYPE_PP = "PP";
+    public static final String TYPE_SMOD = "SMOD";
+
     // Output units
     public static final String UNIT_METERS = "m";
     public static final String UNIT_ATA = "ata";

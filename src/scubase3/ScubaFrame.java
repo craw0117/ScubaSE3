@@ -11,12 +11,17 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 /**
+ * View class, holds a reference to both the model and the controller. This
+ * class is responsible for handling the user interface.
  *
  * @author liu1028, eden0021, mitc0341, craw0117, kris0068
  */
 public class ScubaFrame extends javax.swing.JFrame {
 
-    private final ScubaModel model;
+    /**
+     * A reference to the controller object, it is private to ensure that MVC is
+     * strictly adhered to.
+     */
     private final ScubaController controller;
 
     /**
@@ -26,17 +31,7 @@ public class ScubaFrame extends javax.swing.JFrame {
      */
     public ScubaFrame(ScubaController controller) {
         this.controller = controller;
-        this.model = controller.getModel();
         initComponents();
-    }
-
-    /**
-     * Provides external access to the controller object
-     *
-     * @return ScubaController
-     */
-    public ScubaController getController() {
-        return controller;
     }
 
     /**
@@ -61,9 +56,9 @@ public class ScubaFrame extends javax.swing.JFrame {
 
         sVerticalSplitPane = new javax.swing.JSplitPane();
         sSplitPane = new javax.swing.JSplitPane();
-        sOutputPanel = new scubase3.panels.ScubaOutputPanel();
-        sInputPanel = new scubase3.panels.ScubaInputPanel();
-        sTablePanel = new scubase3.panels.ScubaTablePanel();
+        sOutputPanel = new scubase3.panels.ScubaOutputPanel(controller);
+        sInputPanel = new scubase3.panels.ScubaInputPanel(controller);
+        sTablePanel = new scubase3.panels.ScubaTablePanel(controller);
         sMenuBar = new javax.swing.JMenuBar();
         sFileMenu = new javax.swing.JMenu();
         sFileSeparator2 = new javax.swing.JPopupMenu.Separator();
@@ -201,45 +196,90 @@ public class ScubaFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Called when the exit button is selected from the File menu
+     *
+     * @param evt
+     */
     private void sExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sExitButtonActionPerformed
         System.exit(0);
     }//GEN-LAST:event_sExitButtonActionPerformed
 
+    /**
+     * Called when the EAD button is selected from the Tables menu
+     *
+     * @param evt
+     */
     private void sEADTableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sEADTableButtonActionPerformed
-        controller.setTableType(Const.CALCULATION_TYPE_EAD);
-        this.sTablePanel.forceButtonUpdate();
+        controller.setTableType(Const.TYPE_EAD);
+        sTablePanel.forceButtonUpdate();
     }//GEN-LAST:event_sEADTableButtonActionPerformed
 
+    /**
+     * Called when the PP button is selected from the Tables menu
+     *
+     * @param evt
+     */
     private void sPPTableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sPPTableButtonActionPerformed
-        controller.setTableType(Const.CALCULATION_TYPE_PP);
-        this.sTablePanel.forceButtonUpdate();
+        controller.setTableType(Const.TYPE_PP);
+        sTablePanel.forceButtonUpdate();
     }//GEN-LAST:event_sPPTableButtonActionPerformed
 
+    /**
+     * Called when the EAD button is selected from the Calculations menu
+     *
+     * @param evt
+     */
     private void sEADButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sEADButtonActionPerformed
-        controller.setCalcType(Const.CALCULATION_TYPE_EAD);
-        this.sInputPanel.forceButtonUpdate();
+        controller.setCalculationType(Const.TYPE_EAD);
+        sInputPanel.forceButtonUpdate();
     }//GEN-LAST:event_sEADButtonActionPerformed
 
+    /**
+     * Called when the MOD button is selected from the Calculations menu
+     *
+     * @param evt
+     */
     private void sMODButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sMODButtonActionPerformed
-        controller.setCalcType(Const.CALCULATION_TYPE_MOD);
-        this.sInputPanel.forceButtonUpdate();
+        controller.setCalculationType(Const.TYPE_MOD);
+        sInputPanel.forceButtonUpdate();
     }//GEN-LAST:event_sMODButtonActionPerformed
 
+    /**
+     * Called when the BM button is selected from the Calculations menu
+     *
+     * @param evt
+     */
     private void sBMButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sBMButtonActionPerformed
-        controller.setCalcType(Const.CALCULATION_TYPE_BM);
-        this.sInputPanel.forceButtonUpdate();
+        controller.setCalculationType(Const.TYPE_BM);
+        sInputPanel.forceButtonUpdate();
     }//GEN-LAST:event_sBMButtonActionPerformed
 
+    /**
+     * Called when the PP button is selected from the Calculations menu
+     *
+     * @param evt
+     */
     private void sPPButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sPPButtonActionPerformed
-        controller.setCalcType(Const.CALCULATION_TYPE_PP);
-        this.sInputPanel.forceButtonUpdate();
+        controller.setCalculationType(Const.TYPE_PP);
+        sInputPanel.forceButtonUpdate();
     }//GEN-LAST:event_sPPButtonActionPerformed
 
+    /**
+     * Called when the SMOD button is selected from the Calculations menu
+     *
+     * @param evt
+     */
     private void sSMODButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sSMODButtonActionPerformed
-        controller.setCalcType(Const.CALCULATION_TYPE_SMOD);
-        this.sInputPanel.forceButtonUpdate();
+        controller.setCalculationType(Const.TYPE_SMOD);
+        sInputPanel.forceButtonUpdate();
     }//GEN-LAST:event_sSMODButtonActionPerformed
 
+    /**
+     * Called when the User Documentation button is selected from the Help menu
+     *
+     * @param evt
+     */
     private void sHelpDocsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sHelpDocsButtonActionPerformed
         JFrame frame = new JFrame();
         JPanel panel = new JPanel();
@@ -247,7 +287,7 @@ public class ScubaFrame extends javax.swing.JFrame {
         try {
             //Read for package and make a temp file on the file system
             InputStream in = getClass().getResourceAsStream(textloc);
-            File temp = File.createTempFile("test", ".html"); 
+            File temp = File.createTempFile("test", ".html");
             Files.copy(in, temp.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
             //load from temp file

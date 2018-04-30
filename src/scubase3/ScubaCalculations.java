@@ -8,7 +8,6 @@ import javax.swing.JTable;
  *
  * @author liu1028, eden0021, mitc0341, craw0117, kris0068
  */
-// The Oxygen value will be used for the cylinder in the next sprint
 public class ScubaCalculations {
 
     /**
@@ -29,7 +28,7 @@ public class ScubaCalculations {
      * cylinder, i.e. 0.16 -> 16%
      *
      * @param oxygenFraction
-     * @return The result
+     * @return
      */
     public static String calculateOxygen(double oxygenFraction) {
         return oxygenFormat.format(oxygenFraction * 100);
@@ -40,7 +39,7 @@ public class ScubaCalculations {
      *
      * @param partialPressure
      * @param oxygenFraction
-     * @return The result in meters
+     * @return
      */
     public static String calculateMOD(double partialPressure, double oxygenFraction) {
         return meterFormat.format((partialPressure / oxygenFraction - 1.0) * 10.0);
@@ -82,7 +81,7 @@ public class ScubaCalculations {
      *
      * @param oxygenFraction
      * @param depthPressure
-     * @return The result in ATA, or a warning if outside of acceptable ranges
+     * @return
      */
     public static String calculatePP(double oxygenFraction, double depthPressure) {
         double result = oxygenFraction * (depthPressure / 10.0 + 1.0);
@@ -97,7 +96,7 @@ public class ScubaCalculations {
      *
      * @param oxygenFraction
      * @param depthPressure
-     * @return The equivalent air depth in meters
+     * @return
      */
     public static String calculateEAD(double oxygenFraction, double depthPressure) {
         double partialPressure = oxygenFraction * (depthPressure / 10.0 + 1.0);
@@ -181,7 +180,7 @@ public class ScubaCalculations {
         JTable eadTable = new JTable(data, column);
         eadTable.setEnabled(false);
         eadTable.getColumnModel().getColumn(0).setPreferredWidth(120);
-        
+
         return eadTable;
     }
 }

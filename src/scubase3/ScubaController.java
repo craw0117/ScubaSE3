@@ -1,13 +1,19 @@
 package scubase3;
 
+import javax.swing.JTable;
+
 /**
+ * Controller class, holds a reference to both the model and view objects.
  *
  * @author liu1028, eden0021, mitc0341, craw0117, kris0068
  */
 public class ScubaController {
 
+    /**
+     * A reference to the model object, it is private to ensure that MVC is
+     * strictly adhered to.
+     */
     private final ScubaModel model;
-    private final ScubaFrame view;
 
     /**
      * Default constructor, only one instance of this object should exist at any
@@ -15,82 +21,116 @@ public class ScubaController {
      * the MVC architecture pattern.
      */
     public ScubaController() {
-        this.view = new ScubaFrame(this);
-        this.model = new ScubaModel(view);
-
-        view.update();
+        model = new ScubaModel(this);
     }
 
     /**
-     * Provides external access to the model object.
+     * Patch-through method for ScubaModel
      *
-     * @return ScubaModel
+     * @param value
+     * @see ScubaModel#setViewVisibility(boolean value)
      */
-    public ScubaModel getModel() {
-        return model;
+    public void setViewVisibility(boolean value) {
+        model.setViewVisibility(value);
     }
 
     /**
-     * Provides external access to the view object.
+     * Patch-through method for ScubaModel
      *
-     * @return ScubaFrame
+     * @param value
+     * @see ScubaModel#setCalculationType(String value)
      */
-    public ScubaFrame getView() {
-        return view;
+    public void setCalculationType(String value) {
+        model.setCalculationType(value);
     }
 
     /**
-     * Sets the calculation to perform and will enable the correct inputs.
+     * Patch-through method for ScubaModel
      *
-     * @param calcType Valid calcTypes are "EAD", "MOD", "BM", "PP", and "SMOD"
-     */
-    public void setCalcType(String calcType) {
-        model.setCalculationType(calcType);
-    }
-
-    /**
-     * Sets the partial pressure value and updates the view.
-     *
-     * @param value Accepts values between 1.1 and 1.6
+     * @param value
+     * @see ScubaModel#setPartialPressure(double value)
      */
     public void setPartialPressure(double value) {
         model.setPartialPressure(value);
     }
 
     /**
-     * Sets the oxygen percentage and updates the view.
+     * Patch-through method for ScubaModel
      *
-     * @param value Accepts values between 0 and 1.
+     * @param value
+     * @see ScubaModel#setFractionOxygen(double value)
      */
     public void setFractionOxygen(double value) {
         model.setFractionOxygen(value);
     }
 
     /**
-     * Sets the depth and updates the view.
+     * Patch-through method for ScubaModel
      *
      * @param value
+     * @see ScubaModel#setDepth(double value)
      */
     public void setDepth(double value) {
         model.setDepth(value);
     }
 
     /**
-     * Sets the table type to display and updates the view.
+     * Patch-through method for ScubaModel
      *
-     * @param type Valid types are "EAD", and "PP"
+     * @param value
+     * @see ScubaModel#setTableType(String value)
      */
-    public void setTableType(String type) {
-        model.setTableType(type);
+    public void setTableType(String value) {
+        model.setTableType(value);
     }
 
     /**
-     * Gets the current calculation type, should be one of the following values:
-     * ["EAD", "MOD", "BM", "PP", and "SMOD"]
+     * Patch-through method for ScubaModel
      *
      * @return
+     * @see ScubaModel#getCalculationType()
      */
-    public String getCalcType() {
+    public String getCalculationType() {
         return model.getCalculationType();
+    }
+
+    public String getTableType() {
+        return model.getTableType();
+    }
+
+    public int getInputFlags() {
+        return model.getInputFlags();
+    }
+
+    public double getPartialPressure() {
+        return model.getPartialPressure();
+    }
+
+    public double getFractionOxygen() {
+        return model.getFractionOxygen();
+    }
+
+    public double getDepth() {
+        return model.getDepth();
+    }
+
+    public String getOutputValue() {
+        return model.getOutputValue();
+    }
+
+    public String getOutputUnit() {
+        return model.getOutputUnit();
+    }
+
+    public String getOutputOxygen() {
+        return model.getOutputOxygen();
+    }
+
+    public JTable getEADTable() {
+        return model.getEADTable();
+    }
+
+    public JTable getPPTable() {
+        return model.getPPTable();
     }
 }

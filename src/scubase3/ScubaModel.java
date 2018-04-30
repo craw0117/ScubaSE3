@@ -8,6 +8,10 @@ import javax.swing.JTable;
  */
 public class ScubaModel {
 
+    /**
+     * A reference to the model object, it is private to ensure that MVC is
+     * strictly adhered to.
+     */
     private final ScubaFrame view;
 
     private int inputFlags;
@@ -20,138 +24,175 @@ public class ScubaModel {
     private String outputUnit;
     private JTable eadTable;
     private JTable ppTable;
-
     private String tableType;
 
     /**
-     * This is the stub constructor for use without the view.
-     */
-    public ScubaModel() {
-        this.view = null;
-        initState();
-    }
-
-    /**
-     * This is the integrated model for use with the view.
+     * Default Constructor for ScubaModel, creates a view object using the
+     * provided controller object, this ensures that MVC is adhered to
+     * correctly. The model contains a reference to the view, but not the
+     * controller.
      *
-     * @param view
+     * @param controller
      */
-    public ScubaModel(ScubaFrame view) {
-        this.view = view;
-
+    public ScubaModel(ScubaController controller) {
+        view = new ScubaFrame(controller);
         initState();
     }
 
-    private void updateView() {
-        if (view != null) {
-            view.update();
-        }
-    }
-
     /**
-     * Default state setup.
+     * Default state setup. Calculation type is set to EAD and input flags are
+     * set accordingly, Table type is set to EAD and both the tables are
+     * generated.
      */
     private void initState() {
-        calculationType = Const.CALCULATION_TYPE_EAD;
-        inputFlags = Const.FLAG_DEPTH | Const.FLAG_FRAC_OXYGEN;
+        calculationType = Const.TYPE_EAD;
+        inputFlags = Const.FLAG_DEPTH | Const.FLAG_O2_FRACTION;
 
         partialPressure = 1.40;
         fractionOxygen = 0.32;
         depthPressure = 33.3;
 
-        tableType = Const.CALCULATION_TYPE_EAD;
+        tableType = Const.TYPE_EAD;
 
         eadTable = ScubaCalculations.eadTable();
         ppTable = ScubaCalculations.ppTable();
     }
 
+    /**
+     * Sets the visibility of the view
+     *
+     * @param value
+     */
+    public void setViewVisibility(boolean value) {
+        view.setVisible(value);
+    }
+
+    /**
+     * Gets the current calculation type, will return one of the calculation
+     * types as defined in the <code>Const</code> class
+     *
+     * @return
+     * @see Const
+     */
     public String getCalculationType() {
         return calculationType;
     }
 
     /**
-     * Sets the calculation to perform and will enable the correct inputs.
+     * Sets the current calculation type and enables the correct inputs, only
+     * accepts the calculation types defined in <code>Const</code>.
      *
-     * @param calcType Code for calculation ["EAD", "MOD", "BM", "PP", "SMOD"]
+     * @param value
+     * @see Const
      */
-    public void setCalculationType(String calcType) {
-
-        switch (calcType) {
-            case Const.CALCULATION_TYPE_EAD:
-                this.inputFlags = Const.FLAG_DEPTH | Const.FLAG_FRAC_OXYGEN;
-                this.outputValue = ScubaCalculations.calculateEAD(this.fractionOxygen, this.depthPressure);
-                this.outputOxygen = ScubaCalculations.calculateOxygen(this.fractionOxygen);
-                this.outputUnit = Const.UNIT_METERS;
+    public void setCalculationType(String value) {
+        switch (value) {
+            case Const.TYPE_EAD:
+                inputFlags = Const.FLAG_DEPTH | Const.FLAG_O2_FRACTION;
+                outputValue = ScubaCalculations.calculateEAD(fractionOxygen, depthPressure);
+                outputOxygen = ScubaCalculations.calculateOxygen(fractionOxygen);
+                outputUnit = Const.UNIT_METERS;
                 break;
-            case Const.CALCULATION_TYPE_MOD:
-                this.inputFlags = Const.FLAG_O2_PRESSURE | Const.FLAG_FRAC_OXYGEN;
-                this.outputValue = ScubaCalculations.calculateMOD(this.partialPressure, this.fractionOxygen);
-                this.outputOxygen = ScubaCalculations.calculateOxygen(this.fractionOxygen);
-                this.outputUnit = Const.UNIT_METERS;
+            case Const.TYPE_MOD:
+                inputFlags = Const.FLAG_O2_PRESSURE | Const.FLAG_O2_FRACTION;
+                outputValue = ScubaCalculations.calculateMOD(partialPressure, fractionOxygen);
+                outputOxygen = ScubaCalculations.calculateOxygen(fractionOxygen);
+                outputUnit = Const.UNIT_METERS;
                 break;
-            case Const.CALCULATION_TYPE_BM:
-                this.inputFlags = Const.FLAG_O2_PRESSURE | Const.FLAG_DEPTH;
-                this.outputValue = ScubaCalculations.calculateBM(this.partialPressure, this.depthPressure);
-                this.outputOxygen = this.outputValue;
-                this.outputUnit = "%";
+            case Const.TYPE_BM:
+                inputFlags = Const.FLAG_O2_PRESSURE | Const.FLAG_DEPTH;
+                outputValue = ScubaCalculations.calculateBM(partialPressure, depthPressure);
+                outputOxygen = outputValue;
+                outputUnit = Const.UNIT_PERCENT;
                 break;
-            case Const.CALCULATION_TYPE_PP:
-                this.inputFlags = Const.FLAG_FRAC_OXYGEN | Const.FLAG_DEPTH;
-                this.outputValue = ScubaCalculations.calculatePP(this.fractionOxygen, this.depthPressure);
-                this.outputOxygen = ScubaCalculations.calculateOxygen(this.fractionOxygen);
-                this.outputUnit = "ata";
+            case Const.TYPE_PP:
+                inputFlags = Const.FLAG_O2_FRACTION | Const.FLAG_DEPTH;
+                outputValue = ScubaCalculations.calculatePP(fractionOxygen, depthPressure);
+                outputOxygen = ScubaCalculations.calculateOxygen(fractionOxygen);
+                outputUnit = Const.UNIT_ATA;
                 break;
-            case Const.CALCULATION_TYPE_SMOD:
-                this.inputFlags = Const.FLAG_FRAC_OXYGEN;
-                this.outputValue = ScubaCalculations.calculateSMOD(this.fractionOxygen);
-                this.outputOxygen = ScubaCalculations.calculateOxygen(this.fractionOxygen);
-                this.outputUnit = Const.UNIT_METERS;
+            case Const.TYPE_SMOD:
+                inputFlags = Const.FLAG_O2_FRACTION;
+                outputValue = ScubaCalculations.calculateSMOD(fractionOxygen);
+                outputOxygen = ScubaCalculations.calculateOxygen(fractionOxygen);
+                outputUnit = Const.UNIT_METERS;
                 break;
             default:
-                throw new java.lang.Error("Invalid calcType: " + calcType);
-
+                throw new java.lang.Error("Invalid calculation type: " + value);
         }
-
-        this.calculationType = calcType;
-        updateView();
+        calculationType = value;
+        view.update();
     }
 
+    /**
+     * Gets the partial pressure value stored in the model
+     *
+     * @return
+     */
     public double getPartialPressure() {
         return partialPressure;
     }
 
-    public void setPartialPressure(double partialPressure) {
-        this.partialPressure = partialPressure;
-        updateView();
+    /**
+     * Sets the partial pressure value and updates the view.
+     *
+     * @param value a value between 1.1 and 1.6
+     */
+    public void setPartialPressure(double value) {
+        partialPressure = value;
+        view.update();
     }
 
+    /**
+     * Gets the oxygen fraction stored in the model
+     *
+     * @return
+     */
     public double getFractionOxygen() {
         return fractionOxygen;
     }
 
-    public void setFractionOxygen(double fractionOxygen) {
-        this.fractionOxygen = fractionOxygen;
-        updateView();
+    /**
+     * Sets the oxygen percentage and updates the view.
+     *
+     * @param value a value between 0 and 1.
+     */
+    public void setFractionOxygen(double value) {
+        fractionOxygen = value;
+        view.update();
     }
 
+    /**
+     * Gets the depth pressure stored in the model
+     *
+     * @return
+     */
     public double getDepthPressure() {
         return depthPressure;
     }
 
-    public void setDepthPressure(double pressure) {
-        this.depthPressure = pressure;
-        updateView();
+    /**
+     * Sets the depth pressure
+     *
+     * @param value
+     */
+    public void setDepthPressure(double value) {
+        depthPressure = value;
+        view.update();
     }
 
     public double getDepth() {
-        // we store depth as the pressure from depth
-        // thus must calculate it on demand
-        return depthPressure;
+        return depthPressure; // calculate depth problem?
     }
 
-    public void setDepth(double depth) {
-        this.depthPressure = depth;
-        updateView();
+    /**
+     * Sets the depth and updates the view.
+     *
+     * @param value
+     */
+    public void setDepth(double value) {
+        this.depthPressure = value;
+        this.view.update();
     }
 
     public int getInputFlags() {
@@ -160,16 +201,21 @@ public class ScubaModel {
 
     public void setInputFlags(int inputFlags) {
         this.inputFlags = inputFlags;
-        updateView();
+        this.view.update();
     }
 
     public String getTableType() {
         return tableType;
     }
 
-    public void setTableType(String tableType) {
-        this.tableType = tableType;
-        updateView();
+    /**
+     * Sets the table type to display and updates the view.
+     *
+     * @param value Valid types are "EAD", and "PP"
+     */
+    public void setTableType(String value) {
+        tableType = value;
+        view.update();
     }
 
     public String getOutputValue() {
@@ -184,11 +230,11 @@ public class ScubaModel {
         return outputUnit;
     }
 
-    public JTable getEadTable() {
+    public JTable getEADTable() {
         return eadTable;
     }
 
-    public JTable getPpTable() {
+    public JTable getPPTable() {
         return ppTable;
     }
 }

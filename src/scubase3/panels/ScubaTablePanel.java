@@ -1,11 +1,8 @@
 package scubase3.panels;
 
 import javax.swing.JTable;
-import javax.swing.SwingUtilities;
 import scubase3.Const;
 import scubase3.ScubaController;
-import scubase3.ScubaFrame;
-import scubase3.ScubaModel;
 
 /**
  *
@@ -17,37 +14,25 @@ public class ScubaTablePanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ScubaTablePanel
+     *
+     * @param controller
      */
-    public ScubaTablePanel() {
-
+    public ScubaTablePanel(ScubaController controller) {
+        this.controller = controller;
         initComponents();
-
     }
 
     public void update() {
-        //hacky workaround for netbeans gui editor
-        if (controller == null) {
-            ScubaFrame topFrame = (ScubaFrame) SwingUtilities.getAncestorOfClass(ScubaFrame.class, this);
-            controller = topFrame.getController();
-
-            //JScrollPane eadJScrollPane = MethodsContainer.eadTable();
-            //this.eadTable.add(eadJScrollPane);
-            //JTable eadjt = MethodsContainer.eadTable1();
-            //tableScollPane.setViewportView(eadjt);
-        }
-
-        ScubaModel model = controller.getModel();
-        String tableType = model.getTableType();
-
+        String tableType = controller.getTableType();
         switch (tableType) {
-            case Const.CALCULATION_TYPE_EAD:
-                JTable eadjt = model.getEadTable();
-                tableScollPane.setViewportView(eadjt);
+            case Const.TYPE_EAD:
+                JTable tableEAD = controller.getEADTable();
+                tableScollPane.setViewportView(tableEAD);
 
                 break;
-            case Const.CALCULATION_TYPE_PP:
-                JTable ppjt = model.getPpTable();
-                tableScollPane.setViewportView(ppjt);
+            case Const.TYPE_PP:
+                JTable tablePP = controller.getPPTable();
+                tableScollPane.setViewportView(tablePP);
                 break;
             default:
                 throw new java.lang.Error("Invalid tableType: " + tableType);
@@ -59,10 +44,9 @@ public class ScubaTablePanel extends javax.swing.JPanel {
      * class
      */
     public void forceButtonUpdate() {
-        if (this.controller != null && this.controller.getModel() != null) {
-            this.eadTableSelect.setSelected(Const.CALCULATION_TYPE_EAD.equals(this.controller.getModel().getTableType()));
-            this.ppTableSelect.setSelected(Const.CALCULATION_TYPE_PP.equals(this.controller.getModel().getTableType()));
-        }
+        String tableType = controller.getTableType();
+        eadTableSelect.setSelected(Const.TYPE_EAD.equals(tableType));
+        ppTableSelect.setSelected(Const.TYPE_PP.equals(tableType));
     }
 
     /**
@@ -165,12 +149,12 @@ public class ScubaTablePanel extends javax.swing.JPanel {
 
     private void eadTableSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_eadTableSelectActionPerformed
     {//GEN-HEADEREND:event_eadTableSelectActionPerformed
-        controller.setTableType(Const.CALCULATION_TYPE_EAD);
+        controller.setTableType(Const.TYPE_EAD);
     }//GEN-LAST:event_eadTableSelectActionPerformed
 
     private void ppTableSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ppTableSelectActionPerformed
     {//GEN-HEADEREND:event_ppTableSelectActionPerformed
-        controller.setTableType(Const.CALCULATION_TYPE_PP);
+        controller.setTableType(Const.TYPE_PP);
     }//GEN-LAST:event_ppTableSelectActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
