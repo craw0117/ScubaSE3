@@ -2,40 +2,48 @@ package scubase3.panels;
 
 import scubase3.Const;
 import scubase3.ScubaController;
+import scubase3.ScubaSE3;
 
 /**
+ * ScubaInputPanel is the upper-left panel in the user interface
  *
  * @author liu1028, eden0021, mitc0341, craw0117, kris0068
  */
 public final class ScubaInputPanel extends javax.swing.JPanel {
 
-    private final ScubaController controller;
+    /**
+     * Default constructor for ScubaInputPanel
+     */
+    public ScubaInputPanel() {
+        initComponents();
+    }
 
     /**
-     * Creates new form ScubaInputPanel
+     * Gets the controller object using the static method in
+     * <code>ScubaSE3</code>
      *
-     * @param controller
+     * @return
+     * @see ScubaSE3#getController()
      */
-    public ScubaInputPanel(ScubaController controller) {
-        this.controller = controller;
-        initComponents();
+    public static ScubaController getController() {
+        return ScubaSE3.getController();
     }
 
     /**
      * Updates dynamic components - must be called after state change.
      */
     public void update() {
-        String calculationType = controller.getCalculationType();
-        int inputFlags = controller.getInputFlags();
+        String calculationType = getController().getCalculationType();
+        int inputFlags = getController().getInputFlags();
 
         //Update inputs using the currently stored values
-        partialPressureSpinner.setValue(controller.getPartialPressure());
-        fractionOxygenSpinner.setValue(controller.getFractionOxygen());
-        depthSpinner.setValue(controller.getDepth());
+        partialPressureSpinner.setValue(getController().getPartialPressure());
+        oxygenFractionSpinner.setValue(getController().getOxygenFraction());
+        depthSpinner.setValue(getController().getDepth());
 
         //Check flags to display each input
         partialPressurePanel.setVisible((inputFlags & Const.FLAG_O2_PRESSURE) == Const.FLAG_O2_PRESSURE);
-        fractionOxygenPanel.setVisible((inputFlags & Const.FLAG_O2_FRACTION) == Const.FLAG_O2_FRACTION);
+        oxygenFractionPanel.setVisible((inputFlags & Const.FLAG_O2_FRACTION) == Const.FLAG_O2_FRACTION);
         depthPanel.setVisible((inputFlags & Const.FLAG_DEPTH) == Const.FLAG_DEPTH);
 
         //Update the buttons to make sure the right one is selected
@@ -68,10 +76,10 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         partialPressureLabel = new javax.swing.JLabel();
         partialPressureSpinner = new javax.swing.JSpinner();
         partialPressureHelpLabel = new javax.swing.JLabel();
-        fractionOxygenPanel = new javax.swing.JPanel();
-        fractionOxygenLabel = new javax.swing.JLabel();
-        fractionOxygenSpinner = new javax.swing.JSpinner();
-        fractionOxygenHelpLabel = new javax.swing.JLabel();
+        oxygenFractionPanel = new javax.swing.JPanel();
+        oxygenFractionLabel = new javax.swing.JLabel();
+        oxygenFractionSpinner = new javax.swing.JSpinner();
+        oxygenFractionHelpLabel = new javax.swing.JLabel();
         depthPanel = new javax.swing.JPanel();
         depthLabel = new javax.swing.JLabel();
         depthSpinner = new javax.swing.JSpinner();
@@ -205,32 +213,32 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
         add(partialPressurePanel, gridBagConstraints);
 
-        fractionOxygenPanel.setAlignmentX(0.0F);
-        fractionOxygenPanel.setAlignmentY(0.0F);
-        fractionOxygenPanel.setLayout(new javax.swing.BoxLayout(fractionOxygenPanel, javax.swing.BoxLayout.Y_AXIS));
+        oxygenFractionPanel.setAlignmentX(0.0F);
+        oxygenFractionPanel.setAlignmentY(0.0F);
+        oxygenFractionPanel.setLayout(new javax.swing.BoxLayout(oxygenFractionPanel, javax.swing.BoxLayout.Y_AXIS));
 
-        fractionOxygenLabel.setText("Oxygen Percent (Fg)");
-        fractionOxygenPanel.add(fractionOxygenLabel);
+        oxygenFractionLabel.setText("Oxygen Percent (Fg)");
+        oxygenFractionPanel.add(oxygenFractionLabel);
 
-        fractionOxygenSpinner.setModel(new javax.swing.SpinnerNumberModel(0.32d, 0.22d, 0.5d, 0.01d));
-        fractionOxygenSpinner.setAlignmentX(0.0F);
-        fractionOxygenSpinner.setMaximumSize(new java.awt.Dimension(250, 24));
-        fractionOxygenSpinner.setMinimumSize(new java.awt.Dimension(100, 25));
-        fractionOxygenSpinner.setPreferredSize(new java.awt.Dimension(250, 24));
-        fractionOxygenSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+        oxygenFractionSpinner.setModel(new javax.swing.SpinnerNumberModel(0.32d, 0.22d, 0.5d, 0.01d));
+        oxygenFractionSpinner.setAlignmentX(0.0F);
+        oxygenFractionSpinner.setMaximumSize(new java.awt.Dimension(250, 24));
+        oxygenFractionSpinner.setMinimumSize(new java.awt.Dimension(100, 25));
+        oxygenFractionSpinner.setPreferredSize(new java.awt.Dimension(250, 24));
+        oxygenFractionSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                fractionOxygenSpinnerStateChanged(evt);
+                oxygenFractionSpinnerStateChanged(evt);
             }
         });
-        fractionOxygenPanel.add(fractionOxygenSpinner);
-        javax.swing.JSpinner.NumberEditor oEditor = (javax.swing.JSpinner.NumberEditor)fractionOxygenSpinner.getEditor();
+        oxygenFractionPanel.add(oxygenFractionSpinner);
+        javax.swing.JSpinner.NumberEditor oEditor = (javax.swing.JSpinner.NumberEditor)oxygenFractionSpinner.getEditor();
         java.text.DecimalFormat oFormat = oEditor.getFormat();
         oFormat.setMinimumFractionDigits(2);
         oFormat.setMaximumFractionDigits(2);
 
-        fractionOxygenHelpLabel.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        fractionOxygenHelpLabel.setText("e.g. 0.32 = 32%");
-        fractionOxygenPanel.add(fractionOxygenHelpLabel);
+        oxygenFractionHelpLabel.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        oxygenFractionHelpLabel.setText("e.g. 0.32 = 32%");
+        oxygenFractionPanel.add(oxygenFractionHelpLabel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -240,7 +248,7 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
-        add(fractionOxygenPanel, gridBagConstraints);
+        add(oxygenFractionPanel, gridBagConstraints);
 
         depthPanel.setAlignmentX(0.0F);
         depthPanel.setAlignmentY(0.0F);
@@ -305,53 +313,98 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         add(filler2, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Called when the calculation button is selected
+     *
+     * @param evt
+     */
     private void inputCalculateActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_inputCalculateActionPerformed
     {//GEN-HEADEREND:event_inputCalculateActionPerformed
-        controller.setCalculationType(controller.getCalculationType());
+        getController().setCalculationType(ScubaSE3.getController().getCalculationType());
 
     }//GEN-LAST:event_inputCalculateActionPerformed
 
+    /**
+     * Called when the PP button is selected from the button group
+     *
+     * @param evt
+     */
     private void ppSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ppSelectActionPerformed
     {//GEN-HEADEREND:event_ppSelectActionPerformed
-        controller.setCalculationType(Const.TYPE_PP);
+        getController().setCalculationType(Const.TYPE_PP);
     }//GEN-LAST:event_ppSelectActionPerformed
 
+    /**
+     * Called when the EAD button is selected from the button group
+     *
+     * @param evt
+     */
     private void eadSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_eadSelectActionPerformed
     {//GEN-HEADEREND:event_eadSelectActionPerformed
-        controller.setCalculationType(Const.TYPE_EAD);
+        getController().setCalculationType(Const.TYPE_EAD);
     }//GEN-LAST:event_eadSelectActionPerformed
 
+    /**
+     * Called when the MOD button is selected from the button group
+     *
+     * @param evt
+     */
     private void modSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_modSelectActionPerformed
     {//GEN-HEADEREND:event_modSelectActionPerformed
-        controller.setCalculationType(Const.TYPE_MOD);
+        getController().setCalculationType(Const.TYPE_MOD);
     }//GEN-LAST:event_modSelectActionPerformed
 
+    /**
+     * Called when the BM button is selected from the button group
+     *
+     * @param evt
+     */
     private void bmSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_bmSelectActionPerformed
     {//GEN-HEADEREND:event_bmSelectActionPerformed
-        controller.setCalculationType(Const.TYPE_BM);
+        getController().setCalculationType(Const.TYPE_BM);
     }//GEN-LAST:event_bmSelectActionPerformed
 
+    /**
+     * Called when the SMOD button is selected from the button group
+     *
+     * @param evt
+     */
     private void smodSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_smodSelectActionPerformed
     {//GEN-HEADEREND:event_smodSelectActionPerformed
-        controller.setCalculationType(Const.TYPE_SMOD);
+        getController().setCalculationType(Const.TYPE_SMOD);
     }//GEN-LAST:event_smodSelectActionPerformed
 
+    /**
+     * Called whenever the partial pressure input field value is changed
+     *
+     * @param evt
+     */
     private void partialPressureSpinnerStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_partialPressureSpinnerStateChanged
     {//GEN-HEADEREND:event_partialPressureSpinnerStateChanged
-        controller.setPartialPressure((double) ((javax.swing.JSpinner) evt.getSource()).getValue());
-        controller.setCalculationType(controller.getCalculationType());
+        getController().setPartialPressure((double) ((javax.swing.JSpinner) evt.getSource()).getValue());
+        getController().setCalculationType(getController().getCalculationType());
     }//GEN-LAST:event_partialPressureSpinnerStateChanged
 
-    private void fractionOxygenSpinnerStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_fractionOxygenSpinnerStateChanged
-    {//GEN-HEADEREND:event_fractionOxygenSpinnerStateChanged
-        controller.setFractionOxygen((double) ((javax.swing.JSpinner) evt.getSource()).getValue());
-        controller.setCalculationType(controller.getCalculationType());
-    }//GEN-LAST:event_fractionOxygenSpinnerStateChanged
+    /**
+     * Called whenever the oxygen fraction input field value is changed
+     *
+     * @param evt
+     */
+    private void oxygenFractionSpinnerStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_oxygenFractionSpinnerStateChanged
+    {//GEN-HEADEREND:event_oxygenFractionSpinnerStateChanged
+        getController().setOxygenFraction((double) ((javax.swing.JSpinner) evt.getSource()).getValue());
+        getController().setCalculationType(getController().getCalculationType());
+    }//GEN-LAST:event_oxygenFractionSpinnerStateChanged
 
+    /**
+     * Called whenever the depth input field value is changed
+     *
+     * @param evt
+     */
     private void depthSpinnerStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_depthSpinnerStateChanged
     {//GEN-HEADEREND:event_depthSpinnerStateChanged
-        controller.setDepth((double) ((javax.swing.JSpinner) evt.getSource()).getValue());
-        controller.setCalculationType(controller.getCalculationType());
+        getController().setDepth((double) ((javax.swing.JSpinner) evt.getSource()).getValue());
+        getController().setCalculationType(getController().getCalculationType());
     }//GEN-LAST:event_depthSpinnerStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -362,15 +415,15 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
     private javax.swing.JSpinner depthSpinner;
     private javax.swing.JToggleButton eadSelect;
     private javax.swing.Box.Filler filler2;
-    private javax.swing.JLabel fractionOxygenHelpLabel;
-    private javax.swing.JLabel fractionOxygenLabel;
-    private javax.swing.JPanel fractionOxygenPanel;
-    private javax.swing.JSpinner fractionOxygenSpinner;
     private javax.swing.JButton inputCalculate;
     private javax.swing.ButtonGroup inputSelectGroup;
     private javax.swing.JToolBar inputToolBar;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JToggleButton modSelect;
+    private javax.swing.JLabel oxygenFractionHelpLabel;
+    private javax.swing.JLabel oxygenFractionLabel;
+    private javax.swing.JPanel oxygenFractionPanel;
+    private javax.swing.JSpinner oxygenFractionSpinner;
     private javax.swing.JLabel partialPressureHelpLabel;
     private javax.swing.JLabel partialPressureLabel;
     private javax.swing.JPanel partialPressurePanel;

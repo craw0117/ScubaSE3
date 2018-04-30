@@ -2,35 +2,46 @@ package scubase3.panels;
 
 import scubase3.Const;
 import scubase3.ScubaController;
+import scubase3.ScubaSE3;
 
 /**
+ * ScubaOutputPanel is the upper-right panel in the user interface
  *
  * @author liu1028, eden0021, mitc0341, craw0117, kris0068
  */
 public class ScubaOutputPanel extends javax.swing.JPanel {
 
-    private final ScubaController controller;
-
     /**
-     * Creates new form ScubaOutputPanel
-     *
-     * @param controller
+     * Default constructor for ScubaOutputPanel
      */
-    public ScubaOutputPanel(ScubaController controller) {
-        this.controller = controller;
+    public ScubaOutputPanel() {
         initComponents();
     }
 
+    /**
+     * Gets the controller object using the static method in
+     * <code>ScubaSE3</code>
+     *
+     * @return
+     * @see ScubaSE3#getController()
+     */
+    public static ScubaController getController() {
+        return ScubaSE3.getController();
+    }
+
+    /**
+     * Updates dynamic components - must be called after state change.
+     */
     public void update() {
-        if (Const.UNSAFE_OUTPUT_VALUE.equals(controller.getOutputValue())) {
+        if (Const.UNSAFE_OUTPUT_VALUE.equals(ScubaSE3.getController().getOutputValue())) {
             outputText.setText(Const.UNSAFE_OUTPUT_MESSAGE);
         } else {
-            if (Const.TYPE_BM.equals(controller.getCalculationType())) {
-                outputText.setText(controller.getCalculationType() + ": " + controller.getOutputValue()
-                        + controller.getOutputUnit());
+            if (Const.TYPE_BM.equals(ScubaSE3.getController().getCalculationType())) {
+                outputText.setText(ScubaSE3.getController().getCalculationType() + ": " + ScubaSE3.getController().getOutputValue()
+                        + ScubaSE3.getController().getOutputUnit());
             } else {
-                outputText.setText(controller.getCalculationType() + ": " + controller.getOutputValue()
-                        + controller.getOutputUnit() + ", Oxygen: " + controller.getOutputOxygen()
+                outputText.setText(ScubaSE3.getController().getCalculationType() + ": " + ScubaSE3.getController().getOutputValue()
+                        + ScubaSE3.getController().getOutputUnit() + ", Oxygen: " + ScubaSE3.getController().getOutputOxygen()
                         + Const.UNIT_PERCENT);
             }
         }

@@ -3,36 +3,47 @@ package scubase3.panels;
 import javax.swing.JTable;
 import scubase3.Const;
 import scubase3.ScubaController;
+import scubase3.ScubaSE3;
 
 /**
+ * ScubaTablePanel is the lower panel in the user interface
  *
  * @author liu1028, eden0021, mitc0341, craw0117, kris0068
  */
 public class ScubaTablePanel extends javax.swing.JPanel {
 
-    private ScubaController controller;
-
     /**
-     * Creates new form ScubaTablePanel
-     *
-     * @param controller
+     * Default constructor for ScubaTablePanel
      */
-    public ScubaTablePanel(ScubaController controller) {
-        this.controller = controller;
+    public ScubaTablePanel() {
         initComponents();
     }
 
+    /**
+     * Gets the controller object using the static method in
+     * <code>ScubaSE3</code>
+     *
+     * @return
+     * @see ScubaSE3#getController()
+     */
+    public static ScubaController getController() {
+        return ScubaSE3.getController();
+    }
+
+    /**
+     * Updates dynamic components - must be called after state change.
+     */
     public void update() {
-        String tableType = controller.getTableType();
+        String tableType = getController().getTableType();
         switch (tableType) {
             case Const.TYPE_EAD:
-                JTable tableEAD = controller.getEADTable();
+                JTable tableEAD = getController().getEADTable();
                 tableScollPane.setViewportView(tableEAD);
                 eadTableSelect.setSelected(true);
                 ppTableSelect.setSelected(false);
                 break;
             case Const.TYPE_PP:
-                JTable tablePP = controller.getPPTable();
+                JTable tablePP = getController().getPPTable();
                 tableScollPane.setViewportView(tablePP);
                 ppTableSelect.setSelected(true);
                 eadTableSelect.setSelected(false);
@@ -140,14 +151,24 @@ public class ScubaTablePanel extends javax.swing.JPanel {
         add(tableScollPane, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Called when the EAD button is selected from the button group
+     *
+     * @param evt
+     */
     private void eadTableSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_eadTableSelectActionPerformed
     {//GEN-HEADEREND:event_eadTableSelectActionPerformed
-        controller.setTableType(Const.TYPE_EAD);
+        getController().setTableType(Const.TYPE_EAD);
     }//GEN-LAST:event_eadTableSelectActionPerformed
 
+    /**
+     * Called when the PP button is selected from the button group
+     *
+     * @param evt
+     */
     private void ppTableSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ppTableSelectActionPerformed
     {//GEN-HEADEREND:event_ppTableSelectActionPerformed
-        controller.setTableType(Const.TYPE_PP);
+        getController().setTableType(Const.TYPE_PP);
     }//GEN-LAST:event_ppTableSelectActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
