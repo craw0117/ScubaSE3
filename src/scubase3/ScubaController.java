@@ -37,10 +37,10 @@ public class ScubaController {
     /**
      * Patch-through method for ScubaModel
      *
-     * @see ScubaModel#forceViewUpdate()
+     * @see ScubaModel#update()
      */
     public void forceViewUpdate() {
-        model.forceViewUpdate();
+        model.update();
     }
 
     /**
@@ -67,10 +67,10 @@ public class ScubaController {
      * Patch-through method for ScubaModel
      *
      * @param value
-     * @see ScubaModel#setFractionOxygen(double value)
+     * @see ScubaModel#setOxygenFraction(double)
      */
     public void setFractionOxygen(double value) {
-        model.setFractionOxygen(value);
+        model.setOxygenFraction(value);
     }
 
     /**
@@ -116,7 +116,7 @@ public class ScubaController {
     }
 
     public double getFractionOxygen() {
-        return model.getFractionOxygen();
+        return model.getOxygenFraction();
     }
 
     public double getDepth() {
