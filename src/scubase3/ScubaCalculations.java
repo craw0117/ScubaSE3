@@ -59,12 +59,12 @@ public class ScubaCalculations {
      * will be displayed.
      *
      * @param oxygenFraction
-     * @param depthPressure
+     * @param depth
      * @return
-     * @see #calculateRawPP(double oxygenFraction, double depthPressure)
+     * @see #calculateRawPP(double oxygenFraction, double depth)
      */
-    public static String calculatePP(double oxygenFraction, double depthPressure) {
-        double result = calculateRawPP(oxygenFraction, depthPressure);
+    public static String calculatePP(double oxygenFraction, double depth) {
+        double result = calculateRawPP(oxygenFraction, depth);
         if (result > 1.6 || result < 1.1) {
             return Const.UNSAFE_OUTPUT_VALUE;
         }
@@ -76,12 +76,12 @@ public class ScubaCalculations {
      * perform any safety checks but instead returns the "raw" value.
      *
      * @param oxygenFraction
-     * @param depthPressure
+     * @param depth
      * @return
-     * @see #calculatePP(double oxygenFraction, double depthPressure)
+     * @see #calculatePP(double oxygenFraction, double depth)
      */
-    private static double calculateRawPP(double oxygenFraction, double depthPressure) {
-        return oxygenFraction * (depthPressure / 10.0 + 1.0);
+    private static double calculateRawPP(double oxygenFraction, double depth) {
+        return oxygenFraction * (depth / 10.0 + 1.0);
     }
 
     /**
@@ -90,15 +90,15 @@ public class ScubaCalculations {
      * message will be displayed.
      *
      * @param oxygenFraction
-     * @param depthPressure
+     * @param depth
      * @return
      */
-    public static String calculateEAD(double oxygenFraction, double depthPressure) {
-        double partialPressure = calculateRawPP(oxygenFraction, depthPressure);
+    public static String calculateEAD(double oxygenFraction, double depth) {
+        double partialPressure = calculateRawPP(oxygenFraction, depth);
         if (partialPressure > 1.6 || partialPressure < 1.1) {
             return Const.UNSAFE_OUTPUT_VALUE;
         }
-        double result = calculateRawEAD(oxygenFraction, depthPressure);
+        double result = calculateRawEAD(oxygenFraction, depth);
         return Const.DF_DEPTH.format(result < 0 ? 0 : result);
     }
 
@@ -107,12 +107,12 @@ public class ScubaCalculations {
      * not perform any safety checks but instead returns the "raw" value.
      *
      * @param oxygenFraction
-     * @param depthPressure
+     * @param depth
      * @return
-     * @see #calculateEAD(double oxygenFraction, double depthPressure)
+     * @see #calculateEAD(double oxygenFraction, double depth)
      */
-    public static double calculateRawEAD(double oxygenFraction, double depthPressure) {
-        return ((1.0 - oxygenFraction) * (depthPressure / 10.0 + 1.0) / 0.79 - 1.0) * 10.0;
+    public static double calculateRawEAD(double oxygenFraction, double depth) {
+        return ((1.0 - oxygenFraction) * (depth / 10.0 + 1.0) / 0.79 - 1.0) * 10.0;
     }
 
     /**
