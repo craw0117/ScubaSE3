@@ -7,7 +7,7 @@ package scubase3;
  */
 public class Const {
 
-    // bitmap flags
+    // Bitmap flags
     public static final int FLAG_O2_PRESSURE = 1;
     public static final int FLAG_O2_FRACTION = 2;
     public static final int FLAG_DEPTH = 4;
