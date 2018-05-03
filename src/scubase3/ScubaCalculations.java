@@ -177,8 +177,9 @@ public class ScubaCalculations {
                 if (j == 0) {
                     data[i][j] = String.valueOf(i + 18) + Const.UNIT_PERCENT;
                 } else {
+                    double partialPressure = calculateRawPP((i + 18.0) / 100.0, j * 3.0);
                     double result = calculateRawEAD((i + 18.0) / 100.0, j * 3.0);
-                    data[i][j] = result < 0 ? Const.UNSAFE_OUTPUT_VALUE : Const.DF_DEPTH.format(result);
+                    data[i][j] = result < 0 ? "0.0" : partialPressure <= 1.6 ? Const.DF_DEPTH.format(result) : Const.UNSAFE_OUTPUT_VALUE;
                 }
             }
         }
