@@ -209,8 +209,19 @@ public class ScubaCalculationsTest {
     public void eadTableTest2() {
 
         // Test data
-        String expectedResult = Const.UNSAFE_OUTPUT_VALUE;
+        String expectedResult = "0.0";
         String result = (String) eadTable.getModel().getValueAt(30, 1);
+
+        // Test conditions
+        assertEquals(expectedResult, result);
+        System.out.println("eadTableTest2() - " + getTestResult(result.equals(expectedResult)));
+    }
+     @Test
+    public void eadTableTest3() {
+
+        // Test data
+        String expectedResult = Const.UNSAFE_OUTPUT_VALUE;
+        String result = (String) eadTable.getModel().getValueAt(32, 23);
 
         // Test conditions
         assertEquals(expectedResult, result);
