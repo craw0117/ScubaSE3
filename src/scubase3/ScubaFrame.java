@@ -53,7 +53,8 @@ public class ScubaFrame extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
         java.awt.GridBagConstraints gridBagConstraints;
 
         sVerticalSplitPane = new javax.swing.JSplitPane();
@@ -78,7 +79,7 @@ public class ScubaFrame extends javax.swing.JFrame {
         sHelpDocsButton = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Dive Calculator Version 0.1 PRERELEASE");
+        setTitle("Dive Calculator Version 0.2 PRERELEASE");
         setMinimumSize(new java.awt.Dimension(960, 768));
         setPreferredSize(null);
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -109,8 +110,10 @@ public class ScubaFrame extends javax.swing.JFrame {
         sFileMenu.add(sFileSeparator2);
 
         sExitButton.setText("Exit");
-        sExitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        sExitButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 sExitButtonActionPerformed(evt);
             }
         });
@@ -121,40 +124,50 @@ public class ScubaFrame extends javax.swing.JFrame {
         sCalcMenu.setText("Calculate");
 
         sEADButton.setText("Equivalent Air Depth (EAD)");
-        sEADButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        sEADButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 sEADButtonActionPerformed(evt);
             }
         });
         sCalcMenu.add(sEADButton);
 
         sMODButton.setText("Maximum Operating Depth (MOD)");
-        sMODButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        sMODButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 sMODButtonActionPerformed(evt);
             }
         });
         sCalcMenu.add(sMODButton);
 
         sBMButton.setText("Best Mix (BM)");
-        sBMButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        sBMButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 sBMButtonActionPerformed(evt);
             }
         });
         sCalcMenu.add(sBMButton);
 
         sPPButton.setText("Partial Pressure (PP)");
-        sPPButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        sPPButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 sPPButtonActionPerformed(evt);
             }
         });
         sCalcMenu.add(sPPButton);
 
         sSMODButton.setText("Standard MOD (SMOD)");
-        sSMODButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        sSMODButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 sSMODButtonActionPerformed(evt);
             }
         });
@@ -165,16 +178,20 @@ public class ScubaFrame extends javax.swing.JFrame {
         sTablesMenu.setText("Tables");
 
         sEADTableButton.setText("Equivalent Air Depth (EAD)");
-        sEADTableButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        sEADTableButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 sEADTableButtonActionPerformed(evt);
             }
         });
         sTablesMenu.add(sEADTableButton);
 
         sPPTableButton.setText("Partial Pressure (PP)");
-        sPPTableButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        sPPTableButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 sPPTableButtonActionPerformed(evt);
             }
         });
@@ -185,8 +202,10 @@ public class ScubaFrame extends javax.swing.JFrame {
         sHelpMenu.setText("Help");
 
         sHelpDocsButton.setText("User Manual");
-        sHelpDocsButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        sHelpDocsButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 sHelpDocsButtonActionPerformed(evt);
             }
         });

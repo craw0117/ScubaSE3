@@ -242,7 +242,7 @@
             <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="oxygenFractionSpinnerStateChanged"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="javax.swing.JSpinner.NumberEditor oEditor = (javax.swing.JSpinner.NumberEditor)oxygenFractionSpinner.getEditor();&#xa;java.text.DecimalFormat oFormat = oEditor.getFormat();&#xa;oFormat.setMinimumFractionDigits(2);&#xa;oFormat.setMaximumFractionDigits(2);"/>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="javax.swing.JSpinner.NumberEditor oEditor = (javax.swing.JSpinner.NumberEditor)oxygenFractionSpinner.getEditor();&#xa;java.text.DecimalFormat oFormat = oEditor.getFormat();&#xa;&#xa;//Internally oxygenFraction is a double (0.32)&#xa;//but we want to display it as an int (32)&#xa;oFormat.setMinimumFractionDigits(0);&#xa;oFormat.setMaximumFractionDigits(0);&#xa;oFormat.setMultiplier(100);"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="oxygenFractionHelpLabel">
@@ -308,25 +308,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="inputCalculate">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="e5" green="de" id="Button.highlight" palette="3" red="dc" type="palette"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Calculate"/>
-        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Hand Cursor"/>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inputCalculateActionPerformed"/>
-      </Events>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-          <GridBagConstraints gridX="0" gridY="-1" gridWidth="1" gridHeight="1" fill="0" ipadX="15" ipadY="0" insetsTop="0" insetsLeft="15" insetsBottom="0" insetsRight="0" anchor="18" weightX="1.0" weightY="1.0"/>
-        </Constraint>
-      </Constraints>
-    </Component>
     <Component class="javax.swing.Box$Filler" name="filler2">
       <Properties>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">

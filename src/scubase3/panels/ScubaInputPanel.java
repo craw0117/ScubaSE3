@@ -84,7 +84,6 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         depthLabel = new javax.swing.JLabel();
         depthSpinner = new javax.swing.JSpinner();
         depthHelpLabel = new javax.swing.JLabel();
-        inputCalculate = new javax.swing.JButton();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 20), new java.awt.Dimension(32767, 15));
 
         jMenu1.setText("jMenu1");
@@ -233,8 +232,12 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         oxygenFractionPanel.add(oxygenFractionSpinner);
         javax.swing.JSpinner.NumberEditor oEditor = (javax.swing.JSpinner.NumberEditor)oxygenFractionSpinner.getEditor();
         java.text.DecimalFormat oFormat = oEditor.getFormat();
-        oFormat.setMinimumFractionDigits(2);
-        oFormat.setMaximumFractionDigits(2);
+
+        //Internally oxygenFraction is a double (0.32)
+        //but we want to display it as an int (32)
+        oFormat.setMinimumFractionDigits(0);
+        oFormat.setMaximumFractionDigits(0);
+        oFormat.setMultiplier(100);
 
         oxygenFractionHelpLabel.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         oxygenFractionHelpLabel.setText("e.g. 0.32 = 32%");
@@ -286,23 +289,6 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
         add(depthPanel, gridBagConstraints);
-
-        inputCalculate.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.highlight"));
-        inputCalculate.setText("Calculate");
-        inputCalculate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        inputCalculate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputCalculateActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.ipadx = 15;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
-        add(inputCalculate, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -312,17 +298,6 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
         add(filler2, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * Called when the calculation button is selected
-     *
-     * @param evt
-     */
-    private void inputCalculateActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_inputCalculateActionPerformed
-    {//GEN-HEADEREND:event_inputCalculateActionPerformed
-        getController().setCalculationType(ScubaSE3.getController().getCalculationType());
-
-    }//GEN-LAST:event_inputCalculateActionPerformed
 
     /**
      * Called when the PP button is selected from the button group
@@ -415,7 +390,6 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
     private javax.swing.JSpinner depthSpinner;
     private javax.swing.JToggleButton eadSelect;
     private javax.swing.Box.Filler filler2;
-    private javax.swing.JButton inputCalculate;
     private javax.swing.ButtonGroup inputSelectGroup;
     private javax.swing.JToolBar inputToolBar;
     private javax.swing.JMenu jMenu1;

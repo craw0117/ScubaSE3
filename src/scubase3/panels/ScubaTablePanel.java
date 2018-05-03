@@ -1,5 +1,6 @@
 package scubase3.panels;
 
+import java.awt.BorderLayout;
 import javax.swing.JTable;
 import scubase3.Const;
 import scubase3.ScubaController;
@@ -38,13 +39,27 @@ public class ScubaTablePanel extends javax.swing.JPanel {
         switch (tableType) {
             case Const.TYPE_EAD:
                 JTable tableEAD = getController().getEADTable();
-                tableScollPane.setViewportView(tableEAD);
+                
+                eadTable.removeAll();
+                eadTable.add(tableEAD.getTableHeader(),BorderLayout.NORTH);
+                eadTable.add(tableEAD);
+                
+                eadTable.setVisible(true);
+                ppTable.setVisible(false);
+                
                 eadTableSelect.setSelected(true);
                 ppTableSelect.setSelected(false);
                 break;
             case Const.TYPE_PP:
                 JTable tablePP = getController().getPPTable();
-                tableScollPane.setViewportView(tablePP);
+                
+                ppTable.removeAll();
+                ppTable.add(tablePP.getTableHeader(),BorderLayout.NORTH);
+                ppTable.add(tablePP);
+                
+                eadTable.setVisible(false);
+                ppTable.setVisible(true);
+                
                 ppTableSelect.setSelected(true);
                 eadTableSelect.setSelected(false);
                 break;
@@ -67,7 +82,7 @@ public class ScubaTablePanel extends javax.swing.JPanel {
         inputToolBar = new javax.swing.JToolBar();
         eadTableSelect = new javax.swing.JToggleButton();
         ppTableSelect = new javax.swing.JToggleButton();
-        tableScollPane = new javax.swing.JScrollPane();
+        tableScrollPane = new javax.swing.JScrollPane();
         tableDisplay = new javax.swing.JPanel();
         eadTable = new javax.swing.JPanel();
         ppTable = new javax.swing.JPanel();
@@ -112,13 +127,18 @@ public class ScubaTablePanel extends javax.swing.JPanel {
         gridBagConstraints.weightx = 1.0;
         add(inputToolBar, gridBagConstraints);
 
-        tableDisplay.setMinimumSize(new java.awt.Dimension(650, 0));
-        tableDisplay.setPreferredSize(new java.awt.Dimension(500, 100));
+        tableScrollPane.setBackground(new java.awt.Color(255, 255, 255));
+        tableScrollPane.setPreferredSize(new java.awt.Dimension(250, 250));
+
+        tableDisplay.setBackground(new java.awt.Color(0, 0, 0));
+        tableDisplay.setMinimumSize(new java.awt.Dimension(0, 0));
+        tableDisplay.setPreferredSize(new java.awt.Dimension(1000, 500));
         tableDisplay.setRequestFocusEnabled(false);
         tableDisplay.setLayout(new java.awt.GridBagLayout());
 
-        eadTable.setMinimumSize(new java.awt.Dimension(500, 500));
-        eadTable.setLayout(new java.awt.GridBagLayout());
+        eadTable.setMinimumSize(new java.awt.Dimension(1000, 500));
+        eadTable.setPreferredSize(new java.awt.Dimension(1000, 0));
+        eadTable.setLayout(new java.awt.BorderLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -130,7 +150,8 @@ public class ScubaTablePanel extends javax.swing.JPanel {
         tableDisplay.add(eadTable, gridBagConstraints);
 
         ppTable.setMinimumSize(new java.awt.Dimension(500, 500));
-        ppTable.setLayout(new java.awt.GridBagLayout());
+        ppTable.setPreferredSize(new java.awt.Dimension(1000, 1000));
+        ppTable.setLayout(new java.awt.BorderLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -141,14 +162,14 @@ public class ScubaTablePanel extends javax.swing.JPanel {
         gridBagConstraints.weighty = 1.0;
         tableDisplay.add(ppTable, gridBagConstraints);
 
-        tableScollPane.setViewportView(tableDisplay);
+        tableScrollPane.setViewportView(tableDisplay);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        add(tableScollPane, gridBagConstraints);
+        add(tableScrollPane, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -179,6 +200,6 @@ public class ScubaTablePanel extends javax.swing.JPanel {
     private javax.swing.JToggleButton ppTableSelect;
     private javax.swing.ButtonGroup tableButtonGroup;
     private javax.swing.JPanel tableDisplay;
-    private javax.swing.JScrollPane tableScollPane;
+    private javax.swing.JScrollPane tableScrollPane;
     // End of variables declaration//GEN-END:variables
 }

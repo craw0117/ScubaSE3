@@ -154,7 +154,15 @@ public class ScubaCalculations {
 
         JTable table = new JTable(data, column);
         table.setEnabled(false);
-        table.getColumnModel().getColumn(0).setMinWidth(80);
+        
+        //set the min width of the first column
+        table.getColumnModel().getColumn(0).setMinWidth(100);
+
+        //set the min width of each other column
+        for (int i = 1; i < table.getColumnCount(); i++) {
+            table.getColumnModel().getColumn(i).setMinWidth(45);
+        }
+        
         return table;
     }
 
@@ -186,7 +194,15 @@ public class ScubaCalculations {
 
         JTable table = new JTable(data, column);
         table.setEnabled(false);
-        table.getColumnModel().getColumn(0).setMinWidth(80);
+        
+        //set the min width of the first column
+        table.getColumnModel().getColumn(0).setMinWidth(100);
+
+        //set the min width of each other column
+        for (int i = 1; i < table.getColumnCount(); i++) {
+            table.getColumnModel().getColumn(i).setMinWidth(45);
+        }
+
         return table;
     }
 }
