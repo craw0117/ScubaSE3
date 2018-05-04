@@ -73,6 +73,10 @@ public class ScubaModel {
         view.setVisible(value);
     }
 
+    
+    /**
+     * Forces the ui to update
+     */
     public void updateUI()
     {
         SwingUtilities.updateComponentTreeUI(view);
@@ -86,6 +90,7 @@ public class ScubaModel {
      */
     public void update() {
         view.update();
+        updateUI();
     }
 
     /**
