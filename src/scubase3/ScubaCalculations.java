@@ -157,12 +157,12 @@ public class ScubaCalculations {
         table.setEnabled(false);
 
         //set the min width of the first column
-        table.getColumnModel().getColumn(0).setMinWidth(90);
+        table.getColumnModel().getColumn(0).setMinWidth(100);
 
         //set the min width and preferred width of each other column
         for (int i = 1; i < table.getColumnCount(); i++) {
-            table.getColumnModel().getColumn(i).setMinWidth(35);
-            table.getColumnModel().getColumn(i).setPreferredWidth(35);
+            table.getColumnModel().getColumn(i).setMinWidth(40);
+            table.getColumnModel().getColumn(i).setPreferredWidth(40);
         }
         
         return table;
@@ -198,12 +198,12 @@ public class ScubaCalculations {
         table.setEnabled(false);
 
         //set the min width of the first column
-        table.getColumnModel().getColumn(0).setMinWidth(90);
+        table.getColumnModel().getColumn(0).setMinWidth(100);
 
         //set the min width and preferred width of each other column
         for (int i = 1; i < table.getColumnCount(); i++) {
-            table.getColumnModel().getColumn(i).setMinWidth(35);
-            table.getColumnModel().getColumn(i).setPreferredWidth(35);
+            table.getColumnModel().getColumn(i).setMinWidth(40);
+            table.getColumnModel().getColumn(i).setPreferredWidth(40);
         }
 
         return table;
