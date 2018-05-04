@@ -1,6 +1,8 @@
 package scubase3;
 
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
+import static javax.swing.SwingUtilities.updateComponentTreeUI;
 
 /**
  * Model class, holds a reference to the view object and is responsible for
@@ -71,6 +73,12 @@ public class ScubaModel {
         view.setVisible(value);
     }
 
+    public void updateUI()
+    {
+        SwingUtilities.updateComponentTreeUI(view);
+        updateComponentTreeUI(view);
+    }
+    
     /**
      * Patch-through method for ScubaFrame
      *

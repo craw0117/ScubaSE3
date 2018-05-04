@@ -216,7 +216,8 @@ public class ScubaCalculationsTest {
         assertEquals(expectedResult, result);
         System.out.println("eadTableTest2() - " + getTestResult(result.equals(expectedResult)));
     }
-     @Test
+    
+    @Test
     public void eadTableTest3() {
 
         // Test data

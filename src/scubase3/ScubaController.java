@@ -43,6 +43,7 @@ public class ScubaController {
      */
     public void forceViewUpdate() {
         model.update();
+        model.updateUI();
     }
 
     /**

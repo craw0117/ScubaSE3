@@ -1,6 +1,7 @@
 package scubase3;
 
 import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 /**
  * Main class for ScubaSE3 project, holds the main execution method
@@ -23,8 +24,16 @@ public class ScubaSE3 {
     public static void main(String[] args) {
 
         try {
-            UIManager.setLookAndFeel(
-                    UIManager.getSystemLookAndFeelClassName());
+            for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Windows".equals(info.getName())) {
+                    UIManager.setLookAndFeel(
+                        UIManager.getSystemLookAndFeelClassName());
+                }
+                else if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                }
+            }
+            
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(ScubaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
