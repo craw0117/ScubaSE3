@@ -1,7 +1,8 @@
 package scubase3;
 
-import java.text.DecimalFormat;
+import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  * Calculations are separated from the ScubaModel class to simplify the process
@@ -154,13 +155,14 @@ public class ScubaCalculations {
 
         JTable table = new JTable(data, column);
         table.setEnabled(false);
-        
-        //set the min width of the first column
-        table.getColumnModel().getColumn(0).setMinWidth(100);
 
-        //set the min width of each other column
+        //set the min width of the first column
+        table.getColumnModel().getColumn(0).setMinWidth(90);
+
+        //set the min width and preferred width of each other column
         for (int i = 1; i < table.getColumnCount(); i++) {
-            table.getColumnModel().getColumn(i).setMinWidth(45);
+            table.getColumnModel().getColumn(i).setMinWidth(35);
+            table.getColumnModel().getColumn(i).setPreferredWidth(35);
         }
         
         return table;
@@ -194,13 +196,14 @@ public class ScubaCalculations {
 
         JTable table = new JTable(data, column);
         table.setEnabled(false);
-        
-        //set the min width of the first column
-        table.getColumnModel().getColumn(0).setMinWidth(100);
 
-        //set the min width of each other column
+        //set the min width of the first column
+        table.getColumnModel().getColumn(0).setMinWidth(90);
+
+        //set the min width and preferred width of each other column
         for (int i = 1; i < table.getColumnCount(); i++) {
-            table.getColumnModel().getColumn(i).setMinWidth(45);
+            table.getColumnModel().getColumn(i).setMinWidth(35);
+            table.getColumnModel().getColumn(i).setPreferredWidth(35);
         }
 
         return table;
