@@ -190,6 +190,7 @@
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="javax.swing.JSpinner.NumberEditor pEditor = (javax.swing.JSpinner.NumberEditor)partialPressureSpinner.getEditor();&#xa;java.text.DecimalFormat pFormat = pEditor.getFormat();&#xa;pFormat.setMinimumFractionDigits(2);&#xa;pFormat.setMaximumFractionDigits(2);"/>
+            <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="((DefaultEditor) partialPressureSpinner.getEditor()).getTextField().setEditable(false);"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="partialPressureHelpLabel">
@@ -243,6 +244,7 @@
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="javax.swing.JSpinner.NumberEditor oEditor = (javax.swing.JSpinner.NumberEditor)oxygenFractionSpinner.getEditor();&#xa;java.text.DecimalFormat oFormat = oEditor.getFormat();&#xa;&#xa;//Internally oxygenFraction is a double (0.32)&#xa;//but we want to display it as an int (32)&#xa;oFormat.setMinimumFractionDigits(0);&#xa;oFormat.setMaximumFractionDigits(0);&#xa;oFormat.setMultiplier(100);"/>
+            <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="((DefaultEditor) oxygenFractionSpinner.getEditor()).getTextField().setEditable(false);"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="oxygenFractionHelpLabel">
@@ -296,6 +298,7 @@
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="javax.swing.JSpinner.NumberEditor dEditor = (javax.swing.JSpinner.NumberEditor)depthSpinner.getEditor();&#xa;java.text.DecimalFormat dFormat = dEditor.getFormat();&#xa;dFormat.setMinimumFractionDigits(1);&#xa;dFormat.setMaximumFractionDigits(1);"/>
+            <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="((DefaultEditor) depthSpinner.getEditor()).getTextField().setEditable(false);"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="depthHelpLabel">

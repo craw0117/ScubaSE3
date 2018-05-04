@@ -1,5 +1,6 @@
 package scubase3.panels;
 
+import javax.swing.JSpinner.DefaultEditor;
 import scubase3.Const;
 import scubase3.ScubaController;
 import scubase3.ScubaSE3;
@@ -192,6 +193,7 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
                 partialPressureSpinnerStateChanged(evt);
             }
         });
+        ((DefaultEditor) partialPressureSpinner.getEditor()).getTextField().setEditable(false);
         partialPressurePanel.add(partialPressureSpinner);
         javax.swing.JSpinner.NumberEditor pEditor = (javax.swing.JSpinner.NumberEditor)partialPressureSpinner.getEditor();
         java.text.DecimalFormat pFormat = pEditor.getFormat();
@@ -229,6 +231,7 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
                 oxygenFractionSpinnerStateChanged(evt);
             }
         });
+        ((DefaultEditor) oxygenFractionSpinner.getEditor()).getTextField().setEditable(false);
         oxygenFractionPanel.add(oxygenFractionSpinner);
         javax.swing.JSpinner.NumberEditor oEditor = (javax.swing.JSpinner.NumberEditor)oxygenFractionSpinner.getEditor();
         java.text.DecimalFormat oFormat = oEditor.getFormat();
@@ -270,6 +273,7 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
                 depthSpinnerStateChanged(evt);
             }
         });
+        ((DefaultEditor) depthSpinner.getEditor()).getTextField().setEditable(false);
         depthPanel.add(depthSpinner);
         javax.swing.JSpinner.NumberEditor dEditor = (javax.swing.JSpinner.NumberEditor)depthSpinner.getEditor();
         java.text.DecimalFormat dFormat = dEditor.getFormat();
