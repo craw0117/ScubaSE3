@@ -2,6 +2,8 @@ package scubase3.panels;
 
 import java.awt.BorderLayout;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
+import static javax.swing.SwingUtilities.updateComponentTreeUI;
 import scubase3.Const;
 import scubase3.ScubaController;
 import scubase3.ScubaSE3;
@@ -66,6 +68,10 @@ public class ScubaTablePanel extends javax.swing.JPanel {
             default:
                 throw new java.lang.Error("Invalid tableType: " + tableType);
         }
+        
+        //Fixes bug with tables not being styled
+        SwingUtilities.updateComponentTreeUI(this);
+        updateComponentTreeUI(this);
     }
 
     /**

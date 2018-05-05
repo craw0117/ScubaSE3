@@ -90,7 +90,6 @@ public class ScubaModel {
      */
     public void update() {
         view.update();
-        updateUI();
     }
 
     /**

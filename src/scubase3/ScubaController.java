@@ -24,6 +24,7 @@ public class ScubaController {
      */
     public ScubaController() {
         model = new ScubaModel(this);
+        model.updateUI();
     }
 
     /**
