@@ -60,8 +60,8 @@ public class ScubaModel {
 
         tableType = Const.TYPE_EAD;
 
-        eadTable = ScubaCalculations.createEADTable();
-        ppTable = ScubaCalculations.createPPTable();
+        eadTable = ScubaTables.createEADTable();
+        ppTable = ScubaTables.createPPTable();
     }
 
     /**
@@ -73,16 +73,14 @@ public class ScubaModel {
         view.setVisible(value);
     }
 
-    
     /**
      * Forces the ui to update
      */
-    public void updateUI()
-    {
+    public void updateUI() {
         SwingUtilities.updateComponentTreeUI(view);
         updateComponentTreeUI(view);
     }
-    
+
     /**
      * Patch-through method for ScubaFrame
      *

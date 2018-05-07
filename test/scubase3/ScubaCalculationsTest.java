@@ -11,8 +11,8 @@ import static org.junit.Assert.*;
  */
 public class ScubaCalculationsTest {
 
-    JTable ppTable = ScubaCalculations.createPPTable();
-    JTable eadTable = ScubaCalculations.createEADTable();
+    JTable ppTable = ScubaTables.createPPTable();
+    JTable eadTable = ScubaTables.createEADTable();
 
     public String getTestResult(boolean value) {
         return value ? "Test passed!" : "Test failed!";
@@ -216,7 +216,7 @@ public class ScubaCalculationsTest {
         assertEquals(expectedResult, result);
         System.out.println("eadTableTest2() - " + getTestResult(result.equals(expectedResult)));
     }
-    
+
     @Test
     public void eadTableTest3() {
 

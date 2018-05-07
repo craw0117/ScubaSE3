@@ -41,34 +41,34 @@ public class ScubaTablePanel extends javax.swing.JPanel {
         switch (tableType) {
             case Const.TYPE_EAD:
                 JTable tableEAD = getController().getEADTable();
-                
+
                 eadTable.removeAll();
-                eadTable.add(tableEAD.getTableHeader(),BorderLayout.NORTH);
+                eadTable.add(tableEAD.getTableHeader(), BorderLayout.NORTH);
                 eadTable.add(tableEAD);
-                
+
                 eadTable.setVisible(true);
                 ppTable.setVisible(false);
-                
+
                 eadTableSelect.setSelected(true);
                 ppTableSelect.setSelected(false);
                 break;
             case Const.TYPE_PP:
                 JTable tablePP = getController().getPPTable();
-                
+
                 ppTable.removeAll();
-                ppTable.add(tablePP.getTableHeader(),BorderLayout.NORTH);
+                ppTable.add(tablePP.getTableHeader(), BorderLayout.NORTH);
                 ppTable.add(tablePP);
-                
+
                 eadTable.setVisible(false);
                 ppTable.setVisible(true);
-                
+
                 ppTableSelect.setSelected(true);
                 eadTableSelect.setSelected(false);
                 break;
             default:
                 throw new java.lang.Error("Invalid tableType: " + tableType);
         }
-        
+
         //Fixes bug with tables not being styled
         SwingUtilities.updateComponentTreeUI(this);
         updateComponentTreeUI(this);

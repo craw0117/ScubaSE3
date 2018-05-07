@@ -1,9 +1,5 @@
 package scubase3;
 
-import javax.swing.JLabel;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
-
 /**
  * Calculations are separated from the ScubaModel class to simplify the process
  * of updating calculations, methods in this class are called from the
@@ -81,7 +77,7 @@ public class ScubaCalculations {
      * @return
      * @see #calculatePP(double oxygenFraction, double depth)
      */
-    private static double calculateRawPP(double oxygenFraction, double depth) {
+    public static double calculateRawPP(double oxygenFraction, double depth) {
         return oxygenFraction * (depth / 10.0 + 1.0);
     }
 
@@ -126,86 +122,5 @@ public class ScubaCalculations {
      */
     public static String calculateSMOD(double oxygenFraction) {
         return ScubaCalculations.calculateMOD(Const.SMOD_PP_VALUE, oxygenFraction);
-    }
-
-    /**
-     * Generates the Partial Pressure information table, this method should only
-     * be called once to avoid unnecessary work.
-     *
-     * @return
-     * @see #createEADTable()
-     */
-    public static JTable createPPTable() {
-        String[] column = new String[24];
-        column[0] = "Oxygen/Depth";
-        for (int i = 1; i < column.length; i++) {
-            column[i] = String.valueOf(i * 3) + Const.UNIT_METERS;
-        }
-        String[][] data = new String[33][24];
-        for (int i = 0; i < data.length; i++) {
-            for (int j = 0; j < data[i].length; j++) {
-                if (j == 0) {
-                    data[i][j] = String.valueOf(i + 18) + Const.UNIT_PERCENT;
-                } else {
-                    double result = calculateRawPP((i + 18.0) / 100.0, j * 3.0);
-                    data[i][j] = result > 1.6 ? Const.UNSAFE_OUTPUT_VALUE : Const.DF_PP.format(result);
-                }
-            }
-        }
-
-        JTable table = new JTable(data, column);
-        table.setEnabled(false);
-
-        //set the min width of the first column
-        table.getColumnModel().getColumn(0).setMinWidth(100);
-
-        //set the min width and preferred width of each other column
-        for (int i = 1; i < table.getColumnCount(); i++) {
-            table.getColumnModel().getColumn(i).setMinWidth(40);
-            table.getColumnModel().getColumn(i).setPreferredWidth(40);
-        }
-        
-        return table;
-    }
-
-    /**
-     * Generates the Equivalent Air Depth information table, this method should
-     * only be called once to avoid unnecessary work.
-     *
-     * @return
-     * @see #createPPTable()
-     */
-    public static JTable createEADTable() {
-        String[] column = new String[24];
-        column[0] = "Oxygen/Depth";
-        for (int i = 1; i < column.length; i++) {
-            column[i] = String.valueOf(i * 3) + Const.UNIT_METERS;
-        }
-        String[][] data = new String[33][24];
-        for (int i = 0; i < data.length; i++) {
-            for (int j = 0; j < data[i].length; j++) {
-                if (j == 0) {
-                    data[i][j] = String.valueOf(i + 18) + Const.UNIT_PERCENT;
-                } else {
-                    double partialPressure = calculateRawPP((i + 18.0) / 100.0, j * 3.0);
-                    double result = calculateRawEAD((i + 18.0) / 100.0, j * 3.0);
-                    data[i][j] = result < 0 ? "0.0" : partialPressure <= 1.6 ? Const.DF_DEPTH.format(result) : Const.UNSAFE_OUTPUT_VALUE;
-                }
-            }
-        }
-
-        JTable table = new JTable(data, column);
-        table.setEnabled(false);
-
-        //set the min width of the first column
-        table.getColumnModel().getColumn(0).setMinWidth(100);
-
-        //set the min width and preferred width of each other column
-        for (int i = 1; i < table.getColumnCount(); i++) {
-            table.getColumnModel().getColumn(i).setMinWidth(40);
-            table.getColumnModel().getColumn(i).setPreferredWidth(40);
-        }
-
-        return table;
     }
 }
