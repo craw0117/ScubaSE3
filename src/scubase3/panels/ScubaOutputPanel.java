@@ -1,7 +1,6 @@
 package scubase3.panels;
 
 import scubase3.Const;
-import scubase3.ScubaController;
 import scubase3.ScubaSE3;
 
 /**
@@ -19,31 +18,27 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
     }
 
     /**
-     * Gets the controller object using the static method in
-     * <code>ScubaSE3</code>
-     *
-     * @return
-     * @see ScubaSE3#getController()
-     */
-    public static ScubaController getController() {
-        return ScubaSE3.getController();
-    }
-
-    /**
      * Updates dynamic components - must be called after state change.
      */
     public void update() {
-        if (Const.UNSAFE_OUTPUT_VALUE.equals(ScubaSE3.getController().getOutputValue())) {
-            outputText.setText(Const.UNSAFE_OUTPUT_MESSAGE);
-        } else {
-            if (Const.TYPE_BM.equals(ScubaSE3.getController().getCalculationType())) {
-                outputText.setText(ScubaSE3.getController().getCalculationType() + ": " + ScubaSE3.getController().getOutputValue()
-                        + ScubaSE3.getController().getOutputUnit());
+        String outputValue = ScubaSE3.getController().getOutputValue();
+        if (outputValue != null) {
+            String calculationType = ScubaSE3.getController().getCalculationType();
+            String outputOxygen = ScubaSE3.getController().getOutputOxygen();
+            String outputUnit = ScubaSE3.getController().getOutputUnit();
+            if (Const.UNSAFE_OUTPUT_VALUE.equals(outputValue)) {
+                outputText.setText(Const.UNSAFE_OUTPUT_MESSAGE);
+            } else if (Const.TYPE_BM.equals(calculationType)) {
+                outputText.setText(calculationType + ": " + outputValue + outputUnit);
             } else {
-                outputText.setText(ScubaSE3.getController().getCalculationType() + ": " + ScubaSE3.getController().getOutputValue()
-                        + ScubaSE3.getController().getOutputUnit() + ", Oxygen: " + ScubaSE3.getController().getOutputOxygen()
-                        + Const.UNIT_PERCENT);
+                outputText.setText(calculationType + ": " + outputValue + outputUnit + ", Oxygen: " + outputOxygen + Const.UNIT_PERCENT);
             }
+            if (!Const.UNSAFE_OUTPUT_VALUE.equals(outputOxygen)) {
+                outputOxygenDisplay.setValue(Integer.valueOf(outputOxygen));
+            }
+            outputOxygenDisplay.setEnabled((ScubaSE3.getController().getInputFlags() & Const.FLAG_O2_FRACTION) == Const.FLAG_O2_FRACTION);
+        } else {
+            outputText.setText(Const.UNSAFE_OUTPUT_MESSAGE);
         }
     }
 
@@ -57,14 +52,11 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jButton1 = new javax.swing.JButton();
         outputLHS = new javax.swing.JPanel();
         outputOxygenDisplay = new javax.swing.JSlider();
         outputOxygenLabel = new javax.swing.JLabel();
         outputRHS = new javax.swing.JPanel();
         outputText = new javax.swing.JLabel();
-
-        jButton1.setText("jButton1");
 
         setMinimumSize(new java.awt.Dimension(400, 400));
         setPreferredSize(new java.awt.Dimension(400, 400));
@@ -74,6 +66,11 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
         outputLHS.setLayout(new java.awt.GridBagLayout());
 
         outputOxygenDisplay.setOrientation(javax.swing.JSlider.VERTICAL);
+        outputOxygenDisplay.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                outputOxygenDisplayStateChanged(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 15);
         outputLHS.add(outputOxygenDisplay, gridBagConstraints);
@@ -115,8 +112,11 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
         add(outputRHS, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void outputOxygenDisplayStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_outputOxygenDisplayStateChanged
+        ScubaSE3.getController().setOxygenFraction((double) ((javax.swing.JSlider) evt.getSource()).getValue() / 100.0);
+    }//GEN-LAST:event_outputOxygenDisplayStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel outputLHS;
     private javax.swing.JSlider outputOxygenDisplay;
     private javax.swing.JLabel outputOxygenLabel;

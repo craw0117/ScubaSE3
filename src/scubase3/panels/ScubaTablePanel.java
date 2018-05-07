@@ -23,24 +23,13 @@ public class ScubaTablePanel extends javax.swing.JPanel {
     }
 
     /**
-     * Gets the controller object using the static method in
-     * <code>ScubaSE3</code>
-     *
-     * @return
-     * @see ScubaSE3#getController()
-     */
-    public static ScubaController getController() {
-        return ScubaSE3.getController();
-    }
-
-    /**
      * Updates dynamic components - must be called after state change.
      */
     public void update() {
-        String tableType = getController().getTableType();
+        String tableType = ScubaSE3.getController().getTableType();
         switch (tableType) {
             case Const.TYPE_EAD:
-                JTable tableEAD = getController().getEADTable();
+                JTable tableEAD = ScubaSE3.getController().getEADTable();
 
                 eadTable.removeAll();
                 eadTable.add(tableEAD.getTableHeader(), BorderLayout.NORTH);
@@ -53,7 +42,7 @@ public class ScubaTablePanel extends javax.swing.JPanel {
                 ppTableSelect.setSelected(false);
                 break;
             case Const.TYPE_PP:
-                JTable tablePP = getController().getPPTable();
+                JTable tablePP = ScubaSE3.getController().getPPTable();
 
                 ppTable.removeAll();
                 ppTable.add(tablePP.getTableHeader(), BorderLayout.NORTH);
@@ -185,7 +174,7 @@ public class ScubaTablePanel extends javax.swing.JPanel {
      */
     private void eadTableSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_eadTableSelectActionPerformed
     {//GEN-HEADEREND:event_eadTableSelectActionPerformed
-        getController().setTableType(Const.TYPE_EAD);
+        ScubaSE3.getController().setTableType(Const.TYPE_EAD);
     }//GEN-LAST:event_eadTableSelectActionPerformed
 
     /**
@@ -195,7 +184,7 @@ public class ScubaTablePanel extends javax.swing.JPanel {
      */
     private void ppTableSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ppTableSelectActionPerformed
     {//GEN-HEADEREND:event_ppTableSelectActionPerformed
-        getController().setTableType(Const.TYPE_PP);
+        ScubaSE3.getController().setTableType(Const.TYPE_PP);
     }//GEN-LAST:event_ppTableSelectActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

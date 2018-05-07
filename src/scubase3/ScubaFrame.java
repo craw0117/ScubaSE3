@@ -215,7 +215,6 @@ public class ScubaFrame extends javax.swing.JFrame {
      */
     private void sEADTableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sEADTableButtonActionPerformed
         controller.setTableType(Const.TYPE_EAD);
-        sTablePanel.update();
     }//GEN-LAST:event_sEADTableButtonActionPerformed
 
     /**
@@ -225,7 +224,6 @@ public class ScubaFrame extends javax.swing.JFrame {
      */
     private void sPPTableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sPPTableButtonActionPerformed
         controller.setTableType(Const.TYPE_PP);
-        sTablePanel.update();
     }//GEN-LAST:event_sPPTableButtonActionPerformed
 
     /**
@@ -235,7 +233,6 @@ public class ScubaFrame extends javax.swing.JFrame {
      */
     private void sEADButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sEADButtonActionPerformed
         controller.setCalculationType(Const.TYPE_EAD);
-        sInputPanel.update();
     }//GEN-LAST:event_sEADButtonActionPerformed
 
     /**
@@ -245,7 +242,6 @@ public class ScubaFrame extends javax.swing.JFrame {
      */
     private void sMODButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sMODButtonActionPerformed
         controller.setCalculationType(Const.TYPE_MOD);
-        sInputPanel.update();
     }//GEN-LAST:event_sMODButtonActionPerformed
 
     /**
@@ -255,7 +251,6 @@ public class ScubaFrame extends javax.swing.JFrame {
      */
     private void sBMButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sBMButtonActionPerformed
         controller.setCalculationType(Const.TYPE_BM);
-        sInputPanel.update();
     }//GEN-LAST:event_sBMButtonActionPerformed
 
     /**
@@ -265,7 +260,6 @@ public class ScubaFrame extends javax.swing.JFrame {
      */
     private void sPPButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sPPButtonActionPerformed
         controller.setCalculationType(Const.TYPE_PP);
-        sInputPanel.update();
     }//GEN-LAST:event_sPPButtonActionPerformed
 
     /**
@@ -275,7 +269,6 @@ public class ScubaFrame extends javax.swing.JFrame {
      */
     private void sSMODButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sSMODButtonActionPerformed
         controller.setCalculationType(Const.TYPE_SMOD);
-        sInputPanel.update();
     }//GEN-LAST:event_sSMODButtonActionPerformed
 
     /**

@@ -71,6 +71,7 @@ public class ScubaModel {
      */
     public void setViewVisibility(boolean value) {
         view.setVisible(value);
+        update();
     }
 
     /**

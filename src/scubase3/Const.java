@@ -25,6 +25,10 @@ public class Const {
     public static final String UNIT_METERS = "m";
     public static final String UNIT_ATA = "ata";
     public static final String UNIT_PERCENT = "%";
+    
+    // Oxygen bounds
+    public static final int OXYGEN_MINIMUM = 22;
+    public static final int OXYGEN_MAXIMUM = 50;
 
     // Decimal format objects for output
     public static final DecimalFormat DF_PP = new DecimalFormat("0.00");
