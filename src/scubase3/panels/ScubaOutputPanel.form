@@ -40,6 +40,8 @@
       <SubComponents>
         <Component class="javax.swing.JSlider" name="outputOxygenDisplay">
           <Properties>
+            <Property name="maximum" type="int" value="50"/>
+            <Property name="minimum" type="int" value="22"/>
             <Property name="orientation" type="int" value="1"/>
           </Properties>
           <Events>

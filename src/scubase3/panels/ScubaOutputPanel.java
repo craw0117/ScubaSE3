@@ -21,6 +21,7 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
      * Updates dynamic components - must be called after state change.
      */
     public void update() {
+        
         String outputValue = ScubaSE3.getController().getOutputValue();
         if (outputValue != null) {
             String calculationType = ScubaSE3.getController().getCalculationType();
@@ -33,7 +34,7 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
             } else {
                 outputText.setText(calculationType + ": " + outputValue + outputUnit + ", Oxygen: " + outputOxygen + Const.UNIT_PERCENT);
             }
-            if (!Const.UNSAFE_OUTPUT_VALUE.equals(outputOxygen)) {
+            if (!Const.UNSAFE_OUTPUT_VALUE.equals(outputOxygen) && !outputOxygenDisplay.getValueIsAdjusting()) {
                 outputOxygenDisplay.setValue(Integer.valueOf(outputOxygen));
             }
             outputOxygenDisplay.setEnabled((ScubaSE3.getController().getInputFlags() & Const.FLAG_O2_FRACTION) == Const.FLAG_O2_FRACTION);
@@ -65,6 +66,8 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
         outputLHS.setPreferredSize(new java.awt.Dimension(150, 300));
         outputLHS.setLayout(new java.awt.GridBagLayout());
 
+        outputOxygenDisplay.setMaximum(50);
+        outputOxygenDisplay.setMinimum(22);
         outputOxygenDisplay.setOrientation(javax.swing.JSlider.VERTICAL);
         outputOxygenDisplay.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
