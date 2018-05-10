@@ -1,5 +1,19 @@
 package scubase3.panels;
 
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import scubase3.Const;
 import scubase3.ScubaSE3;
 
@@ -15,8 +29,29 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
      */
     public ScubaOutputPanel() {
         initComponents();
+        
+        try
+        {
+        //Read for package and make a temp file on the file system
+        InputStream in = getClass().getResourceAsStream("ScubaTank.png");
+        File temp = File.createTempFile("ScubaTank", ".png");
+        Files.copy(in, temp.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                
+        BufferedImage myPicture;
+        
+        myPicture = ImageIO.read(temp);
+        JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+        prettyPicture.add(picLabel);
+         
+        } catch (IOException ex) {
+            Logger.getLogger(ScubaOutputPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+       
     }
-
+    
     /**
      * Updates dynamic components - must be called after state change.
      */
@@ -54,8 +89,10 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
         java.awt.GridBagConstraints gridBagConstraints;
 
         outputLHS = new javax.swing.JPanel();
+        controls = new javax.swing.JPanel();
         outputOxygenDisplay = new javax.swing.JSlider();
         outputOxygenLabel = new javax.swing.JLabel();
+        prettyPicture = new javax.swing.JPanel();
         outputRHS = new javax.swing.JPanel();
         outputText = new javax.swing.JLabel();
 
@@ -64,7 +101,10 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
         setLayout(new java.awt.GridBagLayout());
 
         outputLHS.setPreferredSize(new java.awt.Dimension(150, 300));
-        outputLHS.setLayout(new java.awt.GridBagLayout());
+        outputLHS.setLayout(new javax.swing.OverlayLayout(outputLHS));
+
+        controls.setOpaque(false);
+        controls.setLayout(new java.awt.GridBagLayout());
 
         outputOxygenDisplay.setMaximum(50);
         outputOxygenDisplay.setMinimum(22);
@@ -76,13 +116,19 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 15);
-        outputLHS.add(outputOxygenDisplay, gridBagConstraints);
+        controls.add(outputOxygenDisplay, gridBagConstraints);
 
         outputOxygenLabel.setText("O2%");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
-        outputLHS.add(outputOxygenLabel, gridBagConstraints);
+        controls.add(outputOxygenLabel, gridBagConstraints);
+
+        outputLHS.add(controls);
+
+        prettyPicture.setRequestFocusEnabled(false);
+        prettyPicture.setVerifyInputWhenFocusTarget(false);
+        outputLHS.add(prettyPicture);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -120,10 +166,12 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_outputOxygenDisplayStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel controls;
     private javax.swing.JPanel outputLHS;
     private javax.swing.JSlider outputOxygenDisplay;
     private javax.swing.JLabel outputOxygenLabel;
     private javax.swing.JPanel outputRHS;
     private javax.swing.JLabel outputText;
+    private javax.swing.JPanel prettyPicture;
     // End of variables declaration//GEN-END:variables
 }

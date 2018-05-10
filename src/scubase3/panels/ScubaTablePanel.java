@@ -26,6 +26,9 @@ public class ScubaTablePanel extends javax.swing.JPanel {
      * Updates dynamic components - must be called after state change.
      */
     public void update() {
+        Double[] params = ScubaSE3.getController().getTableParams();
+
+        
         String tableType = ScubaSE3.getController().getTableType();
         switch (tableType) {
             case Const.TYPE_EAD:
@@ -38,8 +41,6 @@ public class ScubaTablePanel extends javax.swing.JPanel {
                 eadTable.setVisible(true);
                 ppTable.setVisible(false);
 
-                eadTableSelect.setSelected(true);
-                ppTableSelect.setSelected(false);
                 break;
             case Const.TYPE_PP:
                 JTable tablePP = ScubaSE3.getController().getPPTable();
@@ -51,8 +52,6 @@ public class ScubaTablePanel extends javax.swing.JPanel {
                 eadTable.setVisible(false);
                 ppTable.setVisible(true);
 
-                ppTableSelect.setSelected(true);
-                eadTableSelect.setSelected(false);
                 break;
             default:
                 throw new java.lang.Error("Invalid tableType: " + tableType);
@@ -70,57 +69,17 @@ public class ScubaTablePanel extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
         java.awt.GridBagConstraints gridBagConstraints;
 
         tableButtonGroup = new javax.swing.ButtonGroup();
-        inputToolBar = new javax.swing.JToolBar();
-        eadTableSelect = new javax.swing.JToggleButton();
-        ppTableSelect = new javax.swing.JToggleButton();
         tableScrollPane = new javax.swing.JScrollPane();
         tableDisplay = new javax.swing.JPanel();
         eadTable = new javax.swing.JPanel();
         ppTable = new javax.swing.JPanel();
 
         setLayout(new java.awt.GridBagLayout());
-
-        inputToolBar.setBorder(null);
-        inputToolBar.setFloatable(false);
-        inputToolBar.setRollover(true);
-
-        tableButtonGroup.add(eadTableSelect);
-        eadTableSelect.setSelected(true);
-        eadTableSelect.setText("EAD");
-        eadTableSelect.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        eadTableSelect.setFocusable(false);
-        eadTableSelect.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        eadTableSelect.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        eadTableSelect.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eadTableSelectActionPerformed(evt);
-            }
-        });
-        inputToolBar.add(eadTableSelect);
-
-        tableButtonGroup.add(ppTableSelect);
-        ppTableSelect.setText("PP");
-        ppTableSelect.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ppTableSelect.setFocusable(false);
-        ppTableSelect.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        ppTableSelect.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        ppTableSelect.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ppTableSelectActionPerformed(evt);
-            }
-        });
-        inputToolBar.add(ppTableSelect);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 15;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        add(inputToolBar, gridBagConstraints);
 
         tableScrollPane.setBackground(new java.awt.Color(255, 255, 255));
         tableScrollPane.setPreferredSize(new java.awt.Dimension(250, 250));
@@ -167,32 +126,9 @@ public class ScubaTablePanel extends javax.swing.JPanel {
         add(tableScrollPane, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * Called when the EAD button is selected from the button group
-     *
-     * @param evt
-     */
-    private void eadTableSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_eadTableSelectActionPerformed
-    {//GEN-HEADEREND:event_eadTableSelectActionPerformed
-        ScubaSE3.getController().setTableType(Const.TYPE_EAD);
-    }//GEN-LAST:event_eadTableSelectActionPerformed
-
-    /**
-     * Called when the PP button is selected from the button group
-     *
-     * @param evt
-     */
-    private void ppTableSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ppTableSelectActionPerformed
-    {//GEN-HEADEREND:event_ppTableSelectActionPerformed
-        ScubaSE3.getController().setTableType(Const.TYPE_PP);
-    }//GEN-LAST:event_ppTableSelectActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel eadTable;
-    private javax.swing.JToggleButton eadTableSelect;
-    private javax.swing.JToolBar inputToolBar;
     private javax.swing.JPanel ppTable;
-    private javax.swing.JToggleButton ppTableSelect;
     private javax.swing.ButtonGroup tableButtonGroup;
     private javax.swing.JPanel tableDisplay;
     private javax.swing.JScrollPane tableScrollPane;

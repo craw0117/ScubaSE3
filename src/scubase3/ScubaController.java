@@ -96,6 +96,19 @@ public class ScubaController {
     public void setTableType(String value) {
         model.setTableType(value);
     }
+    
+    /**
+     * Patch-through method for ScubaModel
+     *
+     * @param OxyMin Minmum oxygen percentage eg 0.22
+     * @param OxyMax Maximum oxygen percentage eg 0.50
+     * @param depthMin Min depth eg 33.0
+     * @param depthMax Max depth eg 3.0
+     * @see ScubaModel#setTableParams(double OxyMin, double OxyMax, double depthMin, double depthMax)
+     */
+    public void setTableParams(double OxyMin, double OxyMax, double depthMin, double depthMax) {
+        model.setTableParams(OxyMin, OxyMax, depthMin, depthMax);
+    }
 
     /**
      * Patch-through method for ScubaModel
@@ -115,6 +128,17 @@ public class ScubaController {
      */
     public String getTableType() {
         return model.getTableType();
+    }
+    
+    
+    /**
+     * Patch-through method for ScubaModel
+     *
+     * @return
+     * @see ScubaModel#getTableParams()
+     */
+    public Double[] getTableParams() {
+        return model.getTableParams();
     }
 
     /**

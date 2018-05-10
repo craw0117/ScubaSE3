@@ -31,6 +31,7 @@ public class ScubaModel {
     private JTable eadTable;
     private JTable ppTable;
     private String tableType;
+    private Double[] tableParams;
 
     /**
      * Default Constructor for ScubaModel, creates a view object using the
@@ -62,6 +63,8 @@ public class ScubaModel {
 
         eadTable = ScubaTables.createEADTable();
         ppTable = ScubaTables.createPPTable();
+        
+        tableParams = new Double[]{0.18, 0.5, 3.0, 69.0};
     }
 
     /**
@@ -258,6 +261,33 @@ public class ScubaModel {
      */
     public void setTableType(String value) {
         tableType = value;
+        update();
+    }
+    
+    /**
+     * Gets the table params in an array 
+     *
+     * @return Params in an array {OxyMin, OxyMax, depthMin, depthMax}
+     * @see #setTableParams(double OxyMin, double OxyMax, double depthMin, double depthMax)
+     */
+    public Double[] getTableParams() {
+        return tableParams;
+    }
+    
+    /**
+     * Sets the table parameters
+     *
+     * @param OxyMin Minmum oxygen percentage eg 0.22
+     * @param OxyMax Maximum oxygen percentage eg 0.50
+     * @param depthMin Min depth eg 33.0
+     * @param depthMax Max depth eg 3.0
+     * @see #getTableParams()
+     */
+    public void setTableParams(double OxyMin, double OxyMax, double depthMin, double depthMax) {
+        tableParams[0] = OxyMin;
+        tableParams[1] = OxyMax;
+        tableParams[2] = depthMin;
+        tableParams[3] = depthMax;
         update();
     }
 
