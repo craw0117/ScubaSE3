@@ -50,6 +50,27 @@ public class ScubaController {
     /**
      * Patch-through method for ScubaModel
      *
+     * @return 
+     * @see ScubaModel#getTabView()
+     */
+    public int getTabView() {
+        return model.getTabView();
+    }
+    
+    /**
+     * Patch-through method for ScubaModel
+     *
+     * @param value
+     * @see ScubaModel#setTabView()
+     */
+    public void setTabView(int value) {
+        model.setTabView(value);
+    }
+    
+    
+    /**
+     * Patch-through method for ScubaModel
+     *
      * @param value
      * @see ScubaModel#setCalculationType(String value)
      */

@@ -45,6 +45,8 @@ public class ScubaFrame extends javax.swing.JFrame {
         sOutputPanel.update();
         sTablePanel.update();
         sTableInputPanel.update();
+        
+        tabsTabsTabsTabs.setSelectedIndex(controller.getTabView());
     }
 
     /**

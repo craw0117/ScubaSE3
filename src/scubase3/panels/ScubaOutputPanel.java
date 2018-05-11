@@ -1,8 +1,5 @@
 package scubase3.panels;
 
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -92,6 +89,7 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
         controls = new javax.swing.JPanel();
         outputOxygenDisplay = new javax.swing.JSlider();
         outputOxygenLabel = new javax.swing.JLabel();
+        pictureContainer = new javax.swing.JPanel();
         prettyPicture = new javax.swing.JPanel();
         outputRHS = new javax.swing.JPanel();
         outputText = new javax.swing.JLabel();
@@ -126,9 +124,18 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
 
         outputLHS.add(controls);
 
+        pictureContainer.setLayout(new java.awt.GridBagLayout());
+
+        prettyPicture.setMaximumSize(new java.awt.Dimension(100, 250));
+        prettyPicture.setMinimumSize(new java.awt.Dimension(100, 250));
+        prettyPicture.setPreferredSize(new java.awt.Dimension(100, 250));
         prettyPicture.setRequestFocusEnabled(false);
         prettyPicture.setVerifyInputWhenFocusTarget(false);
-        outputLHS.add(prettyPicture);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 75, 0);
+        pictureContainer.add(prettyPicture, gridBagConstraints);
+
+        outputLHS.add(pictureContainer);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -172,6 +179,7 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
     private javax.swing.JLabel outputOxygenLabel;
     private javax.swing.JPanel outputRHS;
     private javax.swing.JLabel outputText;
+    private javax.swing.JPanel pictureContainer;
     private javax.swing.JPanel prettyPicture;
     // End of variables declaration//GEN-END:variables
 }
