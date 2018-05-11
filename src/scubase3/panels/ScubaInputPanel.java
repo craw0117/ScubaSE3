@@ -233,7 +233,7 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         oFormat.setMultiplier(100);
 
         oxygenFractionHelpLabel.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        oxygenFractionHelpLabel.setText("e.g. 0.32 = 32%");
+        oxygenFractionHelpLabel.setText("e.g. 32 = 32%");
         oxygenFractionPanel.add(oxygenFractionHelpLabel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -271,7 +271,7 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         dFormat.setMaximumFractionDigits(1);
 
         depthHelpLabel.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        depthHelpLabel.setText("e.g. 33m");
+        depthHelpLabel.setText("e.g. 33.3m");
         depthPanel.add(depthHelpLabel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();

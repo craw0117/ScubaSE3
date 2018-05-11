@@ -109,11 +109,18 @@ public class ScubaFrame extends javax.swing.JFrame {
 
         tabsTabsTabsTabs.addTab("Calculator", theOneWithoutTables);
 
+        theOneWithTables.setMinimumSize(new java.awt.Dimension(575, 400));
+        theOneWithTables.setPreferredSize(new java.awt.Dimension(575, 400));
+        theOneWithTables.setRequestFocusEnabled(false);
         theOneWithTables.setLayout(new java.awt.GridLayout(1, 0));
 
         tVerticalSplitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         tVerticalSplitPane.setBottomComponent(sTablePanel);
-        tVerticalSplitPane.setLeftComponent(sTableInputPanel);
+
+        sTableInputPanel.setMaximumSize(new java.awt.Dimension(573, 150));
+        sTableInputPanel.setMinimumSize(new java.awt.Dimension(573, 150));
+        sTableInputPanel.setPreferredSize(new java.awt.Dimension(573, 150));
+        tVerticalSplitPane.setTopComponent(sTableInputPanel);
 
         theOneWithTables.add(tVerticalSplitPane);
 

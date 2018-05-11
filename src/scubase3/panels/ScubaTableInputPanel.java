@@ -83,17 +83,17 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
         filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 20), new java.awt.Dimension(32767, 15));
         depthLabel1 = new javax.swing.JLabel();
         depthSpinner1 = new javax.swing.JSpinner();
-        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 20), new java.awt.Dimension(32767, 15));
 
         jMenu1.setText("jMenu1");
 
-        setMinimumSize(new java.awt.Dimension(320, 312));
-        setPreferredSize(new java.awt.Dimension(320, 312));
+        setMaximumSize(new java.awt.Dimension(2147483647, 158));
+        setMinimumSize(new java.awt.Dimension(573, 158));
         setLayout(new java.awt.GridBagLayout());
 
         inputToolBar1.setBorder(null);
         inputToolBar1.setFloatable(false);
         inputToolBar1.setRollover(true);
+        inputToolBar1.setAlignmentY(0.5F);
 
         eadTableSelect.setSelected(true);
         eadTableSelect.setText("EAD");
@@ -122,27 +122,22 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 15;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 25, 0);
         add(inputToolBar1, gridBagConstraints);
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         oxygenFractionPanel.setAlignmentX(0.0F);
         oxygenFractionPanel.setAlignmentY(0.0F);
-        oxygenFractionPanel.setMaximumSize(new java.awt.Dimension(200, 93));
+        oxygenFractionPanel.setName(""); // NOI18N
         oxygenFractionPanel.setLayout(new javax.swing.BoxLayout(oxygenFractionPanel, javax.swing.BoxLayout.Y_AXIS));
 
         oxygenFractionLabel.setText("Min Oxygen Percent (Fg)");
         oxygenFractionPanel.add(oxygenFractionLabel);
 
-        oxygenFractionSpinner.setModel(new javax.swing.SpinnerNumberModel(0.18d, 0.18d, 0.5d, 0.1d));
+        oxygenFractionSpinner.setModel(new javax.swing.SpinnerNumberModel(0.18d, 0.18d, 0.5d, 0.01d));
         oxygenFractionSpinner.setAlignmentX(0.0F);
-        oxygenFractionSpinner.setMaximumSize(new java.awt.Dimension(250, 24));
         oxygenFractionSpinner.setMinimumSize(new java.awt.Dimension(100, 25));
-        oxygenFractionSpinner.setPreferredSize(new java.awt.Dimension(250, 24));
         oxygenFractionSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 oxygenFractionSpinnerStateChanged(evt);
@@ -163,11 +158,9 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
         oxygenFractionLabel1.setText("Max Oxygen Percent (Fg)");
         oxygenFractionPanel.add(oxygenFractionLabel1);
 
-        oxygenFractionSpinner1.setModel(new javax.swing.SpinnerNumberModel(0.5d, 0.18d, 0.5d, 0.1d));
+        oxygenFractionSpinner1.setModel(new javax.swing.SpinnerNumberModel(0.5d, 0.18d, 0.5d, 0.01d));
         oxygenFractionSpinner1.setAlignmentX(0.0F);
-        oxygenFractionSpinner1.setMaximumSize(new java.awt.Dimension(250, 24));
         oxygenFractionSpinner1.setMinimumSize(new java.awt.Dimension(100, 25));
-        oxygenFractionSpinner1.setPreferredSize(new java.awt.Dimension(250, 24));
         oxygenFractionSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 oxygenFractionSpinner1StateChanged(evt);
@@ -185,18 +178,17 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
         oFormat2.setMultiplier(100);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.ipady = 20;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 5);
         jPanel1.add(oxygenFractionPanel, gridBagConstraints);
 
         depthPanel.setAlignmentX(0.0F);
         depthPanel.setAlignmentY(0.0F);
-        depthPanel.setMaximumSize(new java.awt.Dimension(200, 93));
         depthPanel.setLayout(new javax.swing.BoxLayout(depthPanel, javax.swing.BoxLayout.Y_AXIS));
 
         depthLabel.setText("Min Depth (m)");
@@ -204,9 +196,7 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
 
         depthSpinner.setModel(new javax.swing.SpinnerNumberModel(3.0d, 3.0d, 69.0d, 3.0d));
         depthSpinner.setAlignmentX(0.0F);
-        depthSpinner.setMaximumSize(new java.awt.Dimension(250, 24));
         depthSpinner.setMinimumSize(new java.awt.Dimension(100, 25));
-        depthSpinner.setPreferredSize(new java.awt.Dimension(250, 24));
         depthSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 depthSpinnerStateChanged(evt);
@@ -221,9 +211,7 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
 
         depthSpinner1.setModel(new javax.swing.SpinnerNumberModel(69.0d, 3.0d, 69.0d, 3.0d));
         depthSpinner1.setAlignmentX(0.0F);
-        depthSpinner1.setMaximumSize(new java.awt.Dimension(250, 24));
         depthSpinner1.setMinimumSize(new java.awt.Dimension(100, 25));
-        depthSpinner1.setPreferredSize(new java.awt.Dimension(250, 24));
         depthSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 depthSpinner1StateChanged(evt);
@@ -233,27 +221,23 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
         depthPanel.add(depthSpinner1);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.ipady = 20;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 10);
         jPanel1.add(depthPanel, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        add(jPanel1, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 20;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
-        add(filler2, gridBagConstraints);
+        add(jPanel1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -299,7 +283,6 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
     private javax.swing.JSpinner depthSpinner;
     private javax.swing.JSpinner depthSpinner1;
     private javax.swing.JToggleButton eadTableSelect;
-    private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;
     private javax.swing.Box.Filler filler4;
     private javax.swing.ButtonGroup inputSelectGroup;
