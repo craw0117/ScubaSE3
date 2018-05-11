@@ -14,7 +14,7 @@ import scubase3.panels.ScubaInputPanel;
  *
  * @author nathan
  */
-public class GuiTester {
+public class InputPanelTest {
 
     ScubaController controller;
     ScubaInputPanel ip;
@@ -30,7 +30,7 @@ public class GuiTester {
     JToggleButton modSelect;
     JToggleButton bmSelect;
         
-    GuiTester() throws IllegalArgumentException, IllegalAccessException {
+    InputPanelTest() throws IllegalArgumentException, IllegalAccessException {
         controller = new ScubaController();
         ip = new ScubaInputPanel(controller);
 
@@ -97,7 +97,7 @@ public class GuiTester {
             if (depthSpinner != null) {
                 Assert.assertEquals(d, (double) depthSpinner.getValue(), 0.01);
             } else {
-                System.out.println("GuiTester: depthSpinner not found");
+                System.out.println("inputPanelTest: depthSpinner not found");
                 break;
             }
         }
@@ -110,7 +110,7 @@ public class GuiTester {
             if (oxygenFractionSpinner != null) {
                 Assert.assertEquals(o, (double) oxygenFractionSpinner.getValue(), 0.01);
             } else {
-                System.out.println("GuiTester: oxygenFractionSpinner not found");
+                System.out.println("inputPanelTest: oxygenFractionSpinner not found");
                 break;
             }
         }
@@ -123,7 +123,7 @@ public class GuiTester {
             if (partialPressureSpinner != null) {
                 Assert.assertEquals(p, (double) partialPressureSpinner.getValue(), 0.01);
             } else {
-                System.out.println("GuiTester: partialPressureSpinner not found");
+                System.out.println("inputPanelTest: partialPressureSpinner not found");
                 break;
             }
         }
