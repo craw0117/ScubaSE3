@@ -74,7 +74,7 @@ public class ScubaTables {
         table.getColumnModel().getColumn(0).setMaxWidth(100);
         for (int i = 1; i < table.getColumnCount(); i++) {
             table.getColumnModel().getColumn(i).setMinWidth(40);
-            table.getColumnModel().getColumn(i).setMaxWidth(40);
+            table.getColumnModel().getColumn(i).setPreferredWidth(40);
         }
         return table;
     }
