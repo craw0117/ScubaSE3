@@ -27,8 +27,21 @@ public class Const {
     public static final String UNIT_PERCENT = "%";
     
     // Oxygen bounds
-    public static final int OXYGEN_MINIMUM = 22;
-    public static final int OXYGEN_MAXIMUM = 50;
+    public static final double OXYGEN_MINIMUM = 0.22;
+    public static final double OXYGEN_MAXIMUM = 0.50;
+    public static final double OXYGEN_INC = 0.01;
+    
+    // Partial Pressure bounds
+    public static final double PP_MINIMUM = 1.1;
+    public static final double PP_MAXIMUM = 1.6;
+    public static final double PP_INC = 0.1;
+
+    
+    // Depth
+    public static final double DEPTH_MINIMUM = 0;
+    public static final double DEPTH_MAXIMUM = 100;
+    public static final double DEPTH_INC = 1.0;
+    
 
     // Decimal format objects for output
     public static final DecimalFormat DF_PP = new DecimalFormat("0.00");

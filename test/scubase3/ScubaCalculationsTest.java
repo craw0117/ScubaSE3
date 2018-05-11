@@ -14,36 +14,6 @@ public class ScubaCalculationsTest {
     JTable ppTable = ScubaTables.createPPTable();
     JTable eadTable = ScubaTables.createEADTable();
 
-    /**
-     * TestData class contains common variables and values to reduce duplicate
-     * code, also allows test data to be easily inserted into an array and
-     * iterated over.
-     */
-    private class TestData {
-
-        public double inputA;
-        public double inputB;
-        public String expectedResult;
-
-        public TestData(double inputA, double inputB, String expectedResult) {
-            this.inputA = inputA;
-            this.inputB = inputB;
-            this.expectedResult = expectedResult;
-        }
-
-        /**
-         * Returns "Test passed!" or "Test failed!" based on whether the
-         * expected result is equal to the actual result
-         *
-         * @param result
-         * @return
-         */
-        public String getTestStatus(String result) {
-            assertEquals(expectedResult, result);
-            return result.equals(expectedResult) ? "Test passed!" : "Test failed!";
-        }
-    }
-
     @Test
     public void calculateMODTest() {
         TestData td = new TestData(1.3, 0.36, Const.DF_DEPTH.format(26.11));
@@ -162,5 +132,7 @@ public class ScubaCalculationsTest {
         System.out.println("eadTableTest3() - "
                 + td.getTestStatus((String) eadTable.getModel().getValueAt(32, 23)));
     }
+    
+    
 
 }

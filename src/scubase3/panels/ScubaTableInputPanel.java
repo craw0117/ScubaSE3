@@ -247,7 +247,10 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
      */
     private void oxygenFractionSpinnerStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_oxygenFractionSpinnerStateChanged
     {//GEN-HEADEREND:event_oxygenFractionSpinnerStateChanged
-       updateParams();
+      if ((double)oxygenFractionSpinner.getValue() <= (double)oxygenFractionSpinner1.getValue())
+            updateParams();
+        else
+            update(); //erase the change
     }//GEN-LAST:event_oxygenFractionSpinnerStateChanged
 
     /**
@@ -257,7 +260,10 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
      */
     private void depthSpinnerStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_depthSpinnerStateChanged
     {//GEN-HEADEREND:event_depthSpinnerStateChanged
-       updateParams();
+        if ((double)depthSpinner.getValue() <= (double)depthSpinner1.getValue())
+            updateParams();
+        else
+            update(); //erase the change
     }//GEN-LAST:event_depthSpinnerStateChanged
 
     private void eadTableSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eadTableSelectActionPerformed
@@ -269,11 +275,17 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_ppTableSelectActionPerformed
 
     private void oxygenFractionSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_oxygenFractionSpinner1StateChanged
-       updateParams();
+       if ((double)oxygenFractionSpinner.getValue() <= (double)oxygenFractionSpinner1.getValue())
+            updateParams();
+        else
+            update(); //erase the change
     }//GEN-LAST:event_oxygenFractionSpinner1StateChanged
 
     private void depthSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_depthSpinner1StateChanged
-       updateParams();
+       if ((double)depthSpinner.getValue() <= (double)depthSpinner1.getValue())
+            updateParams();
+        else
+            update(); //erase the change
     }//GEN-LAST:event_depthSpinner1StateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

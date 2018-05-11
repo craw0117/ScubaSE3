@@ -2,6 +2,7 @@ package scubase3.panels;
 
 import javax.swing.JSpinner.DefaultEditor;
 import scubase3.Const;
+import scubase3.ScubaController;
 import scubase3.ScubaSE3;
 
 /**
@@ -11,25 +12,35 @@ import scubase3.ScubaSE3;
  */
 public final class ScubaInputPanel extends javax.swing.JPanel {
 
+    private ScubaController controller;
+
     /**
      * Default constructor for ScubaInputPanel
      */
     public ScubaInputPanel() {
         initComponents();
+        controller = null;
+    }
+    public ScubaInputPanel(ScubaController controller) {
+        initComponents();
+        this.controller = controller;
     }
 
     /**
      * Updates dynamic components - must be called after state change.
      */
     public void update() {
-        String calculationType = ScubaSE3.getController().getCalculationType();
+        if (controller == null)
+            controller = ScubaSE3.getController();
+        
+        String calculationType = controller.getCalculationType();
         if (calculationType != null && !calculationType.isEmpty()) {
-            int inputFlags = ScubaSE3.getController().getInputFlags();
+            int inputFlags = controller.getInputFlags();
 
             //Update inputs using the currently stored values
-            partialPressureSpinner.setValue(ScubaSE3.getController().getPartialPressure());
-            oxygenFractionSpinner.setValue(ScubaSE3.getController().getOxygenFraction());
-            depthSpinner.setValue(ScubaSE3.getController().getDepth());
+            partialPressureSpinner.setValue(controller.getPartialPressure());
+            oxygenFractionSpinner.setValue(controller.getOxygenFraction());
+            depthSpinner.setValue(controller.getDepth());
 
             //Check flags to display each input
             partialPressurePanel.setVisible((inputFlags & Const.FLAG_O2_PRESSURE) == Const.FLAG_O2_PRESSURE);
@@ -253,7 +264,7 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         depthLabel.setText("Depth (m)");
         depthPanel.add(depthLabel);
 
-        depthSpinner.setModel(new javax.swing.SpinnerNumberModel(33.3d, 0.0d, 100.0d, 0.1d));
+        depthSpinner.setModel(new javax.swing.SpinnerNumberModel(33.0d, 0.0d, 100.0d, 1.0d));
         depthSpinner.setAlignmentX(0.0F);
         depthSpinner.setMaximumSize(new java.awt.Dimension(250, 24));
         depthSpinner.setMinimumSize(new java.awt.Dimension(100, 25));
@@ -300,7 +311,7 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
      */
     private void ppSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ppSelectActionPerformed
     {//GEN-HEADEREND:event_ppSelectActionPerformed
-        ScubaSE3.getController().setCalculationType(Const.TYPE_PP);
+        controller.setCalculationType(Const.TYPE_PP);
     }//GEN-LAST:event_ppSelectActionPerformed
 
     /**
@@ -310,7 +321,7 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
      */
     private void eadSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_eadSelectActionPerformed
     {//GEN-HEADEREND:event_eadSelectActionPerformed
-        ScubaSE3.getController().setCalculationType(Const.TYPE_EAD);
+        controller.setCalculationType(Const.TYPE_EAD);
     }//GEN-LAST:event_eadSelectActionPerformed
 
     /**
@@ -320,7 +331,7 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
      */
     private void modSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_modSelectActionPerformed
     {//GEN-HEADEREND:event_modSelectActionPerformed
-        ScubaSE3.getController().setCalculationType(Const.TYPE_MOD);
+        controller.setCalculationType(Const.TYPE_MOD);
     }//GEN-LAST:event_modSelectActionPerformed
 
     /**
@@ -330,7 +341,7 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
      */
     private void bmSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_bmSelectActionPerformed
     {//GEN-HEADEREND:event_bmSelectActionPerformed
-        ScubaSE3.getController().setCalculationType(Const.TYPE_BM);
+        controller.setCalculationType(Const.TYPE_BM);
     }//GEN-LAST:event_bmSelectActionPerformed
 
     /**
@@ -340,7 +351,7 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
      */
     private void smodSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_smodSelectActionPerformed
     {//GEN-HEADEREND:event_smodSelectActionPerformed
-        ScubaSE3.getController().setCalculationType(Const.TYPE_SMOD);
+        controller.setCalculationType(Const.TYPE_SMOD);
     }//GEN-LAST:event_smodSelectActionPerformed
 
     /**
@@ -350,8 +361,8 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
      */
     private void partialPressureSpinnerStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_partialPressureSpinnerStateChanged
     {//GEN-HEADEREND:event_partialPressureSpinnerStateChanged
-        ScubaSE3.getController().setPartialPressure((double) ((javax.swing.JSpinner) evt.getSource()).getValue());
-        ScubaSE3.getController().setCalculationType(ScubaSE3.getController().getCalculationType());
+        controller.setPartialPressure((double) ((javax.swing.JSpinner) evt.getSource()).getValue());
+        controller.setCalculationType(controller.getCalculationType());
     }//GEN-LAST:event_partialPressureSpinnerStateChanged
 
     /**
@@ -361,8 +372,8 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
      */
     private void oxygenFractionSpinnerStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_oxygenFractionSpinnerStateChanged
     {//GEN-HEADEREND:event_oxygenFractionSpinnerStateChanged
-        ScubaSE3.getController().setOxygenFraction((double) ((javax.swing.JSpinner) evt.getSource()).getValue());
-        ScubaSE3.getController().setCalculationType(ScubaSE3.getController().getCalculationType());
+        controller.setOxygenFraction((double) ((javax.swing.JSpinner) evt.getSource()).getValue());
+        controller.setCalculationType(controller.getCalculationType());
     }//GEN-LAST:event_oxygenFractionSpinnerStateChanged
 
     /**
@@ -372,8 +383,8 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
      */
     private void depthSpinnerStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_depthSpinnerStateChanged
     {//GEN-HEADEREND:event_depthSpinnerStateChanged
-        ScubaSE3.getController().setDepth((double) ((javax.swing.JSpinner) evt.getSource()).getValue());
-        ScubaSE3.getController().setCalculationType(ScubaSE3.getController().getCalculationType());
+        controller.setDepth((double) ((javax.swing.JSpinner) evt.getSource()).getValue());
+        controller.setCalculationType(controller.getCalculationType());
     }//GEN-LAST:event_depthSpinnerStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

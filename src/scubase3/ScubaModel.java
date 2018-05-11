@@ -48,6 +48,14 @@ public class ScubaModel {
     }
 
     /**
+     * Stub constructor normally used for testing.
+     */
+    ScubaModel() {
+        view = null;
+        initState();
+    }
+
+    /**
      * Default state setup. Calculation type is set to EAD and input flags are
      * set accordingly, Table type is set to EAD and both the tables are
      * generated.
@@ -58,7 +66,7 @@ public class ScubaModel {
 
         partialPressure = 1.40;
         oxygenFraction = 0.33;
-        depth = 33.3;
+        depth = 33.0;
 
         tableType = Const.TYPE_EAD;
 
@@ -76,7 +84,8 @@ public class ScubaModel {
      * @param value
      */
     public void setViewVisibility(boolean value) {
-        view.setVisible(value);
+        if (view != null)
+            view.setVisible(value);
         update();
     }
 
@@ -84,8 +93,11 @@ public class ScubaModel {
      * Forces the ui to update
      */
     public void updateUI() {
-        SwingUtilities.updateComponentTreeUI(view);
-        updateComponentTreeUI(view);
+        if (view != null) {
+            SwingUtilities.updateComponentTreeUI(view);
+            updateComponentTreeUI(view);
+        }
+        
     }
 
     /**
@@ -94,7 +106,8 @@ public class ScubaModel {
      * @see ScubaFrame#update()
      */
     public void update() {
-        view.update();
+        if (view != null)
+            view.update();
     }
 
     /**
@@ -187,6 +200,11 @@ public class ScubaModel {
      * @see #getPartialPressure()rowCount
      */
     public void setPartialPressure(double value) {
+        if (value < Const.PP_MINIMUM || value > Const.PP_MAXIMUM){
+            //flush changes
+            update();
+            return;
+        }
         partialPressure = value;
         update();
     }
@@ -208,6 +226,11 @@ public class ScubaModel {
      * @see #getOxygenFraction()
      */
     public void setOxygenFraction(double value) {
+        if (value < Const.OXYGEN_MINIMUM || value > Const.OXYGEN_MAXIMUM){
+            //flush changes
+            update();
+            return;
+        }
         oxygenFraction = value;
         update();
     }
@@ -229,6 +252,11 @@ public class ScubaModel {
      * @see #getDepth()
      */
     public void setDepth(double value) {
+        if (value < Const.DEPTH_MINIMUM || value > Const.DEPTH_MAXIMUM){
+            //flush changes
+            update();
+            return;
+        }
         depth = value;
         update();
     }
