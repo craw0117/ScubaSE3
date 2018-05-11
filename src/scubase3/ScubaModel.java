@@ -57,7 +57,7 @@ public class ScubaModel {
         inputFlags = Const.FLAG_DEPTH | Const.FLAG_O2_FRACTION;
 
         partialPressure = 1.40;
-        oxygenFraction = 0.32;
+        oxygenFraction = 0.33;
         depth = 33.3;
 
         tableType = Const.TYPE_EAD;
