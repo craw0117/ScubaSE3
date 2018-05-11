@@ -313,8 +313,6 @@ public class ScubaFrame extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }//GEN-LAST:event_sHelpDocsButtonActionPerformed
 
     private void tabsTabsTabsTabsStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabsTabsTabsTabsStateChanged

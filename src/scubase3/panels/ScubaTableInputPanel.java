@@ -138,7 +138,7 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
         oxygenFractionLabel.setText("Min Oxygen Percent (Fg)");
         oxygenFractionPanel.add(oxygenFractionLabel);
 
-        oxygenFractionSpinner.setModel(new javax.swing.SpinnerNumberModel(0.18d, 0.18d, 0.5d, 0.1d));
+        oxygenFractionSpinner.setModel(new javax.swing.SpinnerNumberModel(0.18d, 0.18d, 0.5d, 0.01d));
         oxygenFractionSpinner.setAlignmentX(0.0F);
         oxygenFractionSpinner.setMaximumSize(new java.awt.Dimension(250, 24));
         oxygenFractionSpinner.setMinimumSize(new java.awt.Dimension(100, 25));
@@ -163,7 +163,7 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
         oxygenFractionLabel1.setText("Max Oxygen Percent (Fg)");
         oxygenFractionPanel.add(oxygenFractionLabel1);
 
-        oxygenFractionSpinner1.setModel(new javax.swing.SpinnerNumberModel(0.5d, 0.18d, 0.5d, 0.1d));
+        oxygenFractionSpinner1.setModel(new javax.swing.SpinnerNumberModel(0.5d, 0.18d, 0.5d, 0.01d));
         oxygenFractionSpinner1.setAlignmentX(0.0F);
         oxygenFractionSpinner1.setMaximumSize(new java.awt.Dimension(250, 24));
         oxygenFractionSpinner1.setMinimumSize(new java.awt.Dimension(100, 25));
@@ -229,7 +229,7 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
                 depthSpinner1StateChanged(evt);
             }
         });
-        ((DefaultEditor) depthSpinner.getEditor()).getTextField().setEditable(false);
+        ((DefaultEditor) depthSpinner1.getEditor()).getTextField().setEditable(false);
         depthPanel.add(depthSpinner1);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
