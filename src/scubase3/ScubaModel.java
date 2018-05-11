@@ -350,6 +350,10 @@ public class ScubaModel {
      * @see #getPPTable()
      */
     public JTable getEADTable() {
+        eadTable =  ScubaTables.createEADTable((int) Math.round(tableParams[0]*100),
+                                               (int) Math.round(tableParams[1]*100),
+                                               (int) Math.round(tableParams[2]), 
+                                               (int) Math.round(tableParams[3]));
         return eadTable;
     }
 
@@ -360,6 +364,12 @@ public class ScubaModel {
      * @see #getEADTable()
      */
     public JTable getPPTable() {
+        ppTable =  ScubaTables.createPPTable((int) Math.round(tableParams[0]*100),
+                                               (int) Math.round(tableParams[1]*100),
+                                               (int) Math.round(tableParams[2]), 
+                                               (int) Math.round(tableParams[3]));
+        
         return ppTable;
     }
 }
+    
