@@ -98,7 +98,8 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(400, 400));
         setLayout(new java.awt.GridBagLayout());
 
-        outputLHS.setPreferredSize(new java.awt.Dimension(150, 300));
+        outputLHS.setAlignmentY(0.5F);
+        outputLHS.setPreferredSize(new java.awt.Dimension(200, 345));
         outputLHS.setLayout(new javax.swing.OverlayLayout(outputLHS));
 
         controls.setOpaque(false);
@@ -141,18 +142,16 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 110;
-        gridBagConstraints.ipady = 240;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         add(outputLHS, gridBagConstraints);
 
-        outputRHS.setPreferredSize(new java.awt.Dimension(150, 300));
+        outputRHS.setMinimumSize(new java.awt.Dimension(100, 400));
         outputRHS.setLayout(new java.awt.GridBagLayout());
 
         outputText.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         outputText.setText("[This is the output area]");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -162,9 +161,10 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 89;
-        gridBagConstraints.ipady = 286;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         add(outputRHS, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 

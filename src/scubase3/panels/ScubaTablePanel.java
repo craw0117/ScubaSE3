@@ -69,8 +69,7 @@ public class ScubaTablePanel extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
         tableButtonGroup = new javax.swing.ButtonGroup();
@@ -86,12 +85,9 @@ public class ScubaTablePanel extends javax.swing.JPanel {
 
         tableDisplay.setBackground(new java.awt.Color(0, 0, 0));
         tableDisplay.setMinimumSize(new java.awt.Dimension(0, 0));
-        tableDisplay.setPreferredSize(new java.awt.Dimension(1000, 500));
         tableDisplay.setRequestFocusEnabled(false);
         tableDisplay.setLayout(new java.awt.GridBagLayout());
 
-        eadTable.setMinimumSize(new java.awt.Dimension(1000, 500));
-        eadTable.setPreferredSize(new java.awt.Dimension(1000, 0));
         eadTable.setLayout(new java.awt.BorderLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -121,6 +117,8 @@ public class ScubaTablePanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 10;
+        gridBagConstraints.ipady = 10;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         add(tableScrollPane, gridBagConstraints);

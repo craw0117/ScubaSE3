@@ -119,7 +119,7 @@
             <Component class="javax.swing.JSpinner" name="oxygenFractionSpinner">
               <Properties>
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0.18" maximum="0.5" minimum="0.18" numberType="java.lang.Double" stepSize="0.01" type="number"/>
+                  <SpinnerModel initial="0.18" maximum="0.5" minimum="0.18" numberType="java.lang.Double" stepSize="0.1" type="number"/>
                 </Property>
                 <Property name="alignmentX" type="float" value="0.0"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -164,7 +164,7 @@
             <Component class="javax.swing.JSpinner" name="oxygenFractionSpinner1">
               <Properties>
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="0.5" maximum="0.5" minimum="0.18" numberType="java.lang.Double" stepSize="0.01" type="number"/>
+                  <SpinnerModel initial="0.5" maximum="0.5" minimum="0.18" numberType="java.lang.Double" stepSize="0.1" type="number"/>
                 </Property>
                 <Property name="alignmentX" type="float" value="0.0"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -274,7 +274,7 @@
                 <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="depthSpinner1StateChanged"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="((DefaultEditor) depthSpinner1.getEditor()).getTextField().setEditable(false);"/>
+                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="((DefaultEditor) depthSpinner.getEditor()).getTextField().setEditable(false);"/>
               </AuxValues>
             </Component>
           </SubComponents>
