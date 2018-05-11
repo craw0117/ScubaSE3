@@ -138,6 +138,7 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
         oxygenFractionSpinner.setModel(new javax.swing.SpinnerNumberModel(0.18d, 0.18d, 0.5d, 0.01d));
         oxygenFractionSpinner.setAlignmentX(0.0F);
         oxygenFractionSpinner.setMinimumSize(new java.awt.Dimension(100, 25));
+        oxygenFractionSpinner.setValue(22);
         oxygenFractionSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 oxygenFractionSpinnerStateChanged(evt);
@@ -161,6 +162,7 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
         oxygenFractionSpinner1.setModel(new javax.swing.SpinnerNumberModel(0.5d, 0.18d, 0.5d, 0.01d));
         oxygenFractionSpinner1.setAlignmentX(0.0F);
         oxygenFractionSpinner1.setMinimumSize(new java.awt.Dimension(100, 25));
+        oxygenFractionSpinner1.setValue(50.0);
         oxygenFractionSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 oxygenFractionSpinner1StateChanged(evt);
