@@ -44,6 +44,9 @@ public class ScubaFrame extends javax.swing.JFrame {
         sInputPanel.update();
         sOutputPanel.update();
         sTablePanel.update();
+        sTableInputPanel.update();
+        
+        tabsTabsTabsTabs.setSelectedIndex(controller.getTabView());
     }
 
     /**
@@ -54,13 +57,17 @@ public class ScubaFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
-        sVerticalSplitPane = new javax.swing.JSplitPane();
+        scubaTables1 = new scubase3.ScubaTables();
+        tabsTabsTabsTabs = new javax.swing.JTabbedPane();
+        theOneWithoutTables = new javax.swing.JPanel();
         sSplitPane = new javax.swing.JSplitPane();
         sOutputPanel = new scubase3.panels.ScubaOutputPanel();
         sInputPanel = new scubase3.panels.ScubaInputPanel();
+        theOneWithTables = new javax.swing.JPanel();
+        tVerticalSplitPane = new javax.swing.JSplitPane();
         sTablePanel = new scubase3.panels.ScubaTablePanel();
+        sTableInputPanel = new scubase3.panels.ScubaTableInputPanel();
         sMenuBar = new javax.swing.JMenuBar();
         sFileMenu = new javax.swing.JMenu();
         sFileSeparator2 = new javax.swing.JPopupMenu.Separator();
@@ -80,11 +87,9 @@ public class ScubaFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dive Calculator Version 0.2 PRERELEASE");
         setMinimumSize(new java.awt.Dimension(960, 768));
-        setPreferredSize(null);
-        getContentPane().setLayout(new java.awt.GridBagLayout());
+        getContentPane().setLayout(new java.awt.GridLayout());
 
-        sVerticalSplitPane.setDividerSize(3);
-        sVerticalSplitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        theOneWithoutTables.setLayout(new java.awt.GridLayout());
 
         sSplitPane.setDividerSize(3);
 
@@ -94,16 +99,21 @@ public class ScubaFrame extends javax.swing.JFrame {
         sInputPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         sSplitPane.setLeftComponent(sInputPanel);
 
-        sVerticalSplitPane.setLeftComponent(sSplitPane);
+        theOneWithoutTables.add(sSplitPane);
 
-        sTablePanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        sVerticalSplitPane.setRightComponent(sTablePanel);
+        tabsTabsTabsTabs.addTab("Calculator", theOneWithoutTables);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        getContentPane().add(sVerticalSplitPane, gridBagConstraints);
+        theOneWithTables.setLayout(new java.awt.GridLayout());
+
+        tVerticalSplitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        tVerticalSplitPane.setBottomComponent(sTablePanel);
+        tVerticalSplitPane.setLeftComponent(sTableInputPanel);
+
+        theOneWithTables.add(tVerticalSplitPane);
+
+        tabsTabsTabsTabs.addTab("Tables", theOneWithTables);
+
+        getContentPane().add(tabsTabsTabsTabs);
 
         sFileMenu.setText("File");
         sFileMenu.add(sFileSeparator2);
@@ -319,8 +329,13 @@ public class ScubaFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem sPPTableButton;
     private javax.swing.JMenuItem sSMODButton;
     private javax.swing.JSplitPane sSplitPane;
+    private scubase3.panels.ScubaTableInputPanel sTableInputPanel;
     private scubase3.panels.ScubaTablePanel sTablePanel;
     private javax.swing.JMenu sTablesMenu;
-    private javax.swing.JSplitPane sVerticalSplitPane;
+    private scubase3.ScubaTables scubaTables1;
+    private javax.swing.JSplitPane tVerticalSplitPane;
+    private javax.swing.JTabbedPane tabsTabsTabsTabs;
+    private javax.swing.JPanel theOneWithTables;
+    private javax.swing.JPanel theOneWithoutTables;
     // End of variables declaration//GEN-END:variables
 }

@@ -31,6 +31,8 @@ public class ScubaModel {
     private JTable eadTable;
     private JTable ppTable;
     private String tableType;
+    private int showTableTab;
+    private Double[] tableParams;
 
     /**
      * Default Constructor for ScubaModel, creates a view object using the
@@ -62,6 +64,10 @@ public class ScubaModel {
 
         eadTable = ScubaTables.createEADTable();
         ppTable = ScubaTables.createPPTable();
+        
+        tableParams = new Double[]{0.18, 0.5, 3.0, 69.0};
+        
+        showTableTab = 0;
     }
 
     /**
@@ -118,30 +124,35 @@ public class ScubaModel {
                 outputValue = ScubaCalculations.calculateEAD(oxygenFraction, depth);
                 outputOxygen = ScubaCalculations.calculateOxygen(oxygenFraction);
                 outputUnit = Const.UNIT_METERS;
+                showTableTab = 0;
                 break;
             case Const.TYPE_MOD:
                 inputFlags = Const.FLAG_O2_PRESSURE | Const.FLAG_O2_FRACTION;
                 outputValue = ScubaCalculations.calculateMOD(partialPressure, oxygenFraction);
                 outputOxygen = ScubaCalculations.calculateOxygen(oxygenFraction);
                 outputUnit = Const.UNIT_METERS;
+                showTableTab = 0;
                 break;
             case Const.TYPE_BM:
                 inputFlags = Const.FLAG_O2_PRESSURE | Const.FLAG_DEPTH;
                 outputValue = ScubaCalculations.calculateBM(partialPressure, depth);
                 outputOxygen = outputValue;
                 outputUnit = Const.UNIT_PERCENT;
+                showTableTab = 0;
                 break;
             case Const.TYPE_PP:
                 inputFlags = Const.FLAG_O2_FRACTION | Const.FLAG_DEPTH;
                 outputValue = ScubaCalculations.calculatePP(oxygenFraction, depth);
                 outputOxygen = ScubaCalculations.calculateOxygen(oxygenFraction);
                 outputUnit = Const.UNIT_ATA;
+                showTableTab = 0;
                 break;
             case Const.TYPE_SMOD:
                 inputFlags = Const.FLAG_O2_FRACTION;
                 outputValue = ScubaCalculations.calculateSMOD(oxygenFraction);
                 outputOxygen = ScubaCalculations.calculateOxygen(oxygenFraction);
                 outputUnit = Const.UNIT_METERS;
+                showTableTab = 0;
                 break;
             default:
                 throw new java.lang.Error("Invalid calculation type: " + value);
@@ -150,6 +161,15 @@ public class ScubaModel {
         update();
     }
 
+    public void setTabView(int value) {
+        showTableTab = value;
+        
+        update();
+    }
+    public int getTabView() {
+        return showTableTab;
+    }
+    
     /**
      * Gets the partial pressure value stored in the model
      *
@@ -164,7 +184,7 @@ public class ScubaModel {
      * Sets the partial pressure value and updates the view.
      *
      * @param value a value between 1.1 and 1.6
-     * @see #getPartialPressure()
+     * @see #getPartialPressure()rowCount
      */
     public void setPartialPressure(double value) {
         partialPressure = value;
@@ -258,6 +278,34 @@ public class ScubaModel {
      */
     public void setTableType(String value) {
         tableType = value;
+        showTableTab = 1;
+        update();
+    }
+    
+    /**
+     * Gets the table params in an array 
+     *
+     * @return Params in an array {OxyMin, OxyMax, depthMin, depthMax}
+     * @see #setTableParams(double OxyMin, double OxyMax, double depthMin, double depthMax)
+     */
+    public Double[] getTableParams() {
+        return tableParams;
+    }
+    
+    /**
+     * Sets the table parameters
+     *
+     * @param OxyMin Minmum oxygen percentage eg 0.22
+     * @param OxyMax Maximum oxygen percentage eg 0.50
+     * @param depthMin Min depth eg 33.0
+     * @param depthMax Max depth eg 3.0
+     * @see #getTableParams()
+     */
+    public void setTableParams(double OxyMin, double OxyMax, double depthMin, double depthMax) {
+        tableParams[0] = OxyMin;
+        tableParams[1] = OxyMax;
+        tableParams[2] = depthMin;
+        tableParams[3] = depthMax;
         update();
     }
 
