@@ -1,5 +1,6 @@
 package scubase3;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
@@ -309,14 +310,17 @@ public class ScubaFrame extends javax.swing.JFrame {
             File temp = File.createTempFile("test", ".html");
             Files.copy(in, temp.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
-            //load from temp file
-            URL url = temp.toURI().toURL();
-            JEditorPane pane = new JEditorPane(url);
-            frame.add(new JScrollPane(pane));
-            frame.pack();
-            frame.setSize(450, 350);
-            frame.setLocationByPlatform(true);
-            frame.setVisible(true);
+            //load from temp file in jframe
+            //URL url = temp.toURI().toURL();
+            //JEditorPane pane = new JEditorPane(url);
+            //frame.add(new JScrollPane(pane));
+            //frame.pack();
+            //frame.setSize(450, 350);
+            //frame.setLocationByPlatform(true);
+            //frame.setVisible(true);
+            
+            //load temp file to a HTML browser
+            Desktop.getDesktop().browse(temp.toURI());
         } catch (Exception e) {
             e.printStackTrace();
         }
