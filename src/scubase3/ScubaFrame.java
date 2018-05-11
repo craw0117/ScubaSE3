@@ -87,9 +87,15 @@ public class ScubaFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dive Calculator Version 0.2 PRERELEASE");
         setMinimumSize(new java.awt.Dimension(960, 768));
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
-        theOneWithoutTables.setLayout(new java.awt.GridLayout());
+        tabsTabsTabsTabs.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                tabsTabsTabsTabsStateChanged(evt);
+            }
+        });
+
+        theOneWithoutTables.setLayout(new java.awt.GridLayout(1, 0));
 
         sSplitPane.setDividerSize(3);
 
@@ -103,7 +109,7 @@ public class ScubaFrame extends javax.swing.JFrame {
 
         tabsTabsTabsTabs.addTab("Calculator", theOneWithoutTables);
 
-        theOneWithTables.setLayout(new java.awt.GridLayout());
+        theOneWithTables.setLayout(new java.awt.GridLayout(1, 0));
 
         tVerticalSplitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         tVerticalSplitPane.setBottomComponent(sTablePanel);
@@ -310,6 +316,10 @@ public class ScubaFrame extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_sHelpDocsButtonActionPerformed
+
+    private void tabsTabsTabsTabsStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabsTabsTabsTabsStateChanged
+        controller.setTabView(((javax.swing.JTabbedPane) evt.getSource()).getSelectedIndex());
+    }//GEN-LAST:event_tabsTabsTabsTabsStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem sBMButton;

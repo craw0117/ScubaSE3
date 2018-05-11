@@ -64,7 +64,8 @@ public class ScubaController {
      * @see ScubaModel#setTabView()
      */
     public void setTabView(int value) {
-        model.setTabView(value);
+        if (model!=null)
+            model.setTabView(value);
     }
     
     
