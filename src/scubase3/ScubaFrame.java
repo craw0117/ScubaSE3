@@ -86,7 +86,7 @@ public class ScubaFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dive Calculator Version 0.2 PRERELEASE");
-        setMinimumSize(new java.awt.Dimension(960, 768));
+        setMinimumSize(new java.awt.Dimension(730, 597));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         tabsTabsTabsTabs.addChangeListener(new javax.swing.event.ChangeListener() {
