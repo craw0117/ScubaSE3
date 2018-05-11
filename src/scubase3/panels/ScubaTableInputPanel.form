@@ -167,7 +167,7 @@
                   <Dimension value="[100, 25]"/>
                 </Property>
                 <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="50.0" type="code"/>
+                  <Connection code="0.50" type="code"/>
                 </Property>
               </Properties>
               <Events>
