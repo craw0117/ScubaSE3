@@ -40,14 +40,11 @@ public class ScubaTables {
      * Creates a "new" TableData object which contains the column and row
      * headers which are the same regardless of which table type is selected.
      *
-     * @param columnCount
-     * @param rowCount
-     * @param oxygenMinimum
-     * @param depthMinimum
-     * @param depthMultiplier
      * @return
      */
-    private static TableData createTableData(int columnCount, int rowCount, int oxygenMinimum, int depthMinimum, int depthMultiplier) {
+    private static TableData createTableData(int oxygenMinimum, int oxygenMaximum, int depthMinimum, int depthMaximum) {
+        int rowCount = (oxygenMaximum - oxygenMinimum) + 1;
+        int columnCount = ((depthMaximum - depthMinimum) / 3) + 2;
         TableData tableData = new TableData(rowCount, columnCount);
         tableData.columns[0] = "Oxygen/Depth";
         for (int i = 0; i < tableData.oxygen.length; i++) {
@@ -55,7 +52,7 @@ public class ScubaTables {
             tableData.data[i][0] = tableData.oxygen[i] + Const.UNIT_PERCENT;
         }
         for (int j = 1; j < tableData.depth.length; j++) {
-            tableData.depth[j] = depthMinimum + (j * depthMultiplier);
+            tableData.depth[j] = depthMinimum + ((j - 1) * 3);
             tableData.columns[j] = tableData.depth[j] + Const.UNIT_METERS;
         }
         return tableData;
@@ -87,7 +84,7 @@ public class ScubaTables {
      * depthMinimum, int depthMultiplier)
      */
     public static JTable createPPTable() {
-        return createPPTable(24, 33, 18, 0, 3);
+        return createPPTable(18, 50, 3, 69);
     }
 
     /**
@@ -99,37 +96,33 @@ public class ScubaTables {
      * int depthMinimum, int depthMultiplier)
      */
     public static JTable createEADTable() {
-        return createEADTable(24, 33, 18, 0, 3);
+        return createEADTable(18, 50, 3, 69);
     }
 
     /**
      * Creates a Partial Pressure information table using custom parameters, if
      * provided parameters are invalid, null will be returned instead.
      *
-     * @param columnCount
-     * @param rowCount
      * @param oxygenMinimum
+     * @param oxygenMaximum
      * @param depthMinimum
-     * @param depthMultiplier
+     * @param depthMaximum
      * @return
      */
-    public static JTable createPPTable(int columnCount, int rowCount, int oxygenMinimum, int depthMinimum, int depthMultiplier) {
-        if (columnCount > 1 && rowCount > 1 && oxygenMinimum >= 0 && depthMinimum >= 0 && depthMultiplier > 0) {
-            TableData tableData = createTableData(columnCount, rowCount, oxygenMinimum, depthMinimum, depthMultiplier);
-            // Calculate data and insert it into the table
-            for (int i = 0; i < tableData.data.length; i++) {
-                for (int j = 1; j < tableData.data[i].length; j++) {
-                    double result = ScubaCalculations.calculateRawPP(tableData.oxygen[i] / 100.0, tableData.depth[j]);
-                    if (result > 1.6) {
-                        tableData.data[i][j] = Const.UNSAFE_OUTPUT_VALUE;
-                    } else {
-                        tableData.data[i][j] = Const.DF_PP.format(result);
-                    }
+    public static JTable createPPTable(int oxygenMinimum, int oxygenMaximum, int depthMinimum, int depthMaximum) {
+        TableData tableData = createTableData(oxygenMinimum, oxygenMaximum, depthMinimum, depthMaximum);
+        // Calculate data and insert it into the table
+        for (int i = 0; i < tableData.data.length; i++) {
+            for (int j = 1; j < tableData.data[i].length; j++) {
+                double result = ScubaCalculations.calculateRawPP(tableData.oxygen[i] / 100.0, tableData.depth[j]);
+                if (result > 1.6) {
+                    tableData.data[i][j] = Const.UNSAFE_OUTPUT_VALUE;
+                } else {
+                    tableData.data[i][j] = Const.DF_PP.format(result);
                 }
             }
-            return createJTableFromTableData(tableData);
         }
-        return null;
+        return createJTableFromTableData(tableData);
     }
 
     /**
@@ -137,32 +130,28 @@ public class ScubaTables {
      * parameters, if provided parameters are invalid, null will be returned
      * instead.
      *
-     * @param columnCount
-     * @param rowCount
      * @param oxygenMinimum
+     * @param oxygenMaximum
      * @param depthMinimum
-     * @param depthMultiplier
+     * @param depthMaximum
      * @return
      */
-    public static JTable createEADTable(int columnCount, int rowCount, int oxygenMinimum, int depthMinimum, int depthMultiplier) {
-        if (columnCount > 1 && rowCount > 1 && oxygenMinimum >= 0 && depthMinimum >= 0 && depthMultiplier > 0) {
-            TableData tableData = createTableData(columnCount, rowCount, oxygenMinimum, depthMinimum, depthMultiplier);
-            // Calculate data and insert it into the table
-            for (int i = 0; i < tableData.data.length; i++) {
-                for (int j = 1; j < tableData.data[i].length; j++) {
-                    double partialPressure = ScubaCalculations.calculateRawPP(tableData.oxygen[i] / 100.0, tableData.depth[j]);
-                    double result = ScubaCalculations.calculateRawEAD(tableData.oxygen[i] / 100.0, tableData.depth[j]);
-                    if (result < 0) {
-                        tableData.data[i][j] = Const.DF_DEPTH.format(0);
-                    } else if (partialPressure <= 1.6) {
-                        tableData.data[i][j] = Const.DF_DEPTH.format(result);
-                    } else {
-                        tableData.data[i][j] = Const.UNSAFE_OUTPUT_VALUE;
-                    }
+    public static JTable createEADTable(int oxygenMinimum, int oxygenMaximum, int depthMinimum, int depthMaximum) {
+        TableData tableData = createTableData(oxygenMinimum, oxygenMaximum, depthMinimum, depthMaximum);
+        // Calculate data and insert it into the table
+        for (int i = 0; i < tableData.data.length; i++) {
+            for (int j = 1; j < tableData.data[i].length; j++) {
+                double partialPressure = ScubaCalculations.calculateRawPP(tableData.oxygen[i] / 100.0, tableData.depth[j]);
+                double result = ScubaCalculations.calculateRawEAD(tableData.oxygen[i] / 100.0, tableData.depth[j]);
+                if (result < 0) {
+                    tableData.data[i][j] = Const.DF_DEPTH.format(0);
+                } else if (partialPressure <= 1.6) {
+                    tableData.data[i][j] = Const.DF_DEPTH.format(result);
+                } else {
+                    tableData.data[i][j] = Const.UNSAFE_OUTPUT_VALUE;
                 }
             }
-            return createJTableFromTableData(tableData);
         }
-        return null;
+        return createJTableFromTableData(tableData);
     }
 }
