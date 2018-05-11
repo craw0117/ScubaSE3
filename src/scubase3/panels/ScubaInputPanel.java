@@ -79,8 +79,8 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
 
         jMenu1.setText("jMenu1");
 
-        setMinimumSize(new java.awt.Dimension(320, 312));
-        setPreferredSize(new java.awt.Dimension(320, 312));
+        setMinimumSize(new java.awt.Dimension(280, 262));
+        setPreferredSize(new java.awt.Dimension(280, 262));
         setLayout(new java.awt.GridBagLayout());
 
         inputToolBar.setBorder(null);

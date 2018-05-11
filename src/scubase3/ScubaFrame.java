@@ -46,7 +46,7 @@ public class ScubaFrame extends javax.swing.JFrame {
         sTablePanel.update();
         sTableInputPanel.update();
         
-        tabsTabsTabsTabs.setSelectedIndex(controller.getTabView());
+        sTabPane.setSelectedIndex(controller.getTabView());
     }
 
     /**
@@ -59,12 +59,12 @@ public class ScubaFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         scubaTables1 = new scubase3.ScubaTables();
-        tabsTabsTabsTabs = new javax.swing.JTabbedPane();
-        theOneWithoutTables = new javax.swing.JPanel();
+        sTabPane = new javax.swing.JTabbedPane();
+        sCalculator = new javax.swing.JPanel();
         sSplitPane = new javax.swing.JSplitPane();
         sOutputPanel = new scubase3.panels.ScubaOutputPanel();
         sInputPanel = new scubase3.panels.ScubaInputPanel();
-        theOneWithTables = new javax.swing.JPanel();
+        sTables = new javax.swing.JPanel();
         tVerticalSplitPane = new javax.swing.JSplitPane();
         sTablePanel = new scubase3.panels.ScubaTablePanel();
         sTableInputPanel = new scubase3.panels.ScubaTableInputPanel();
@@ -89,13 +89,13 @@ public class ScubaFrame extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(730, 597));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
-        tabsTabsTabsTabs.addChangeListener(new javax.swing.event.ChangeListener() {
+        sTabPane.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                tabsTabsTabsTabsStateChanged(evt);
+                sTabPaneStateChanged(evt);
             }
         });
 
-        theOneWithoutTables.setLayout(new java.awt.GridLayout(1, 0));
+        sCalculator.setLayout(new java.awt.GridLayout(1, 0));
 
         sSplitPane.setDividerSize(3);
 
@@ -105,14 +105,14 @@ public class ScubaFrame extends javax.swing.JFrame {
         sInputPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         sSplitPane.setLeftComponent(sInputPanel);
 
-        theOneWithoutTables.add(sSplitPane);
+        sCalculator.add(sSplitPane);
 
-        tabsTabsTabsTabs.addTab("Calculator", theOneWithoutTables);
+        sTabPane.addTab("Calculator", sCalculator);
 
-        theOneWithTables.setMinimumSize(new java.awt.Dimension(575, 400));
-        theOneWithTables.setPreferredSize(new java.awt.Dimension(575, 400));
-        theOneWithTables.setRequestFocusEnabled(false);
-        theOneWithTables.setLayout(new java.awt.GridLayout(1, 0));
+        sTables.setMinimumSize(new java.awt.Dimension(575, 400));
+        sTables.setPreferredSize(new java.awt.Dimension(575, 400));
+        sTables.setRequestFocusEnabled(false);
+        sTables.setLayout(new java.awt.GridLayout(1, 0));
 
         tVerticalSplitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         tVerticalSplitPane.setBottomComponent(sTablePanel);
@@ -122,11 +122,11 @@ public class ScubaFrame extends javax.swing.JFrame {
         sTableInputPanel.setPreferredSize(new java.awt.Dimension(573, 150));
         tVerticalSplitPane.setTopComponent(sTableInputPanel);
 
-        theOneWithTables.add(tVerticalSplitPane);
+        sTables.add(tVerticalSplitPane);
 
-        tabsTabsTabsTabs.addTab("Tables", theOneWithTables);
+        sTabPane.addTab("Tables", sTables);
 
-        getContentPane().add(tabsTabsTabsTabs);
+        getContentPane().add(sTabPane);
 
         sFileMenu.setText("File");
         sFileMenu.add(sFileSeparator2);
@@ -322,13 +322,14 @@ public class ScubaFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_sHelpDocsButtonActionPerformed
 
-    private void tabsTabsTabsTabsStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabsTabsTabsTabsStateChanged
+    private void sTabPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sTabPaneStateChanged
         controller.setTabView(((javax.swing.JTabbedPane) evt.getSource()).getSelectedIndex());
-    }//GEN-LAST:event_tabsTabsTabsTabsStateChanged
+    }//GEN-LAST:event_sTabPaneStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem sBMButton;
     private javax.swing.JMenu sCalcMenu;
+    private javax.swing.JPanel sCalculator;
     private javax.swing.JMenuItem sEADButton;
     private javax.swing.JMenuItem sEADTableButton;
     private javax.swing.JMenuItem sExitButton;
@@ -344,13 +345,12 @@ public class ScubaFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem sPPTableButton;
     private javax.swing.JMenuItem sSMODButton;
     private javax.swing.JSplitPane sSplitPane;
+    private javax.swing.JTabbedPane sTabPane;
     private scubase3.panels.ScubaTableInputPanel sTableInputPanel;
     private scubase3.panels.ScubaTablePanel sTablePanel;
+    private javax.swing.JPanel sTables;
     private javax.swing.JMenu sTablesMenu;
     private scubase3.ScubaTables scubaTables1;
     private javax.swing.JSplitPane tVerticalSplitPane;
-    private javax.swing.JTabbedPane tabsTabsTabsTabs;
-    private javax.swing.JPanel theOneWithTables;
-    private javax.swing.JPanel theOneWithoutTables;
     // End of variables declaration//GEN-END:variables
 }

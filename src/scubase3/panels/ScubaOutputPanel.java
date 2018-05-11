@@ -99,7 +99,6 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
         setLayout(new java.awt.GridBagLayout());
 
         outputLHS.setAlignmentY(0.5F);
-        outputLHS.setPreferredSize(new java.awt.Dimension(200, 345));
         outputLHS.setLayout(new javax.swing.OverlayLayout(outputLHS));
 
         controls.setOpaque(false);
@@ -108,6 +107,8 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
         outputOxygenDisplay.setMaximum(50);
         outputOxygenDisplay.setMinimum(22);
         outputOxygenDisplay.setOrientation(javax.swing.JSlider.VERTICAL);
+        outputOxygenDisplay.setFocusable(false);
+        outputOxygenDisplay.setOpaque(false);
         outputOxygenDisplay.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 outputOxygenDisplayStateChanged(evt);
@@ -118,6 +119,7 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
         controls.add(outputOxygenDisplay, gridBagConstraints);
 
         outputOxygenLabel.setText("O2%");
+        outputOxygenLabel.setOpaque(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
@@ -129,6 +131,7 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
 
         prettyPicture.setMaximumSize(new java.awt.Dimension(100, 250));
         prettyPicture.setMinimumSize(new java.awt.Dimension(100, 250));
+        prettyPicture.setOpaque(false);
         prettyPicture.setPreferredSize(new java.awt.Dimension(100, 250));
         prettyPicture.setRequestFocusEnabled(false);
         prettyPicture.setVerifyInputWhenFocusTarget(false);
@@ -141,9 +144,10 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         add(outputLHS, gridBagConstraints);
 
         outputRHS.setMinimumSize(new java.awt.Dimension(100, 400));
@@ -160,7 +164,6 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
