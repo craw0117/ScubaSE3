@@ -1,6 +1,7 @@
 package scubase3;
 
 import java.lang.reflect.Field;
+import javax.swing.JFrame;
 import javax.swing.JSpinner;
 import javax.swing.JToggleButton;
 import org.junit.Assert;
@@ -30,10 +31,16 @@ public class InputPanelTest {
     JToggleButton modSelect;
     JToggleButton bmSelect;
         
-    InputPanelTest() throws IllegalArgumentException, IllegalAccessException {
+    public InputPanelTest() throws IllegalArgumentException, IllegalAccessException {
         controller = new ScubaController();
         ip = new ScubaInputPanel(controller);
 
+        // Put the panel in a frame so isVisible(), isShowing() methods work
+        JFrame frame = new JFrame();
+        frame.add(ip);
+        frame.setVisible(true);
+        frame.setSize(300, 300);
+        
         //Testable elements
         depthSpinner = null;
         partialPressureSpinner = null;
@@ -159,30 +166,31 @@ public class InputPanelTest {
     
     @Test
     /**
-     * Test the spinners doesn't accept bad inputs
+     * Test the spinners doesn't accept bad inputs.
      */
     public void inputPanelSpinnerBadInputs() {
-        //Set known values
-        depthSpinner.setValue(Const.DEPTH_MINIMUM);
-        oxygenFractionSpinner.setValue(Const.OXYGEN_MINIMUM);
-        partialPressureSpinner.setValue(Const.PP_MINIMUM);
+        // Set known values (can't use minimum as safe value due to
+        // floating point errors)
+        depthSpinner.setValue(Const.DEPTH_MINIMUM + Const.DEPTH_INC);
+        oxygenFractionSpinner.setValue(Const.OXYGEN_MINIMUM + Const.OXYGEN_INC);
+        partialPressureSpinner.setValue(Const.PP_MINIMUM + Const.PP_INC);
+
 
         //Attempt to set bad values at the spinner
-        depthSpinner.setValue(Const.DEPTH_MINIMUM - Const.DEPTH_INC);
-        oxygenFractionSpinner.setValue(Const.OXYGEN_MINIMUM - Const.OXYGEN_INC);
-        partialPressureSpinner.setValue(Const.PP_MINIMUM - Const.PP_INC);
-
+        depthSpinner.setValue(Const.DEPTH_MINIMUM - 2*Const.DEPTH_INC);
+        oxygenFractionSpinner.setValue(Const.OXYGEN_MINIMUM - 2*Const.OXYGEN_INC);
+        partialPressureSpinner.setValue(Const.PP_MINIMUM - 2*Const.PP_INC);
         ip.update();
 
         //Check the spinners still have the last known good value
-        Assert.assertEquals(Const.DEPTH_MINIMUM, (double) depthSpinner.getValue(), 0.01);
-        Assert.assertEquals(Const.OXYGEN_MINIMUM, (double) oxygenFractionSpinner.getValue(), 0.01);
-        Assert.assertEquals(Const.PP_MINIMUM, (double) partialPressureSpinner.getValue(), 0.01);
+        Assert.assertEquals(Const.DEPTH_MINIMUM + Const.DEPTH_INC, (double) depthSpinner.getValue(), 0.01);
+        Assert.assertEquals(Const.OXYGEN_MINIMUM + Const.OXYGEN_INC, (double) oxygenFractionSpinner.getValue(), 0.01);
+        Assert.assertEquals(Const.PP_MINIMUM + Const.PP_INC, (double) partialPressureSpinner.getValue(), 0.01);
 
         //Check the model still has the last known good value
-        Assert.assertEquals(Const.DEPTH_MINIMUM, controller.getDepth(), 0.01);
-        Assert.assertEquals(Const.OXYGEN_MINIMUM, controller.getOxygenFraction(), 0.01);
-        Assert.assertEquals(Const.PP_MINIMUM, controller.getPartialPressure(), 0.01);
+        Assert.assertEquals(Const.DEPTH_MINIMUM + Const.DEPTH_INC, controller.getDepth(), 0.01);
+        Assert.assertEquals(Const.OXYGEN_MINIMUM + Const.OXYGEN_INC, controller.getOxygenFraction(), 0.01);
+        Assert.assertEquals(Const.PP_MINIMUM + Const.PP_INC, controller.getPartialPressure(), 0.01);
     }
     
     @Test
@@ -192,44 +200,69 @@ public class InputPanelTest {
     public void inputPanelCalcType() {
 
         smodSelect.doClick();
+        ip.update();
         Assert.assertEquals(Const.TYPE_SMOD, controller.getCalculationType());
         Assert.assertTrue(smodSelect.isSelected());
         Assert.assertFalse(ppSelect.isSelected());
         Assert.assertFalse(eadSelect.isSelected());
         Assert.assertFalse(modSelect.isSelected());
         Assert.assertFalse(bmSelect.isSelected());
+        
+        Assert.assertFalse(depthSpinner.isShowing());
+        Assert.assertFalse(partialPressureSpinner.isShowing());
+        Assert.assertTrue(oxygenFractionSpinner.isShowing());
 
         ppSelect.doClick();
+        ip.update();
         Assert.assertEquals(Const.TYPE_PP, controller.getCalculationType());
         Assert.assertTrue(ppSelect.isSelected());
         Assert.assertFalse(smodSelect.isSelected());
         Assert.assertFalse(eadSelect.isSelected());
         Assert.assertFalse(modSelect.isSelected());
         Assert.assertFalse(bmSelect.isSelected());
+        
+        Assert.assertTrue(depthSpinner.isShowing());
+        Assert.assertFalse(partialPressureSpinner.isShowing());
+        Assert.assertTrue(oxygenFractionSpinner.isShowing());
 
         eadSelect.doClick();
+        ip.update();
         Assert.assertEquals(Const.TYPE_EAD, controller.getCalculationType());
         Assert.assertTrue(eadSelect.isSelected());
         Assert.assertFalse(smodSelect.isSelected());
         Assert.assertFalse(ppSelect.isSelected());
         Assert.assertFalse(modSelect.isSelected());
         Assert.assertFalse(bmSelect.isSelected());
+        
+        Assert.assertTrue(depthSpinner.isShowing());
+        Assert.assertFalse(partialPressureSpinner.isShowing());
+        Assert.assertTrue(oxygenFractionSpinner.isShowing());
 
         modSelect.doClick();
+        ip.update();
         Assert.assertEquals(Const.TYPE_MOD, controller.getCalculationType());
         Assert.assertTrue(modSelect.isSelected());
         Assert.assertFalse(smodSelect.isSelected());
         Assert.assertFalse(ppSelect.isSelected());
         Assert.assertFalse(eadSelect.isSelected());
         Assert.assertFalse(bmSelect.isSelected());
+        
+        Assert.assertFalse(depthSpinner.isShowing());
+        Assert.assertTrue(partialPressureSpinner.isShowing());
+        Assert.assertTrue(oxygenFractionSpinner.isShowing());
 
         bmSelect.doClick();
+        ip.update();
         Assert.assertEquals(Const.TYPE_BM, controller.getCalculationType());
         Assert.assertTrue(bmSelect.isSelected());
         Assert.assertFalse(smodSelect.isSelected());
         Assert.assertFalse(ppSelect.isSelected());
         Assert.assertFalse(eadSelect.isSelected());
         Assert.assertFalse(modSelect.isSelected());
+        
+        Assert.assertTrue(depthSpinner.isShowing());
+        Assert.assertTrue(partialPressureSpinner.isShowing());
+        Assert.assertFalse(oxygenFractionSpinner.isShowing());
 
     }
 

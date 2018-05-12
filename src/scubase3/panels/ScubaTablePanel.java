@@ -15,39 +15,48 @@ import scubase3.ScubaSE3;
  */
 public class ScubaTablePanel extends javax.swing.JPanel {
 
+    private ScubaController controller;
+    private JTable activeTable;
+    
     /**
      * Default constructor for ScubaTablePanel
      */
     public ScubaTablePanel() {
         initComponents();
     }
+    public ScubaTablePanel(ScubaController controller) {
+        initComponents();
+        this.controller = controller;
+    }
 
     /**
      * Updates dynamic components - must be called after state change.
      */
     public void update() {
-        Double[] params = ScubaSE3.getController().getTableParams();
-
-        
-        String tableType = ScubaSE3.getController().getTableType();
+        if (controller == null)
+            controller = ScubaSE3.getController();
+                
+        String tableType = controller.getTableType();
         switch (tableType) {
             case Const.TYPE_EAD:
-                JTable tableEAD = ScubaSE3.getController().getEADTable();
+                JTable tableEAD = controller.getEADTable();
 
                 eadTable.removeAll();
                 eadTable.add(tableEAD.getTableHeader(), BorderLayout.NORTH);
                 eadTable.add(tableEAD);
+                activeTable = tableEAD;
 
                 eadTable.setVisible(true);
                 ppTable.setVisible(false);
 
                 break;
             case Const.TYPE_PP:
-                JTable tablePP = ScubaSE3.getController().getPPTable();
+                JTable tablePP = controller.getPPTable();
 
                 ppTable.removeAll();
                 ppTable.add(tablePP.getTableHeader(), BorderLayout.NORTH);
                 ppTable.add(tablePP);
+                activeTable = tablePP;
 
                 eadTable.setVisible(false);
                 ppTable.setVisible(true);
@@ -56,10 +65,12 @@ public class ScubaTablePanel extends javax.swing.JPanel {
             default:
                 throw new java.lang.Error("Invalid tableType: " + tableType);
         }
+        
+        this.validate();
+    }
 
-        //Fixes bug with tables not being styled
-        SwingUtilities.updateComponentTreeUI(this);
-        updateComponentTreeUI(this);
+    public JTable getActiveTable() {
+        return activeTable;
     }
 
     /**

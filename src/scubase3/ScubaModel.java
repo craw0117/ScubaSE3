@@ -73,7 +73,7 @@ public class ScubaModel {
         eadTable = ScubaTables.createEADTable();
         ppTable = ScubaTables.createPPTable();
         
-        tableParams = new Double[]{0.18, 0.5, 3.0, 69.0};
+        tableParams = new Double[]{18.0, 50.0, 3.0, 69.0};
         
         showTableTab = 0;
     }
@@ -378,8 +378,8 @@ public class ScubaModel {
      * @see #getPPTable()
      */
     public JTable getEADTable() {
-        eadTable =  ScubaTables.createEADTable((int) Math.round(tableParams[0]*100),
-                                               (int) Math.round(tableParams[1]*100),
+        eadTable =  ScubaTables.createEADTable((int) Math.round(tableParams[0]),
+                                               (int) Math.round(tableParams[1]),
                                                (int) Math.round(tableParams[2]), 
                                                (int) Math.round(tableParams[3]));
         return eadTable;
@@ -392,8 +392,8 @@ public class ScubaModel {
      * @see #getEADTable()
      */
     public JTable getPPTable() {
-        ppTable =  ScubaTables.createPPTable((int) Math.round(tableParams[0]*100),
-                                               (int) Math.round(tableParams[1]*100),
+        ppTable =  ScubaTables.createPPTable((int) Math.round(tableParams[0]),
+                                               (int) Math.round(tableParams[1]),
                                                (int) Math.round(tableParams[2]), 
                                                (int) Math.round(tableParams[3]));
         

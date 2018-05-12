@@ -186,7 +186,7 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         partialPressureSpinner.setModel(new javax.swing.SpinnerNumberModel(1.1d, 1.1d, 1.6d, 0.01d));
         partialPressureSpinner.setAlignmentX(0.0F);
         partialPressureSpinner.setEditor(new javax.swing.JSpinner.NumberEditor(partialPressureSpinner, "0.0"));
-        partialPressureSpinner.setMaximumSize(new java.awt.Dimension(250, 24));
+        partialPressureSpinner.setMaximumSize(new java.awt.Dimension(250, 30));
         partialPressureSpinner.setMinimumSize(new java.awt.Dimension(100, 25));
         partialPressureSpinner.setPreferredSize(new java.awt.Dimension(250, 24));
         partialPressureSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -224,7 +224,7 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
 
         oxygenFractionSpinner.setModel(new javax.swing.SpinnerNumberModel(0.32d, 0.22d, 0.5d, 0.01d));
         oxygenFractionSpinner.setAlignmentX(0.0F);
-        oxygenFractionSpinner.setMaximumSize(new java.awt.Dimension(250, 24));
+        oxygenFractionSpinner.setMaximumSize(new java.awt.Dimension(250, 30));
         oxygenFractionSpinner.setMinimumSize(new java.awt.Dimension(100, 25));
         oxygenFractionSpinner.setPreferredSize(new java.awt.Dimension(250, 24));
         oxygenFractionSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -266,7 +266,7 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
 
         depthSpinner.setModel(new javax.swing.SpinnerNumberModel(33.0d, 0.0d, 100.0d, 1.0d));
         depthSpinner.setAlignmentX(0.0F);
-        depthSpinner.setMaximumSize(new java.awt.Dimension(250, 24));
+        depthSpinner.setMaximumSize(new java.awt.Dimension(250, 30));
         depthSpinner.setMinimumSize(new java.awt.Dimension(100, 25));
         depthSpinner.setPreferredSize(new java.awt.Dimension(250, 24));
         depthSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -278,8 +278,8 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
         depthPanel.add(depthSpinner);
         javax.swing.JSpinner.NumberEditor dEditor = (javax.swing.JSpinner.NumberEditor)depthSpinner.getEditor();
         java.text.DecimalFormat dFormat = dEditor.getFormat();
-        dFormat.setMinimumFractionDigits(1);
-        dFormat.setMaximumFractionDigits(1);
+        dFormat.setMinimumFractionDigits(0);
+        dFormat.setMaximumFractionDigits(0);
 
         depthHelpLabel.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         depthHelpLabel.setText("e.g. 33.3m");

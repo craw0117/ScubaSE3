@@ -74,13 +74,13 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
         oxygenFractionPanel = new javax.swing.JPanel();
         oxygenFractionLabel = new javax.swing.JLabel();
         oxygenFractionSpinner = new javax.swing.JSpinner();
-        filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 20), new java.awt.Dimension(32767, 15));
+        filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 15));
         oxygenFractionLabel1 = new javax.swing.JLabel();
         oxygenFractionSpinner1 = new javax.swing.JSpinner();
         depthPanel = new javax.swing.JPanel();
         depthLabel = new javax.swing.JLabel();
         depthSpinner = new javax.swing.JSpinner();
-        filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 20), new java.awt.Dimension(32767, 15));
+        filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 10), new java.awt.Dimension(0, 10), new java.awt.Dimension(32767, 15));
         depthLabel1 = new javax.swing.JLabel();
         depthSpinner1 = new javax.swing.JSpinner();
 
@@ -135,10 +135,12 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
         oxygenFractionLabel.setText("Min Oxygen Percent (Fg)");
         oxygenFractionPanel.add(oxygenFractionLabel);
 
-        oxygenFractionSpinner.setModel(new javax.swing.SpinnerNumberModel(0.18d, 0.18d, 0.5d, 0.01d));
+        oxygenFractionSpinner.setModel(new javax.swing.SpinnerNumberModel(18.0, 18.0, 50.0, 1.0));
         oxygenFractionSpinner.setAlignmentX(0.0F);
+        oxygenFractionSpinner.setMaximumSize(new java.awt.Dimension(32767, 30));
         oxygenFractionSpinner.setMinimumSize(new java.awt.Dimension(100, 25));
-        oxygenFractionSpinner.setValue(22);
+        oxygenFractionSpinner.setRequestFocusEnabled(false);
+        oxygenFractionSpinner.setValue(18.0);
         oxygenFractionSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 oxygenFractionSpinnerStateChanged(evt);
@@ -153,16 +155,18 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
         //but we want to display it as an int (32)
         oFormat.setMinimumFractionDigits(0);
         oFormat.setMaximumFractionDigits(0);
-        oFormat.setMultiplier(100);
         oxygenFractionPanel.add(filler4);
 
         oxygenFractionLabel1.setText("Max Oxygen Percent (Fg)");
         oxygenFractionPanel.add(oxygenFractionLabel1);
 
-        oxygenFractionSpinner1.setModel(new javax.swing.SpinnerNumberModel(0.5d, 0.18d, 0.5d, 0.01d));
+        oxygenFractionSpinner1.setModel(new javax.swing.SpinnerNumberModel(50.0, 18.0, 50.0, 1.0));
         oxygenFractionSpinner1.setAlignmentX(0.0F);
+        oxygenFractionSpinner1.setMaximumSize(new java.awt.Dimension(32767, 30));
         oxygenFractionSpinner1.setMinimumSize(new java.awt.Dimension(100, 25));
-        oxygenFractionSpinner1.setValue(0.50);
+        oxygenFractionSpinner1.setOpaque(false);
+        oxygenFractionSpinner1.setRequestFocusEnabled(false);
+        oxygenFractionSpinner1.setValue(50.0);
         oxygenFractionSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 oxygenFractionSpinner1StateChanged(evt);
@@ -177,7 +181,6 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
         //but we want to display it as an int (32)
         oFormat2.setMinimumFractionDigits(0);
         oFormat2.setMaximumFractionDigits(0);
-        oFormat2.setMultiplier(100);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
@@ -191,6 +194,10 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
 
         depthPanel.setAlignmentX(0.0F);
         depthPanel.setAlignmentY(0.0F);
+        depthPanel.setMinimumSize(new java.awt.Dimension(155, 90));
+        depthPanel.setOpaque(false);
+        depthPanel.setPreferredSize(new java.awt.Dimension(155, 90));
+        depthPanel.setRequestFocusEnabled(false);
         depthPanel.setLayout(new javax.swing.BoxLayout(depthPanel, javax.swing.BoxLayout.Y_AXIS));
 
         depthLabel.setText("Min Depth (m)");
@@ -198,6 +205,7 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
 
         depthSpinner.setModel(new javax.swing.SpinnerNumberModel(3.0d, 3.0d, 69.0d, 3.0d));
         depthSpinner.setAlignmentX(0.0F);
+        depthSpinner.setMaximumSize(new java.awt.Dimension(32767, 35));
         depthSpinner.setMinimumSize(new java.awt.Dimension(100, 25));
         depthSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -213,6 +221,7 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
 
         depthSpinner1.setModel(new javax.swing.SpinnerNumberModel(69.0d, 3.0d, 69.0d, 3.0d));
         depthSpinner1.setAlignmentX(0.0F);
+        depthSpinner1.setMaximumSize(new java.awt.Dimension(32767, 35));
         depthSpinner1.setMinimumSize(new java.awt.Dimension(100, 25));
         depthSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -234,9 +243,9 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.ipady = 20;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         add(jPanel1, gridBagConstraints);

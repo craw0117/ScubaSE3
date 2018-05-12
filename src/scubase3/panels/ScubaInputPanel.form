@@ -176,7 +176,7 @@
               <SpinnerEditor format="0.0" type="3"/>
             </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[250, 24]"/>
+              <Dimension value="[250, 30]"/>
             </Property>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[100, 25]"/>
@@ -230,7 +230,7 @@
             </Property>
             <Property name="alignmentX" type="float" value="0.0"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[250, 24]"/>
+              <Dimension value="[250, 30]"/>
             </Property>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[100, 25]"/>
@@ -284,7 +284,7 @@
             </Property>
             <Property name="alignmentX" type="float" value="0.0"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[250, 24]"/>
+              <Dimension value="[250, 30]"/>
             </Property>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[100, 25]"/>
@@ -297,7 +297,7 @@
             <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="depthSpinnerStateChanged"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="javax.swing.JSpinner.NumberEditor dEditor = (javax.swing.JSpinner.NumberEditor)depthSpinner.getEditor();&#xa;java.text.DecimalFormat dFormat = dEditor.getFormat();&#xa;dFormat.setMinimumFractionDigits(1);&#xa;dFormat.setMaximumFractionDigits(1);"/>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="javax.swing.JSpinner.NumberEditor dEditor = (javax.swing.JSpinner.NumberEditor)depthSpinner.getEditor();&#xa;java.text.DecimalFormat dFormat = dEditor.getFormat();&#xa;dFormat.setMinimumFractionDigits(0);&#xa;dFormat.setMaximumFractionDigits(0);"/>
             <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="((DefaultEditor) depthSpinner.getEditor()).getTextField().setEditable(false);"/>
           </AuxValues>
         </Component>

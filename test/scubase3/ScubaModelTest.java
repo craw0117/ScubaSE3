@@ -72,8 +72,11 @@ public class ScubaModelTest {
         Assert.assertEquals("EAD", model.getTableType());
         Assert.assertEquals(1, model.getTabView());
         
+        //reset tab
+        model.setTabView(0);
+        
         model.setTableType("PP");
         Assert.assertEquals("PP", model.getTableType());
-        Assert.assertEquals(0, model.getTabView());
+        Assert.assertEquals(1, model.getTabView());
     }
 }
