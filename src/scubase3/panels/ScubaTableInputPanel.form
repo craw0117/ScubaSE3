@@ -117,8 +117,8 @@
             </Component>
             <Component class="javax.swing.JSpinner" name="oxygenFractionSpinner">
               <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.SpinnerNumberModel(18.0, 18.0, 50.0, 1.0)" type="code"/>
+                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                  <SpinnerModel initial="18" maximum="50" minimum="18" numberType="java.lang.Integer" stepSize="1" type="number"/>
                 </Property>
                 <Property name="alignmentX" type="float" value="0.0"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -127,9 +127,8 @@
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[100, 25]"/>
                 </Property>
-                <Property name="requestFocusEnabled" type="boolean" value="false"/>
                 <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="18.0" type="code"/>
+                  <Connection code="18" type="code"/>
                 </Property>
               </Properties>
               <Events>
@@ -163,8 +162,8 @@
             </Component>
             <Component class="javax.swing.JSpinner" name="oxygenFractionSpinner1">
               <Properties>
-                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.SpinnerNumberModel(50.0, 18.0, 50.0, 1.0)" type="code"/>
+                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                  <SpinnerModel initial="50" maximum="50" minimum="18" numberType="java.lang.Integer" stepSize="1" type="number"/>
                 </Property>
                 <Property name="alignmentX" type="float" value="0.0"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -173,10 +172,8 @@
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[100, 25]"/>
                 </Property>
-                <Property name="opaque" type="boolean" value="false"/>
-                <Property name="requestFocusEnabled" type="boolean" value="false"/>
                 <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="50.0" type="code"/>
+                  <Connection code="50" type="code"/>
                 </Property>
               </Properties>
               <Events>
@@ -220,7 +217,7 @@
             <Component class="javax.swing.JSpinner" name="depthSpinner">
               <Properties>
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="3.0" maximum="69.0" minimum="3.0" numberType="java.lang.Double" stepSize="3.0" type="number"/>
+                  <SpinnerModel initial="3" maximum="69" minimum="3" numberType="java.lang.Integer" stepSize="3" type="number"/>
                 </Property>
                 <Property name="alignmentX" type="float" value="0.0"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -261,7 +258,7 @@
             <Component class="javax.swing.JSpinner" name="depthSpinner1">
               <Properties>
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="69.0" maximum="69.0" minimum="3.0" numberType="java.lang.Double" stepSize="3.0" type="number"/>
+                  <SpinnerModel initial="69" maximum="69" minimum="3" numberType="java.lang.Integer" stepSize="3" type="number"/>
                 </Property>
                 <Property name="alignmentX" type="float" value="0.0"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -275,7 +272,7 @@
                 <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="depthSpinner1StateChanged"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="((DefaultEditor) depthSpinner.getEditor()).getTextField().setEditable(false);"/>
+                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="((DefaultEditor) depthSpinner1.getEditor()).getTextField().setEditable(false);"/>
               </AuxValues>
             </Component>
           </SubComponents>

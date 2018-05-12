@@ -126,9 +126,9 @@ public class ScubaController {
      * @param OxyMax Maximum oxygen percentage eg 0.50
      * @param depthMin Min depth eg 33.0
      * @param depthMax Max depth eg 3.0
-     * @see ScubaModel#setTableParams(double OxyMin, double OxyMax, double depthMin, double depthMax)
+     * @see ScubaModel#setTableParams(int OxyMin, int OxyMax, int depthMin, int depthMax)
      */
-    public void setTableParams(double OxyMin, double OxyMax, double depthMin, double depthMax) {
+    public void setTableParams(int OxyMin, int OxyMax, int depthMin, int depthMax) {
         model.setTableParams(OxyMin, OxyMax, depthMin, depthMax);
     }
 
@@ -159,7 +159,7 @@ public class ScubaController {
      * @return
      * @see ScubaModel#getTableParams()
      */
-    public Double[] getTableParams() {
+    public int[] getTableParams() {
         return model.getTableParams();
     }
 

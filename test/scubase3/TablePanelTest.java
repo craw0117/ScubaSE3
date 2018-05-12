@@ -9,7 +9,7 @@ import org.junit.Test;
 import scubase3.panels.ScubaTablePanel;
 
 /**
- * Tests components of the inputPanel. Uses reflection to expose private 
+ * Tests components of the tablePanel. Uses reflection to expose private 
  * variables, MVC makes it really important to ensure access only where needed
  * so using reflection is perferable to making everything public. 
  *
@@ -74,21 +74,21 @@ public class TablePanelTest {
     @Test
     public void tablePanelParams(){
         
-        int minOxy = 18;
-        int maxOxy = 50;
-        int minDepth = 3;
-        int maxDepth = 69;
+        int minOxy = Const.T_OXY_MIN;
+        int maxOxy = Const.T_OXY_MAX;
+        int minDepth = Const.T_DEPTH_MIN;
+        int maxDepth = Const.T_DEPTH_MAX;
         
         //Cover all possible sizes but not all possible combinations
-        for (int i = minOxy; i <= maxOxy; i+=1){
+        for (int i = minOxy; i <= maxOxy; i+=Const.T_OXY_INC){
             
-            for (int p = minDepth; p <= maxDepth; p+=3){
+            for (int p = minDepth; p <= maxDepth; p+=Const.T_DEPTH_INC){
                     controller.setTableParams(minOxy, i, minDepth, p);
                     tp.update();
                     
                     JTable table = tp.getActiveTable();
-                    Assert.assertEquals(i-minOxy+1, table.getRowCount());
-                    Assert.assertEquals(((p-minDepth+3)/3)+1, table.getColumnCount());
+                    Assert.assertEquals(((i-minOxy)/Const.T_OXY_INC)+1, table.getRowCount());
+                    Assert.assertEquals(((p-minDepth)/Const.T_DEPTH_INC)+2, table.getColumnCount());
 
             }
         }

@@ -32,7 +32,7 @@ public class ScubaModel {
     private JTable ppTable;
     private String tableType;
     private int showTableTab;
-    private Double[] tableParams;
+    private int[] tableParams;
 
     /**
      * Default Constructor for ScubaModel, creates a view object using the
@@ -72,9 +72,9 @@ public class ScubaModel {
 
         eadTable = ScubaTables.createEADTable();
         ppTable = ScubaTables.createPPTable();
-        
-        tableParams = new Double[]{18.0, 50.0, 3.0, 69.0};
-        
+
+        tableParams = new int[]{18, 50, 3, 69};
+
         showTableTab = 0;
     }
 
@@ -84,8 +84,9 @@ public class ScubaModel {
      * @param value
      */
     public void setViewVisibility(boolean value) {
-        if (view != null)
+        if (view != null) {
             view.setVisible(value);
+        }
         update();
     }
 
@@ -97,7 +98,7 @@ public class ScubaModel {
             SwingUtilities.updateComponentTreeUI(view);
             updateComponentTreeUI(view);
         }
-        
+
     }
 
     /**
@@ -106,8 +107,9 @@ public class ScubaModel {
      * @see ScubaFrame#update()
      */
     public void update() {
-        if (view != null)
+        if (view != null) {
             view.update();
+        }
     }
 
     /**
@@ -176,13 +178,14 @@ public class ScubaModel {
 
     public void setTabView(int value) {
         showTableTab = value;
-        
+
         update();
     }
+
     public int getTabView() {
         return showTableTab;
     }
-    
+
     /**
      * Gets the partial pressure value stored in the model
      *
@@ -200,7 +203,7 @@ public class ScubaModel {
      * @see #getPartialPressure()rowCount
      */
     public void setPartialPressure(double value) {
-        if (value < Const.PP_MINIMUM || value > Const.PP_MAXIMUM){
+        if (value < Const.PP_MINIMUM || value > Const.PP_MAXIMUM) {
             //flush changes
             update();
             return;
@@ -226,7 +229,7 @@ public class ScubaModel {
      * @see #getOxygenFraction()
      */
     public void setOxygenFraction(double value) {
-        if (value < Const.OXYGEN_MINIMUM || value > Const.OXYGEN_MAXIMUM){
+        if (value < Const.OXYGEN_MINIMUM || value > Const.OXYGEN_MAXIMUM) {
             //flush changes
             update();
             return;
@@ -252,7 +255,7 @@ public class ScubaModel {
      * @see #getDepth()
      */
     public void setDepth(double value) {
-        if (value < Const.DEPTH_MINIMUM || value > Const.DEPTH_MAXIMUM){
+        if (value < Const.DEPTH_MINIMUM || value > Const.DEPTH_MAXIMUM) {
             //flush changes
             update();
             return;
@@ -309,17 +312,18 @@ public class ScubaModel {
         showTableTab = 1;
         update();
     }
-    
+
     /**
-     * Gets the table params in an array 
+     * Gets the table params in an array
      *
      * @return Params in an array {OxyMin, OxyMax, depthMin, depthMax}
-     * @see #setTableParams(double OxyMin, double OxyMax, double depthMin, double depthMax)
+     * @see #setTableParams(double OxyMin, double OxyMax, double depthMin,
+     * double depthMax)
      */
-    public Double[] getTableParams() {
+    public int[] getTableParams() {
         return tableParams;
     }
-    
+
     /**
      * Sets the table parameters
      *
@@ -329,7 +333,20 @@ public class ScubaModel {
      * @param depthMax Max depth eg 3.0
      * @see #getTableParams()
      */
-    public void setTableParams(double OxyMin, double OxyMax, double depthMin, double depthMax) {
+    public void setTableParams(int OxyMin, int OxyMax, int depthMin, int depthMax) {
+        if (OxyMin < Const.T_OXY_MIN || OxyMin > Const.T_OXY_MAX
+                || OxyMax < Const.T_OXY_MIN || OxyMax > Const.T_OXY_MAX
+                || depthMin < Const.T_DEPTH_MIN || depthMin > Const.T_DEPTH_MAX
+                || depthMax < Const.T_DEPTH_MIN || depthMax > Const.T_DEPTH_MAX) {
+            update(); //flush bad inputs
+            return;
+        }
+        
+        if (OxyMin > OxyMax || depthMin > depthMax) {
+            update(); //flush bad inputs
+            return;
+        }
+
         tableParams[0] = OxyMin;
         tableParams[1] = OxyMax;
         tableParams[2] = depthMin;
@@ -378,10 +395,10 @@ public class ScubaModel {
      * @see #getPPTable()
      */
     public JTable getEADTable() {
-        eadTable =  ScubaTables.createEADTable((int) Math.round(tableParams[0]),
-                                               (int) Math.round(tableParams[1]),
-                                               (int) Math.round(tableParams[2]), 
-                                               (int) Math.round(tableParams[3]));
+        eadTable = ScubaTables.createEADTable((int) Math.round(tableParams[0]),
+                (int) Math.round(tableParams[1]),
+                (int) Math.round(tableParams[2]),
+                (int) Math.round(tableParams[3]));
         return eadTable;
     }
 
@@ -392,12 +409,11 @@ public class ScubaModel {
      * @see #getEADTable()
      */
     public JTable getPPTable() {
-        ppTable =  ScubaTables.createPPTable((int) Math.round(tableParams[0]),
-                                               (int) Math.round(tableParams[1]),
-                                               (int) Math.round(tableParams[2]), 
-                                               (int) Math.round(tableParams[3]));
-        
+        ppTable = ScubaTables.createPPTable((int) Math.round(tableParams[0]),
+                (int) Math.round(tableParams[1]),
+                (int) Math.round(tableParams[2]),
+                (int) Math.round(tableParams[3]));
+
         return ppTable;
     }
 }
-    

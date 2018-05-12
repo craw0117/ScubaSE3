@@ -2,6 +2,7 @@ package scubase3.panels;
 
 import javax.swing.JSpinner.DefaultEditor;
 import scubase3.Const;
+import scubase3.ScubaController;
 import scubase3.ScubaSE3;
 
 /**
@@ -10,25 +11,40 @@ import scubase3.ScubaSE3;
  * @author liu1028, eden0021, mitc0341, craw0117, kris0068
  */
 public final class ScubaTableInputPanel extends javax.swing.JPanel {
-
+    
+    private ScubaController controller;
+    
+    //Update uses setValue() which will trigger updateParams() which is undesirable
+    private Boolean updateLock;
     /**
      * Default constructor for ScubaInputPanel
      */
     public ScubaTableInputPanel() {
         initComponents();
+        updateLock = false;
+    }
+    public ScubaTableInputPanel(ScubaController controller) {
+        initComponents();
+        this.controller = controller;
+        updateLock = false;
     }
 
     /**
      * Updates dynamic components - must be called after state change.
      */
     public void update() {
-        Double[] params = ScubaSE3.getController().getTableParams();
+        if (controller == null)
+            controller = ScubaSE3.getController();
+        
+        updateLock = true;
+        
+        int[] params = controller.getTableParams();
         oxygenFractionSpinner.setValue(params[0]);
         oxygenFractionSpinner1.setValue(params[1]);
         depthSpinner.setValue(params[2]);
         depthSpinner1.setValue(params[3]);
         
-        String tableType = ScubaSE3.getController().getTableType();
+        String tableType = controller.getTableType();
         switch (tableType) {
             case Const.TYPE_EAD:
                 eadTableSelect.setSelected(true);
@@ -41,17 +57,22 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
             default:
                 throw new java.lang.Error("Invalid tableType: " + tableType);
         }
+        
+        updateLock = false;
     }
     /**
      * Sets all table params
      */
     private void updateParams()
     {
-        ScubaSE3.getController().setTableParams(
-                (double)oxygenFractionSpinner.getValue(),
-                (double)oxygenFractionSpinner1.getValue(),
-                (double)depthSpinner.getValue(),
-                (double)depthSpinner1.getValue()
+        if (updateLock)
+            return;
+        
+        controller.setTableParams(
+                (int)oxygenFractionSpinner.getValue(),
+                (int)oxygenFractionSpinner1.getValue(),
+                (int)depthSpinner.getValue(),
+                (int)depthSpinner1.getValue()
             );
     }
 
@@ -135,12 +156,11 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
         oxygenFractionLabel.setText("Min Oxygen Percent (Fg)");
         oxygenFractionPanel.add(oxygenFractionLabel);
 
-        oxygenFractionSpinner.setModel(new javax.swing.SpinnerNumberModel(18.0, 18.0, 50.0, 1.0));
+        oxygenFractionSpinner.setModel(new javax.swing.SpinnerNumberModel(18, 18, 50, 1));
         oxygenFractionSpinner.setAlignmentX(0.0F);
         oxygenFractionSpinner.setMaximumSize(new java.awt.Dimension(32767, 30));
         oxygenFractionSpinner.setMinimumSize(new java.awt.Dimension(100, 25));
-        oxygenFractionSpinner.setRequestFocusEnabled(false);
-        oxygenFractionSpinner.setValue(18.0);
+        oxygenFractionSpinner.setValue(18);
         oxygenFractionSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 oxygenFractionSpinnerStateChanged(evt);
@@ -160,13 +180,11 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
         oxygenFractionLabel1.setText("Max Oxygen Percent (Fg)");
         oxygenFractionPanel.add(oxygenFractionLabel1);
 
-        oxygenFractionSpinner1.setModel(new javax.swing.SpinnerNumberModel(50.0, 18.0, 50.0, 1.0));
+        oxygenFractionSpinner1.setModel(new javax.swing.SpinnerNumberModel(50, 18, 50, 1));
         oxygenFractionSpinner1.setAlignmentX(0.0F);
         oxygenFractionSpinner1.setMaximumSize(new java.awt.Dimension(32767, 30));
         oxygenFractionSpinner1.setMinimumSize(new java.awt.Dimension(100, 25));
-        oxygenFractionSpinner1.setOpaque(false);
-        oxygenFractionSpinner1.setRequestFocusEnabled(false);
-        oxygenFractionSpinner1.setValue(50.0);
+        oxygenFractionSpinner1.setValue(50);
         oxygenFractionSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 oxygenFractionSpinner1StateChanged(evt);
@@ -203,7 +221,7 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
         depthLabel.setText("Min Depth (m)");
         depthPanel.add(depthLabel);
 
-        depthSpinner.setModel(new javax.swing.SpinnerNumberModel(3.0d, 3.0d, 69.0d, 3.0d));
+        depthSpinner.setModel(new javax.swing.SpinnerNumberModel(3, 3, 69, 3));
         depthSpinner.setAlignmentX(0.0F);
         depthSpinner.setMaximumSize(new java.awt.Dimension(32767, 35));
         depthSpinner.setMinimumSize(new java.awt.Dimension(100, 25));
@@ -219,7 +237,7 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
         depthLabel1.setText("Max Depth (m)");
         depthPanel.add(depthLabel1);
 
-        depthSpinner1.setModel(new javax.swing.SpinnerNumberModel(69.0d, 3.0d, 69.0d, 3.0d));
+        depthSpinner1.setModel(new javax.swing.SpinnerNumberModel(69, 3, 69, 3));
         depthSpinner1.setAlignmentX(0.0F);
         depthSpinner1.setMaximumSize(new java.awt.Dimension(32767, 35));
         depthSpinner1.setMinimumSize(new java.awt.Dimension(100, 25));
@@ -228,7 +246,7 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
                 depthSpinner1StateChanged(evt);
             }
         });
-        ((DefaultEditor) depthSpinner.getEditor()).getTextField().setEditable(false);
+        ((DefaultEditor) depthSpinner1.getEditor()).getTextField().setEditable(false);
         depthPanel.add(depthSpinner1);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -258,7 +276,7 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
      */
     private void oxygenFractionSpinnerStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_oxygenFractionSpinnerStateChanged
     {//GEN-HEADEREND:event_oxygenFractionSpinnerStateChanged
-      if ((double)oxygenFractionSpinner.getValue() <= (double)oxygenFractionSpinner1.getValue())
+      if ((int)oxygenFractionSpinner.getValue() <= (int)oxygenFractionSpinner1.getValue())
             updateParams();
         else
             update(); //erase the change
@@ -271,29 +289,29 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
      */
     private void depthSpinnerStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_depthSpinnerStateChanged
     {//GEN-HEADEREND:event_depthSpinnerStateChanged
-        if ((double)depthSpinner.getValue() <= (double)depthSpinner1.getValue())
+        if ((int)depthSpinner.getValue() <= (int)depthSpinner1.getValue())
             updateParams();
         else
             update(); //erase the change
     }//GEN-LAST:event_depthSpinnerStateChanged
 
     private void eadTableSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eadTableSelectActionPerformed
-        ScubaSE3.getController().setTableType(Const.TYPE_EAD);
+        controller.setTableType(Const.TYPE_EAD);
     }//GEN-LAST:event_eadTableSelectActionPerformed
 
     private void ppTableSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppTableSelectActionPerformed
-        ScubaSE3.getController().setTableType(Const.TYPE_PP);
+        controller.setTableType(Const.TYPE_PP);
     }//GEN-LAST:event_ppTableSelectActionPerformed
 
     private void oxygenFractionSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_oxygenFractionSpinner1StateChanged
-       if ((double)oxygenFractionSpinner.getValue() <= (double)oxygenFractionSpinner1.getValue())
+       if ((int)oxygenFractionSpinner.getValue() <= (int)oxygenFractionSpinner1.getValue())
             updateParams();
         else
             update(); //erase the change
     }//GEN-LAST:event_oxygenFractionSpinner1StateChanged
 
     private void depthSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_depthSpinner1StateChanged
-       if ((double)depthSpinner.getValue() <= (double)depthSpinner1.getValue())
+       if ((int)depthSpinner.getValue() <= (int)depthSpinner1.getValue())
             updateParams();
         else
             update(); //erase the change
