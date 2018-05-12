@@ -10,18 +10,6 @@ package scubase3;
 public class ScubaCalculations {
 
     /**
-     * Converts the oxygen fraction into a percentile for use in the oxygen
-     * cylinder, i.e. 0.16 -> 16%
-     *
-     * @param oxygenFraction
-     * @return
-     * @see #calculateOxygenBM(double partialPressure, double oxygenFraction)
-     */
-    public static String calculateOxygen(double oxygenFraction) {
-        return Const.DF_O2.format(oxygenFraction * 100);
-    }
-
-    /**
      * Calculates the Maximum Operating Depth using the provided parameters.
      *
      * @param partialPressure

@@ -26,7 +26,7 @@ public class ScubaModel {
     private double oxygenFraction;
     private double depth;
     private String outputValue;
-    private String outputOxygen;
+    private int outputOxygen;
     private String outputUnit;
     private JTable eadTable;
     private JTable ppTable;
@@ -68,6 +68,8 @@ public class ScubaModel {
         oxygenFraction = 0.33;
         depth = 33.0;
 
+        outputOxygen = 33;
+
         tableType = Const.TYPE_EAD;
 
         eadTable = ScubaTables.createEADTable();
@@ -107,8 +109,53 @@ public class ScubaModel {
      * @see ScubaFrame#update()
      */
     public void update() {
+        // The model can work without a view
+        // it just means there is nothing that needs updating.
         if (view != null) {
             view.update();
+        }
+    }
+
+    /**
+     * Reruns and saves required calculations.
+     */
+    public void reCalculate() {
+        switch (calculationType) {
+            case Const.TYPE_EAD:
+                inputFlags = Const.FLAG_DEPTH | Const.FLAG_O2_FRACTION;
+                outputValue = ScubaCalculations.calculateEAD(oxygenFraction, depth);
+                outputOxygen = (int) Math.round(oxygenFraction * 100);
+                outputUnit = Const.UNIT_METERS;
+                break;
+            case Const.TYPE_MOD:
+                inputFlags = Const.FLAG_O2_PRESSURE | Const.FLAG_O2_FRACTION;
+                outputValue = ScubaCalculations.calculateMOD(partialPressure, oxygenFraction);
+                outputOxygen = (int) Math.round(oxygenFraction * 100);
+                outputUnit = Const.UNIT_METERS;
+                break;
+            case Const.TYPE_BM:
+                inputFlags = Const.FLAG_O2_PRESSURE | Const.FLAG_DEPTH;
+                outputValue = ScubaCalculations.calculateBM(partialPressure, depth);
+                if (outputValue != null && outputValue.length() > 0 && outputValue.matches("-?\\d+(\\.\\d+)?")) {
+                    outputOxygen = Integer.parseInt(outputValue);
+                }
+
+                outputUnit = Const.UNIT_PERCENT;
+                break;
+            case Const.TYPE_PP:
+                inputFlags = Const.FLAG_O2_FRACTION | Const.FLAG_DEPTH;
+                outputValue = ScubaCalculations.calculatePP(oxygenFraction, depth);
+                outputOxygen = (int) Math.round(oxygenFraction * 100);
+                outputUnit = Const.UNIT_ATA;
+                break;
+            case Const.TYPE_SMOD:
+                inputFlags = Const.FLAG_O2_FRACTION;
+                outputValue = ScubaCalculations.calculateSMOD(oxygenFraction);
+                outputOxygen = (int) Math.round(oxygenFraction * 100);
+                outputUnit = Const.UNIT_METERS;
+                break;
+            default:
+                break;
         }
     }
 
@@ -133,47 +180,15 @@ public class ScubaModel {
      * @see Const
      */
     public void setCalculationType(String value) {
-        switch (value) {
-            case Const.TYPE_EAD:
-                inputFlags = Const.FLAG_DEPTH | Const.FLAG_O2_FRACTION;
-                outputValue = ScubaCalculations.calculateEAD(oxygenFraction, depth);
-                outputOxygen = ScubaCalculations.calculateOxygen(oxygenFraction);
-                outputUnit = Const.UNIT_METERS;
-                showTableTab = 0;
-                break;
-            case Const.TYPE_MOD:
-                inputFlags = Const.FLAG_O2_PRESSURE | Const.FLAG_O2_FRACTION;
-                outputValue = ScubaCalculations.calculateMOD(partialPressure, oxygenFraction);
-                outputOxygen = ScubaCalculations.calculateOxygen(oxygenFraction);
-                outputUnit = Const.UNIT_METERS;
-                showTableTab = 0;
-                break;
-            case Const.TYPE_BM:
-                inputFlags = Const.FLAG_O2_PRESSURE | Const.FLAG_DEPTH;
-                outputValue = ScubaCalculations.calculateBM(partialPressure, depth);
-                outputOxygen = outputValue;
-                outputUnit = Const.UNIT_PERCENT;
-                showTableTab = 0;
-                break;
-            case Const.TYPE_PP:
-                inputFlags = Const.FLAG_O2_FRACTION | Const.FLAG_DEPTH;
-                outputValue = ScubaCalculations.calculatePP(oxygenFraction, depth);
-                outputOxygen = ScubaCalculations.calculateOxygen(oxygenFraction);
-                outputUnit = Const.UNIT_ATA;
-                showTableTab = 0;
-                break;
-            case Const.TYPE_SMOD:
-                inputFlags = Const.FLAG_O2_FRACTION;
-                outputValue = ScubaCalculations.calculateSMOD(oxygenFraction);
-                outputOxygen = ScubaCalculations.calculateOxygen(oxygenFraction);
-                outputUnit = Const.UNIT_METERS;
-                showTableTab = 0;
-                break;
-            default:
-                throw new java.lang.Error("Invalid calculation type: " + value);
+        if (Const.CALC_TYPE_DICT.containsKey(value)) {
+            showTableTab = 0;
+            calculationType = value;
+            reCalculate();
+            update();
+        } else {
+            throw new java.lang.Error("Invalid calculation type: " + value);
         }
-        calculationType = value;
-        update();
+
     }
 
     public void setTabView(int value) {
@@ -208,8 +223,11 @@ public class ScubaModel {
             update();
             return;
         }
-        partialPressure = value;
-        update();
+        if (Math.abs(value - partialPressure) > 0.001) {
+            partialPressure = value;
+            reCalculate();
+            update();
+        }
     }
 
     /**
@@ -234,8 +252,11 @@ public class ScubaModel {
             update();
             return;
         }
-        oxygenFraction = value;
-        update();
+        if (Math.abs(value - oxygenFraction) > 0.001) {
+            oxygenFraction = value;
+            reCalculate();
+            update();
+        }
     }
 
     /**
@@ -260,8 +281,11 @@ public class ScubaModel {
             update();
             return;
         }
-        depth = value;
-        update();
+        if (Math.abs(value - depth) > 0.001) {
+            depth = value;
+            reCalculate();
+            update();
+        }
     }
 
     /**
@@ -341,7 +365,7 @@ public class ScubaModel {
             update(); //flush bad inputs
             return;
         }
-        
+
         if (OxyMin > OxyMax || depthMin > depthMax) {
             update(); //flush bad inputs
             return;
@@ -372,7 +396,7 @@ public class ScubaModel {
      * @see #getOutputValue()
      * @see #getOutputUnit()
      */
-    public String getOutputOxygen() {
+    public int getOutputOxygen() {
         return outputOxygen;
     }
 

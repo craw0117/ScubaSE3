@@ -1,6 +1,8 @@
 package scubase3;
 
 import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Contains constant variables used throughout the application
@@ -20,6 +22,19 @@ public class Const {
     public static final String TYPE_BM = "BM";
     public static final String TYPE_PP = "PP";
     public static final String TYPE_SMOD = "SMOD";
+    
+    //Calc type dictionary
+    public static final  Map<String, String> CALC_TYPE_DICT;
+    static
+    {
+        CALC_TYPE_DICT = new HashMap<String, String>();
+        CALC_TYPE_DICT.put(TYPE_EAD, "Equivalent Air Depth");
+        CALC_TYPE_DICT.put(TYPE_MOD, "Max Operating Depth");
+        CALC_TYPE_DICT.put(TYPE_BM, "Best Mix");
+        CALC_TYPE_DICT.put(TYPE_PP, "Partial Pressure");
+        CALC_TYPE_DICT.put(TYPE_SMOD, "Standard Max Operating Depth");
+    }
+
 
     // Output units
     public static final String UNIT_METERS = "m";

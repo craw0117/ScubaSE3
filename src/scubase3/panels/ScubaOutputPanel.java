@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import scubase3.Const;
+import scubase3.ScubaController;
 import scubase3.ScubaSE3;
 
 /**
@@ -21,56 +22,79 @@ import scubase3.ScubaSE3;
  */
 public class ScubaOutputPanel extends javax.swing.JPanel {
 
+    private ScubaController controller;
+
     /**
      * Default constructor for ScubaOutputPanel
      */
     public ScubaOutputPanel() {
         initComponents();
-        
-        try
-        {
-        //Read for package and make a temp file on the file system
-        InputStream in = getClass().getResourceAsStream("ScubaTank.png");
-        File temp = File.createTempFile("ScubaTank", ".png");
-        Files.copy(in, temp.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                
-        BufferedImage myPicture;
-        
-        myPicture = ImageIO.read(temp);
-        JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-        prettyPicture.add(picLabel);
-         
+        this.controller = null;
+        addPicture();
+
+    }
+
+    public ScubaOutputPanel(ScubaController controller) {
+        initComponents();
+        this.controller = controller;
+        addPicture();
+    }
+
+    private void addPicture() {
+        try {
+            //Read for package and make a temp file on the file system
+            InputStream in = getClass().getResourceAsStream("ScubaTank.png");
+            File temp = File.createTempFile("ScubaTank", ".png");
+            Files.copy(in, temp.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+            BufferedImage myPicture;
+
+            myPicture = ImageIO.read(temp);
+            JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+            prettyPicture.add(picLabel);
+
         } catch (IOException ex) {
             Logger.getLogger(ScubaOutputPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
-       
     }
-    
+
     /**
      * Updates dynamic components - must be called after state change.
      */
     public void update() {
+        if (controller == null) {
+            controller = ScubaSE3.getController();
+        }
+
+        String calculationType = controller.getCalculationType();
+        String calc_type_long = Const.CALC_TYPE_DICT.get(calculationType);
+        calcType.setText(calc_type_long);
+
+        controls.setVisible(true);
         
-        String outputValue = ScubaSE3.getController().getOutputValue();
+        String outputValue = controller.getOutputValue();
         if (outputValue != null) {
-            String calculationType = ScubaSE3.getController().getCalculationType();
-            String outputOxygen = ScubaSE3.getController().getOutputOxygen();
-            String outputUnit = ScubaSE3.getController().getOutputUnit();
+            int outputOxygen = controller.getOutputOxygen();
+            String outputUnit = controller.getOutputUnit();
             if (Const.UNSAFE_OUTPUT_VALUE.equals(outputValue)) {
                 outputText.setText(Const.UNSAFE_OUTPUT_MESSAGE);
-            } else if (Const.TYPE_BM.equals(calculationType)) {
-                outputText.setText(calculationType + ": " + outputValue + outputUnit);
+                if (Const.TYPE_BM.equals(calculationType)) {
+                    controls.setVisible(false);
+                }
             } else {
-                outputText.setText(calculationType + ": " + outputValue + outputUnit + ", Oxygen: " + outputOxygen + Const.UNIT_PERCENT);
+                outputText.setText(calculationType + ": " + outputValue + outputUnit);
             }
-            if (!Const.UNSAFE_OUTPUT_VALUE.equals(outputOxygen) && !outputOxygenDisplay.getValueIsAdjusting()) {
-                outputOxygenDisplay.setValue(Integer.valueOf(outputOxygen));
+            if (!outputOxygenDisplay.getValueIsAdjusting()) {
+                outputOxygenDisplay.setValue(outputOxygen);
             }
-            outputOxygenDisplay.setEnabled((ScubaSE3.getController().getInputFlags() & Const.FLAG_O2_FRACTION) == Const.FLAG_O2_FRACTION);
+            outputOxygenDisplay.setEnabled((controller.getInputFlags() & Const.FLAG_O2_FRACTION) == Const.FLAG_O2_FRACTION);
+
+            oxygenOutput.setText(Integer.toString(outputOxygen) + '%');
+            nitrogenOutput.setText(Integer.toString(100 - outputOxygen) + '%');
         } else {
+            
             outputText.setText(Const.UNSAFE_OUTPUT_MESSAGE);
         }
     }
@@ -88,55 +112,91 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
         outputLHS = new javax.swing.JPanel();
         controls = new javax.swing.JPanel();
         outputOxygenDisplay = new javax.swing.JSlider();
-        outputOxygenLabel = new javax.swing.JLabel();
+        oxygenLabel = new javax.swing.JLabel();
+        nitrogenLabel = new javax.swing.JLabel();
+        oxygenOutput = new javax.swing.JLabel();
+        nitrogenOutput = new javax.swing.JLabel();
         pictureContainer = new javax.swing.JPanel();
         prettyPicture = new javax.swing.JPanel();
         outputRHS = new javax.swing.JPanel();
+        textContainer = new javax.swing.JPanel();
+        calcType = new javax.swing.JLabel();
         outputText = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(400, 400));
         setPreferredSize(new java.awt.Dimension(400, 400));
         setLayout(new java.awt.GridBagLayout());
 
-        outputLHS.setAlignmentY(0.5F);
+        outputLHS.setMinimumSize(new java.awt.Dimension(200, 350));
+        outputLHS.setPreferredSize(new java.awt.Dimension(200, 350));
         outputLHS.setLayout(new javax.swing.OverlayLayout(outputLHS));
 
         controls.setOpaque(false);
         controls.setLayout(new java.awt.GridBagLayout());
 
-        outputOxygenDisplay.setMaximum(50);
-        outputOxygenDisplay.setMinimum(22);
         outputOxygenDisplay.setOrientation(javax.swing.JSlider.VERTICAL);
         outputOxygenDisplay.setFocusable(false);
         outputOxygenDisplay.setOpaque(false);
+        outputOxygenDisplay.setPreferredSize(new java.awt.Dimension(25, 185));
         outputOxygenDisplay.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 outputOxygenDisplayStateChanged(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 15);
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(25, 12, 0, 15);
         controls.add(outputOxygenDisplay, gridBagConstraints);
 
-        outputOxygenLabel.setText("O2%");
-        outputOxygenLabel.setOpaque(true);
+        oxygenLabel.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        oxygenLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        oxygenLabel.setText("Oxygen: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
-        controls.add(outputOxygenLabel, gridBagConstraints);
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(25, 0, 0, 5);
+        controls.add(oxygenLabel, gridBagConstraints);
+
+        nitrogenLabel.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        nitrogenLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        nitrogenLabel.setText("Nitrogen:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        controls.add(nitrogenLabel, gridBagConstraints);
+
+        oxygenOutput.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        oxygenOutput.setText(" 22%");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(25, 0, 0, 0);
+        controls.add(oxygenOutput, gridBagConstraints);
+
+        nitrogenOutput.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        nitrogenOutput.setText("22%");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        controls.add(nitrogenOutput, gridBagConstraints);
 
         outputLHS.add(controls);
 
         pictureContainer.setLayout(new java.awt.GridBagLayout());
 
-        prettyPicture.setMaximumSize(new java.awt.Dimension(100, 250));
-        prettyPicture.setMinimumSize(new java.awt.Dimension(100, 250));
+        prettyPicture.setMaximumSize(new java.awt.Dimension(100, 255));
+        prettyPicture.setMinimumSize(new java.awt.Dimension(100, 255));
         prettyPicture.setOpaque(false);
-        prettyPicture.setPreferredSize(new java.awt.Dimension(100, 250));
+        prettyPicture.setPreferredSize(new java.awt.Dimension(100, 255));
         prettyPicture.setRequestFocusEnabled(false);
         prettyPicture.setVerifyInputWhenFocusTarget(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.insets = new java.awt.Insets(20, 0, 75, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 75, 0);
         pictureContainer.add(prettyPicture, gridBagConstraints);
 
         outputLHS.add(pictureContainer);
@@ -146,20 +206,26 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
         add(outputLHS, gridBagConstraints);
 
         outputRHS.setMinimumSize(new java.awt.Dimension(100, 400));
         outputRHS.setLayout(new java.awt.GridBagLayout());
 
+        textContainer.setLayout(new javax.swing.BoxLayout(textContainer, javax.swing.BoxLayout.PAGE_AXIS));
+
+        calcType.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        calcType.setText("[calc type]");
+        textContainer.add(calcType);
+
         outputText.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         outputText.setText("[This is the output area]");
+        textContainer.add(outputText);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        outputRHS.add(outputText, gridBagConstraints);
+        outputRHS.add(textContainer, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -172,17 +238,24 @@ public class ScubaOutputPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void outputOxygenDisplayStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_outputOxygenDisplayStateChanged
-        ScubaSE3.getController().setOxygenFraction((double) ((javax.swing.JSlider) evt.getSource()).getValue() / 100.0);
+        if (!Const.TYPE_BM.equals(controller.getCalculationType())) {
+            controller.setOxygenFraction((double) ((javax.swing.JSlider) evt.getSource()).getValue() / 100.0);
+        }
     }//GEN-LAST:event_outputOxygenDisplayStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel calcType;
     private javax.swing.JPanel controls;
+    private javax.swing.JLabel nitrogenLabel;
+    private javax.swing.JLabel nitrogenOutput;
     private javax.swing.JPanel outputLHS;
     private javax.swing.JSlider outputOxygenDisplay;
-    private javax.swing.JLabel outputOxygenLabel;
     private javax.swing.JPanel outputRHS;
     private javax.swing.JLabel outputText;
+    private javax.swing.JLabel oxygenLabel;
+    private javax.swing.JLabel oxygenOutput;
     private javax.swing.JPanel pictureContainer;
     private javax.swing.JPanel prettyPicture;
+    private javax.swing.JPanel textContainer;
     // End of variables declaration//GEN-END:variables
 }

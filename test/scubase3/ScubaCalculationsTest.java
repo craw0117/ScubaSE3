@@ -85,13 +85,6 @@ public class ScubaCalculationsTest {
     }
 
     @Test
-    public void calculateOxygenTest() {
-        TestData td = new TestData(0.32, 0.0, Const.DF_O2.format(32));
-        System.out.println("calculateOxygenTest() - "
-                + td.getTestStatus(ScubaCalculations.calculateOxygen(td.inputA)));
-    }
-
-    @Test
     public void calculateSMODTest() {
         TestData td = new TestData(0.36, 0.0, Const.DF_DEPTH.format(28.9));
         System.out.println("calculateSMODTest() - "

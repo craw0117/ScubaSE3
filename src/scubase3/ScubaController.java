@@ -43,6 +43,7 @@ public class ScubaController {
      * @see ScubaModel#update()
      */
     public void forceViewUpdate() {
+        model.reCalculate();
         model.update();
         model.updateUI();
     }
@@ -229,7 +230,7 @@ public class ScubaController {
      * @return
      * @see ScubaModel#getOutputOxygen()
      */
-    public String getOutputOxygen() {
+    public int getOutputOxygen() {
         return model.getOutputOxygen();
     }
 

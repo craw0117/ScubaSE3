@@ -129,7 +129,7 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
 
         inputSelectGroup.add(bmSelect);
         bmSelect.setText("BM");
-        bmSelect.setToolTipText("Fraction of Oxygen");
+        bmSelect.setToolTipText("Best Mix");
         bmSelect.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bmSelect.setFocusable(false);
         bmSelect.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -362,7 +362,6 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
     private void partialPressureSpinnerStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_partialPressureSpinnerStateChanged
     {//GEN-HEADEREND:event_partialPressureSpinnerStateChanged
         controller.setPartialPressure((double) ((javax.swing.JSpinner) evt.getSource()).getValue());
-        controller.setCalculationType(controller.getCalculationType());
     }//GEN-LAST:event_partialPressureSpinnerStateChanged
 
     /**
@@ -373,7 +372,6 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
     private void oxygenFractionSpinnerStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_oxygenFractionSpinnerStateChanged
     {//GEN-HEADEREND:event_oxygenFractionSpinnerStateChanged
         controller.setOxygenFraction((double) ((javax.swing.JSpinner) evt.getSource()).getValue());
-        controller.setCalculationType(controller.getCalculationType());
     }//GEN-LAST:event_oxygenFractionSpinnerStateChanged
 
     /**
@@ -384,7 +382,6 @@ public final class ScubaInputPanel extends javax.swing.JPanel {
     private void depthSpinnerStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_depthSpinnerStateChanged
     {//GEN-HEADEREND:event_depthSpinnerStateChanged
         controller.setDepth((double) ((javax.swing.JSpinner) evt.getSource()).getValue());
-        controller.setCalculationType(controller.getCalculationType());
     }//GEN-LAST:event_depthSpinnerStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
