@@ -27,7 +27,7 @@ public class Const {
     public static final  Map<String, String> CALC_TYPE_DICT;
     static
     {
-        CALC_TYPE_DICT = new HashMap<String, String>();
+        CALC_TYPE_DICT = new HashMap<>();
         CALC_TYPE_DICT.put(TYPE_EAD, "Equivalent Air Depth");
         CALC_TYPE_DICT.put(TYPE_MOD, "Max Operating Depth");
         CALC_TYPE_DICT.put(TYPE_BM, "Best Mix");
@@ -87,5 +87,5 @@ public class Const {
      * The text to display in the output area when the output values are not
      * within acceptable ranges and will cause harm.
      */
-    public static final String UNSAFE_OUTPUT_MESSAGE = "Input combination will cause harm!";
+    public static final String UNSAFE_OUTPUT_MESSAGE = "Input combination may cause harm!";
 }
