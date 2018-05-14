@@ -14,7 +14,7 @@ import static javax.swing.SwingUtilities.updateComponentTreeUI;
 public class ScubaModel {
 
     /**
-     * A reference to the model object, it is private to ensure that MVC is
+     * A reference to the view object, it is private to ensure that MVC is
      * strictly adhered to.
      */
     private final ScubaFrame view;
@@ -440,4 +440,5 @@ public class ScubaModel {
 
         return ppTable;
     }
+    
 }

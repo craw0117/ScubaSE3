@@ -36,7 +36,7 @@ public class OutputPanelTest {
         JFrame frame = new JFrame();
         frame.add(op);
         frame.setVisible(true);
-        frame.setSize(500, 300);
+        frame.setSize(500, 400);
 
         //Testable elements
         nitrogenOutput = null;
