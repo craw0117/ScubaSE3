@@ -2,7 +2,6 @@ package scubase3;
 
 import javax.swing.JTable;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  * Test class for ScubaCalculations

@@ -11,7 +11,7 @@ import scubase3.panels.ScubaTableInputPanel;
 /**
  * Tests components of the tableInputPanel. Uses reflection to expose private
  * variables, MVC makes it really important to ensure access only where needed
- * so using reflection is perferable to making everything public.
+ * so using reflection is preferable to making everything public.
  *
  * @author nathan
  */
