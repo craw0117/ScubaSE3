@@ -56,7 +56,7 @@
                 counter-increment: item;
             }
             li:hover{
-                
+
             }
             #sub{
                 position: relative;
@@ -69,18 +69,14 @@
             p{
                 margin-right: -20px;
                 padding-left: 5%;
-                margin-top: -12px;
+                margin-top: -8px;
             }
             a{
                 color: inherit;
                 text-decoration: none;
             }
             a:hover{
-                color: rgba(0,0,0,0.2);
-            }
-            .hidden-anchor{
-                /*                position: absolute;*/
-
+                color: rgba(0, 156, 255,0.4);
             }
             #button {
                 position: fixed;
@@ -97,6 +93,33 @@
             #button:hover {
                 background-color: rgba(18, 18, 18,0.8);
             }
+            img{
+                padding-bottom: 20px;
+
+            }
+            .zoom{
+                transition: transform .2s;
+                margin: 0 auto;
+            }
+            input[type=checkbox] {
+                display: none;
+            }
+            .container img {
+                margin: 100px;
+                transition: transform 0.25s ease;
+                cursor: zoom-in;
+
+            }
+            input[type=checkbox]:checked ~ label > img {
+                position: relative;
+                transform: scale(1.3);
+                cursor: zoom-out;
+                left: 10%;
+            }
+            #margin{
+                margin-left: 5%;
+                margin-bottom: -1%;
+            }
         </style>
 
     </head>
@@ -110,102 +133,183 @@
 
         <br><br>
         <h2 id="content">Contents</h2>
-        <ol>  
+        <br>
+        <p style="margin-bottom: -10px; margin-left: 5.5%; margin-top: 1%;">Click on text to jump to..</p>
+        <ol style="font-weight: bold;">  
             <li id="calc"><a href="#calcmenu">Calculation Menu</a>
                 <br>
                 <ol>
+                    <li style="margin-top: 4px" id="sub"><a href="#EAD">EAD</a>
+                        <ol>
+                            <li id="subsub"><a href="#oxP0">Oxygen Percentage (Fg)</a></li>
+                            <li id="subsub"><a href="#dep0">Depth (m)</a></li>
+                            <li id="subsub"><a href="#res0">Results</a></li>
+                        </ol>
+                    </li>
                     <li style="margin-top: 4px" id="sub"><a href="#MOD">MOD</a>
                         <ol>
-                           <li id="subsub"><a href="#partP1">Partial Pressure (Pg)</a></li>
+                            <li id="subsub"><a href="#partP1">Partial Pressure (Pg)</a></li>
                             <li id="subsub"><a href="#oxP1">Oxygen Percentage</a></li>
                             <li id="subsub"><a href="#MODr">MOD Results</a></li>
                         </ol>
-                    <li id="sub"><a href="#BMIX">Best MIX (Still in Development)</a>
+                    <li id="sub"><a href="#BMIX">Best MIX</a>
                         <ol>
                             <li id="subsub"><a href="#partP2">Partial Pressure (Pg)</a></li>
                             <li id="subsub"><a href="#dep1">Depth (m)</a></li>
                             <li id="subsub"><a href="#res">Results</a></li>
                         </ol>
                     </li>
-                    <li id="sub"><a href="#PP">PP (Still in Development)</a>
+                    <li id="sub"><a href="#PP">PP</a>
                         <ol>
                             <li id="subsub"><a href="#oxP2">Oxygen Percentage (Fg)</a></li>
                             <li id="subsub"><a href="#dep2">Depth (m)</a></li>
                             <li id="subsub"><a href="#res2">Results</a></li>
                         </ol>
                     </li>
-                    <li id="sub"><a href="#SMOD">SMOD (Still in Development)</a>
+                    <li id="sub"><a href="#SMOD">SMOD</a>
                         <ol>
                             <li id="subsub"><a href="#oxP3">Oxygen Percentage (Fg)</a></li>
                             <li id="subsub"><a href="#res3">Results</a></li>
                         </ol>
                     </li>
-                    <li id="sub"><a href="#EAD">EAD (Still in Development)</a>
+
+                </ol>
+            </li>
+            <li><a href="#tables">Tables</a>
+                <ol>
+                    <li id="sub"><a href="#EADt">EAD Table</a>
                         <ol>
-                            <li id="subsub"><a href="#oxP4">Oxygen Percentage (Fg)</a></li>
-                            <li id="subsub"><a href="#dep3">Depth (m)</a></li>
-                            <li id="subsub"><a href="#res4">Results</a></li>
+                            <li id="subsub"><a href="#MinOP0">Min Oxygen Percentage (Fg)</a></li>
+                            <li id="subsub"><a href="#MaxOP0">Max Oxygen Percentage (Fg)</a></li>
+                            <li id="subsub"><a href="#MinDep0">Min Depth (m)</a></li>
+                            <li id="subsub"><a href="#MaxDep0">Max Depth (m)</a></li>
+                        </ol>
+                    </li>
+                    <li id="sub"><a href="#PPt">PP Table</a>
+                        <ol>
+                            <li id="subsub"><a href="#MinOP1">Min Oxygen Percentage (Fg)</a></li>
+                            <li id="subsub"><a href="#MaxOP1">Max Oxygen Percentage (Fg)</a></li>
+                            <li id="subsub"><a href="#MinDep1">Min Depth (m)</a></li>
+                            <li id="subsub"><a href="#MaxDep1">Max Depth (m)</a></li>
                         </ol>
                     </li>
                 </ol>
             </li>
         </ol>
         <form action="#top">
-        <button id="button" >^TO TOP^</button>
+            <button id="button" >^TO TOP^</button>
         </form>
         <br>
         <h2 style="position: relative; padding-left: 1%;" class="hidden-anchor" id="calcmenu">1. Calculation Menu</h2>
-        <h3 id="MOD" style="position: relative; padding-left: 2%;">1.1 MOD</h3>
+        <p>Calculation can be selected through the tabs in the left panel or through the Calculate option in the menu</p>
+        <h3 id="EAD" style="position: relative; padding-left: 2%;">1.1 EAD</h3>
+        <p>Equivalent Air Depth is calculated on mixtures of gas that contain more than the normal 21 % oxygen.  Current range for the oxygen percentage of the gas is 22-50%, Inputs into the application are Oxygen Percentage (Fg) and Depth (m)</p>
+        <img id="margin" src="Scubpic/EAD1.png" style="max-width: 500px; max-height: 400px; width: 100%; height: auto;">
+        <h4 id="oxP0">1.1.1 Oxygen Percentage(Pg)</h4>
+        <p>The range for Oxygen Percentage is between 22 and 50 percent.  The input is selected through the use of the up and down buttons to the right of the value.  It is incremented per percentage point. </p>
+        <img id="margin" src="Scubpic/EAD2.png">
+        <h4 id="dep0">1.1.2 Depth(m)</h4>
+        <p>The current range is between 0-100 metres. The input is selected through the up and down buttons to the right of the value.  It is incremented per 1 metre.  </p>
+        <img id="margin" src="Scubpic/EAD3.png">
+        <h4 id="res0">1.1.3 Results</h4>
+        <p>The results are presented on the right panel in metres for the Equivalent Air Depth and shows the percentage of oxygen for the O2 cylinder. </p>
+        <img id="margin" src="Scubpic/EAD4.png" style="max-width: 280px; max-height: 290px; width: 100%; height: auto;">
+        <p style="padding-top: 1%;">In situations where the inputs can cause harm a warning will display</p>
+        <img id="margin" src="Scubpic/EAD5.png" style="max-width: 300px; max-height: 290px; width: 100%; height: auto;">
+
+        <h3 id="MOD" style="position: relative; padding-left: 2%;">1.2 MOD</h3>
         <p>Maximum Operating Depth is the depth of the dive that can be undertaken based on the partial pressure of gas. Inputs for the application are Partial Pressure and Oxygen Percentage.</p>
-        <h4 id="partP1">1.1.1 Partial Pressure(Pg)</h4>
-        <p>This can be added manually to two decimal places or selected through the use of the up and down buttons. The range for the Partial Pressure is between 1.1 to 1.6 bars.</p>
-        <!-- INSERT PICTURE HERE LATER-->
-        <h4 id="oxP1">1.1.2 Oxygen Percentage(Fg)</h4>
-        <P>This can be added manually or selected through the use of the up and down buttons next to the percentage. the percentage is inputted as a decimal between 0.22 to 0.50.</P>
-        <!-- INSERT PICTURE HERE LATER-->
-        <h4 id="MODr">1.1.3 MOD Results</h4>
-        <p>Click on calculate for the results to be presented the maximum operating depths in metres.</p>
-        <!-- INSERT PICTURE HERE LATER-->
-        <h3 id="BMIX" style="position: relative; padding-left: 2%;">1.2 Best Mix(Still in Development)</h3>
+        <img id="margin" src="Scubpic/MOD1.png" style="max-width: 500px; max-height: 400px; width: 100%; height: auto;">
+        <h4 id="partP1">1.2.1 Partial Pressure(Pg)</h4>
+        <p>The range for the Partial Pressure is between 1.10 to 1.60 bars.  The input is selected through the up and down buttons to the right of the value.  It is incremented per 0.01 Pg.</p>
+        <img id="margin" src="Scubpic/MOD2.png">
+        <h4 id="oxP1">1.2.2 Oxygen Percentage(Fg)</h4>
+        <p>The range for Oxygen Percentage is between 22 and 50 percent.  Th input is selected through the use of the up and down buttons to the right of the value.  It is incremented per percentage point.</p>
+        <img id="margin" src="Scubpic/MOD3.png">
+        <h4 id="MODr">1.2.3 MOD Results</h4>
+        <p>The results are presented on the right panel in metres for the maximum operating depth and shows the percentage of oxygen for the O2 cylinder.</p>
+        <img id="margin" src="Scubpic/MOD4.png" style="max-width: 280px; max-height: 300px; width: 100%; height: auto;">
+
+        <h3 id="BMIX" style="position: relative; padding-left: 2%;">1.3 Best Mix</h3>
         <p>Best Mix calculates what ratio of oxygen is best for a particular depth. Inputs for the application are Partial Pressure and Depth.</p>
-        <h4 id="partP2">1.2.1 Partial Pressure(Pg)</h4>
-        <p>This can be added manually to two decimal places or selected through the use of the up and down buttons. The range for the Partial Pressure is between 1.1 to 1.6 bars.</p>
-        <!-- INSERT PICTURE HERE LATER-->
-        <h4 id="dep1">1.2.2 Depth(m)</h4>
-        <p>This can be added manualy or selected through the up and down buttons. the current range is between 0-100 metres.</p>
-        <!-- INSERT PICTURE HERE LATER-->
-        <h4 id="res1">1.2.3 Results</h4>
-        <p>Click on calculate for the results to be presented for the Oxygen Percentage as a decimal</p>
-        <!-- INSERT PICTURE HERE LATER-->
-        <h3 id="PP" style="position: relative; padding-left: 2%;">1.3 PP(Still in Development)</h3>
+        <img id="margin" src="Scubpic/BM1.png" style="max-width: 500px; max-height: 400px; width: 100%; height: auto;">
+        <h4 id="partP2">1.3.1 Partial Pressure(Pg)</h4>
+        <p>The range for the Partial Pressure is between 1.10 to 1.60 bars.  The input is selected through the up and down buttons to the right of the value.  It is incremented per 0.01 Pg.</p>
+        <img id="margin" src="Scubpic/BM2.png">
+        <h4 id="dep1">1.3.2 Depth(m)</h4>
+        <p>The current range is between 0-100 metres. The input is selected through the up and down buttons to the right of the value.  It is incremented per 1 metre. </p>
+        <img id="margin" src="Scubpic/BM3.png">
+        <h4 id="res1">1.3.3 Results</h4>
+        <p>The results are presented on the right panel in percentage of oxygen for the Best Mix and the O2 cylinder.</p>
+        <img id="margin" src="Scubpic/BM4.png" style="max-width: 250px; max-height: 300px; width: 100%; height: auto;">
+        <p>In situations where the inputs can cause harm a warning will display.</p>
+        <img id="margin" src="Scubpic/BM5.png" style="max-width: 300px; max-height: 260px; width: 100%; height: auto;">
+        <h3 id="PP" style="position: relative; padding-left: 2%;">1.4 PP</h3>
         <p>Partial Pressure calculates what the pressure of the oxygen should be based on the Oxygen percentage and the depth of the dive. Inputs for the application are Oxygen Percentage and Depth.</p>
-        <!-- INSERT PICTURE HERE LATER-->
-        <h4 id="oxP2">1.3.1 Oxygen Percentage(Fg)</h4>
-        <p>This can be manually or selected through the use of the up and down buttons next to the percentage. The percentage is inputted as a decimal between 0.22 to 0.50.</p>
-        <!-- INSERT PICTURE HERE LATER-->
-        <h4 id="dep2">1.3.2 Depth(m)</h4>
-        <p>This can be added manually or selected through the up and down buttons. The current range is between 0-100 metres.</p>
-        <!-- INSERT PICTURE HERE LATER-->
-        <h4 id="res2">1.3.3 Results</h4>
-        <p>Click on calculate for the results to be presented for the pressure in ata.</p>
-        <!-- INSERT PICTURE HERE LATER-->
-        <h3 id="SMOD" style="position: relative; padding-left: 2%;">1.4 SMOD(Still in Development)</h3>
+        <img id="margin" src="Scubpic/PP1.png" style="max-width: 500px; max-height: 400px; width: 100%; height: auto;">
+        <h4 id="oxP2">1.4.1 Oxygen Percentage(Fg)</h4>
+        <p>The range for Oxygen Percentage is between 22 and 50 percent.  Th input is selected through the use of the up and down buttons to the right of the value.  It is incremented per percentage point.</p>
+        <img id="margin" src="Scubpic/PP2.png">
+        <h4 id="dep2">1.4.2 Depth(m)</h4>
+        <p>The current range is between 0-100 metres. The input is selected through the up and down buttons to the right of the value.  It is incremented per 1 metre. </p>
+        <img id="margin" src="Scubpic/PP3.png">
+        <h4 id="res2">1.4.3 Results</h4>
+        <p>The results are presented on the right panel for the pressure in ata and shows the percentage of oxygen for the O2 cylinder.</p>
+        <img id="margin" src="Scubpic/PP4.png" style="max-width: 290px; max-height: 300px; width: 100%; height: auto;">
+        <p>In situations where the inputs can cause harm a warning will display</p>
+        <img id="margin" src="Scubpic/PP5.png" style="max-width: 300px; max-height: 280px; width: 100%; height: auto;">
+        <h3 id="SMOD" style="position: relative; padding-left: 2%;">1.5 SMOD</h3>
         <p>Maximum Operating Depth is the depth of the dive that can be undertaken based on the partial pressure of gas. Standard Maximum Operating Depth has the Partial Pressure fixed at 1.4Pg. Input for the application is Oxygen Percentage</p>
-        <!-- INSERT PICTURE HERE LATER-->
-        <h4 id="oxP3">1.4.1 Oxygen Percentage(Fg)</h4>
-        <p>This can be added manually or selected through the use of the up and down buttons next to the percentage. The percentage is inputted as a decimal between 0.22 to 0.50</p>
-        <!-- INSERT PICTURE HERE LATER-->
-        <h4 id="res3">1.4.2 Results</h4>
-        <p>Click on calculate for the results to be presented for the maximum operating depth in metres</p>
-        <!-- INSERT PICTURE HERE LATER-->
-        <h3 id="EAD" style="position: relative; padding-left: 2%;">1.5 EAD(Still in Development)</h3>
-        <p>Equivalent Air Depth is calculated on mixtures of gas that contain more than the normal 21% oxygen. current range for the oxygen percentage of the gas is 22-50%, Inputs into the application are Oxygen Percentage(Fg)</p>
-        <!-- INSERT PICTURE HERE LATER-->
-        <h4 id="oxP4">1.5.1 Oxygen Percentage(Fg)</h4>
-        <p></p>
-        <!-- INSERT PICTURE HERE LATER-->
-        <h4 id="dep3">1.5.2 Depth(m)</h4>
-        <h4 id="res4">1.5.3 Results</h4>
+        <img id="margin" src="Scubpic/SMOD1.png" style="max-width: 500px; max-height: 400px; width: 100%; height: auto;">
+        <h4 id="oxP3">1.5.1 Oxygen Percentage(Fg)</h4>
+        <p>The range for Oxygen Percentage is between 22 and 50 percent.  Th input is selected through the use of the up and down buttons to the right of the value.  It is incremented per percentage point.</p>
+        <img id="margin" src="Scubpic/SMOD2.png">
+        <h4 id="res3">1.5.2 Results</h4>
+        <p>Click on calculate for the results to be presented for the maximum operating depth in metres and shows the percentage of oxygen for the O2 cylinder.</p>
+        <img id="margin" src="Scubpic/SMOD3.png" style="max-width: 300px; max-height: 290px; width: 100%; height: auto;">
+
+        <h2 style="position: relative; padding-left: 1%;" class="hidden-anchor" id="tables">2. Tables</h2>
+        <p>The tables can be accessed through the menu under tables and through the tables tab under the menu.</p>
+        <h3 id="EADt" style="position: relative; padding-left: 2%;">2.1 EAD Table (click image to zoom)</h3>
+        <p>Equivalent Air Depth is calculated on mixtures of gas that contain more than the normal 21 % oxygen.  Current range for the oxygen percentage of the gas is 22-50%, Inputs into the application are Oxygen Percentage (Fg) and Depth (m)</p>
+        <div>
+            <input type="checkbox" id="zoomCheck">
+            <label for="zoomCheck">
+                <img id="margin" class="zoom" src="Scubpic/EADT1.png" style="max-width: 800px; max-height: 700px; width: 100%; height: auto;">
+            </label>
+        </div>
+        <h4 id="MinOP0">2.1.1 Min Oxygen Percentage(Fg)</h4>
+        <p>Minimum range of oxygen percentage is 18%.</p>
+        <img id="margin" src="Scubpic/EADT2.png">
+        <h4 id="MaxOP0">2.1.2 Max Oxygen Percentage(Fg)</h4>
+        <p>Maximum range of oxygen percentage is 50%</p>
+        <img id="margin" src="Scubpic/EADT3.png">
+        <h4 id="MaxDep0">2.1.3 Min Depth(m)</h4>
+        <p>Minimum range of depth is 3 metres</p>
+        <img id="margin" src="Scubpic/EADT4.png">
+        <h4 id="MinDep0">2.1.4 Max Depth(m)</h4>
+        <p>Maximum range of depth is 69 metres.</p>
+        <img id="margin" src="Scubpic/EADT5.png">
+        <h3 id="PPt" style="position: relative; padding-left: 2%;">2.2 PP Table (click image to zoom)</h3>
+        <p>Partial Pressure calculates what the pressure of the oxygen should be based on the Oxygen percentage and the depth of the dive. Inputs for the application are Oxygen Percentage and Depth</p>
+        <div>
+            <input type="checkbox" id="zoomCheck2">
+            <label for="zoomCheck2">
+                <img id="margin" class="zoom" src="Scubpic/PPT1.png" style="max-width: 800px; max-height: 700px; width: 100%; height: auto;">
+            </label>
+        </div>
+        <h4 id="MinOP1">2.2.1 Min Oxygen Percentage(Fg)</h4>
+        <p>Minimum range of oxygen percentage is 18%.</p>
+        <img id="margin" src="Scubpic/PPT2.png">
+        <h4 id="MaxOP1">2.2.2 Max Oxygen Percentage(Fg)</h4>
+        <p>Maximum range of oxygen percentage is 50%.</p>
+        <img id="margin" src="Scubpic/PPT3.png">
+        <h4 id="MaxDep1">2.2.3 Min Depth(m)</h4>
+        <p>Minimum range of depth is 3 metres</p>
+        <img id="margin" src="Scubpic/PPT4.png">
+        <h4 id="MaxDep1">2.2.4 Max Depth(m)</h4>
+        <p>Maximum range of depth is 69 metres</p>
+        <img id="margin" src="Scubpic/PPT5.png">
         <br>
         <br>
     </body>

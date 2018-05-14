@@ -300,23 +300,10 @@ public class ScubaFrame extends javax.swing.JFrame {
     private void sHelpDocsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sHelpDocsButtonActionPerformed
         JFrame frame = new JFrame();
         JPanel panel = new JPanel();
-        String textloc = "helpDocs.html";
         try {
-            //Read for package and make a temp file on the file system
-            InputStream in = getClass().getResourceAsStream(textloc);
-            File temp = File.createTempFile("scubase3_help_docs", ".html");
-            Files.copy(in, temp.toPath(), StandardCopyOption.REPLACE_EXISTING);
-
-            //load from temp file in jframe
-            //URL url = temp.toURI().toURL();
-            //JEditorPane pane = new JEditorPane(url);
-            //frame.add(new JScrollPane(pane));
-            //frame.pack();
-            //frame.setSize(450, 350);
-            //frame.setLocationByPlatform(true);
-            //frame.setVisible(true);
-            //load temp file to a HTML browser
-            Desktop.getDesktop().browse(temp.toURI());
+            //load HTML to the browser
+            File html = new File(getClass().getResource("helpDocs.html").toURI());
+            Desktop.getDesktop().browse(html.toURI());
         } catch (Exception e) {
             e.printStackTrace();
         }
