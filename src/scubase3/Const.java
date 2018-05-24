@@ -62,9 +62,9 @@ public class Const {
     public static final int T_OXY_MAX = 50;
     public static final int T_OXY_INC = 1;
     
-    public static final int T_DEPTH_MIN = 3;
+    public static final int T_DEPTH_MIN = 1;
     public static final int T_DEPTH_MAX = 69;
-    public static final int T_DEPTH_INC = 3;
+    public static final int T_DEPTH_INC = 1;
 
     // Decimal format objects for output
     public static final DecimalFormat DF_PP = new DecimalFormat("0.00");

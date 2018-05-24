@@ -221,7 +221,7 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
         depthLabel.setText("Min Depth (m)");
         depthPanel.add(depthLabel);
 
-        depthSpinner.setModel(new javax.swing.SpinnerNumberModel(3, 3, 69, 3));
+        depthSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, 69, 1));
         depthSpinner.setAlignmentX(0.0F);
         depthSpinner.setMaximumSize(new java.awt.Dimension(32767, 35));
         depthSpinner.setMinimumSize(new java.awt.Dimension(100, 25));
@@ -237,7 +237,7 @@ public final class ScubaTableInputPanel extends javax.swing.JPanel {
         depthLabel1.setText("Max Depth (m)");
         depthPanel.add(depthLabel1);
 
-        depthSpinner1.setModel(new javax.swing.SpinnerNumberModel(69, 3, 69, 3));
+        depthSpinner1.setModel(new javax.swing.SpinnerNumberModel(69, 1, 69, 1));
         depthSpinner1.setAlignmentX(0.0F);
         depthSpinner1.setMaximumSize(new java.awt.Dimension(32767, 35));
         depthSpinner1.setMinimumSize(new java.awt.Dimension(100, 25));
